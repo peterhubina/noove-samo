@@ -1,5 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 import LoginPage from 'src/pages/LoginPage.vue';
+import SignupPage from 'src/pages/SignupPage.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -7,12 +8,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
-      { path: 'login', component: LoginPage }
+      { path: 'login', component: LoginPage },
+      { path: 'signup', component: SignupPage } 
     ],
   },
 
-  // Always leave this as last one,
-  // but you can also remove it
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue'),
