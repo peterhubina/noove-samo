@@ -22,7 +22,7 @@ const encodeImage = (imagePath: string): string => {
                 It's important to describe every single attribute of the data model. 
                 The data types are named in this format: datatype_T. Also describe relations between individual entities.`;*/
 
-const prompt = 'Analyse this image and write it as .json' 
+const prompt = 'Analyse the image and output it as .json' 
 
 async function main() {
   try {
@@ -31,7 +31,7 @@ async function main() {
       messages: [
         {
           role: "system",
-          content: "You are a helpful assistant designed to analyze data model image and write it in .json format.",
+          content: "You are a helpful assistant designed to analyze data model image to output JSON.",
         },
         { 
         role: 'user', 
@@ -40,7 +40,7 @@ async function main() {
           {
             "type": "image_url",
             "image_url": {
-                "url": `data:image/png;base64,${encodeImage(path.join(__dirname, 'images', 'img_p3_1.png'))}`,
+                "url": `data:image/png;base64,${encodeImage(path.join(__dirname, 'images', 'img_p3_1_resized.png'))}`,
                 "detail": "high"
               }
           },
@@ -51,6 +51,7 @@ async function main() {
     });
     
     const content = result.choices[0].message.content;
+    console.log(result.choices[0])
 
     const jsonObject = JSON.parse(content || '');
 
