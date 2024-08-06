@@ -2,6 +2,7 @@ import { RouteRecordRaw } from 'vue-router';
 import LoginPage from 'src/pages/LoginPage.vue';
 import SignupPage from 'src/pages/SignupPage.vue';
 import ForgotPasswordPage from 'src/pages/ForgotPasswordPage.vue';
+import HomePage from 'src/pages/HomePage.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -12,6 +13,7 @@ const routes: RouteRecordRaw[] = [
       { path: 'login', component: LoginPage },
       { path: 'signup', component: SignupPage },
       { path: 'forgot-password', component: ForgotPasswordPage },
+      { path: 'home', component: HomePage },
     ],
   },
 
