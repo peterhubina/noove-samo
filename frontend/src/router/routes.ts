@@ -1,6 +1,7 @@
 import { RouteRecordRaw } from 'vue-router';
 import LoginPage from 'src/pages/LoginPage.vue';
 import SignupPage from 'src/pages/SignupPage.vue';
+import ForgotPasswordPage from 'src/pages/ForgotPasswordPage.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -9,7 +10,8 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
       { path: 'login', component: LoginPage },
-      { path: 'signup', component: SignupPage } 
+      { path: 'signup', component: SignupPage },
+      { path: 'forgot-password', component: ForgotPasswordPage },
     ],
   },
 
