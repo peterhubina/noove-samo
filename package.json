@@ -1,17 +1,18 @@
 {
-  "name": "noove-samo",
+  "name": "samo-solution",
   "version": "1.0.0",
-  "type": "module",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "ts-node generate_answers.ts",
-    "check": "ts-node check_openai_exports.ts"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "dotenv": "^10.0.0",
-    "openai": "^3.0.0"
-  },
-  "devDependencies": {
-    "ts-node": "^10.0.0",
-    "typescript": "^4.5.0"
+    "dotenv": "^16.4.5",
+    "fast-png": "^6.2.0",
+    "openai": "^4.54.0",
+    "pdfjs-dist": "^4.5.136"
   }
 }

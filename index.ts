@@ -1,10 +1,11 @@
 import { getDocument, OPS } from 'pdfjs-dist';
 import fs from 'fs';
 import { encode } from 'fast-png';
+import { TextItem } from 'pdfjs-dist/types/src/display/api';
 
-if (!fs.existsSync('images')) {
+
+if (!fs.existsSync('images'))
   fs.mkdirSync('images');
-}
 
 const data = new Uint8Array(fs.readFileSync('Project Specification.pdf'));
 const document = await getDocument(data).promise;
@@ -41,5 +42,4 @@ for (let i = 1; i <= document.numPages; i++) {
   }
 }
 
-console.log('Extracted text from PDF:', pageTexts.join('\n'));
-fs.writeFileSync('text_specification/extracted_text.txt', pageTexts.join('\n'));
+fs.writeFileSync(`text.txt`, pageTexts.join('\n\n\n'));
