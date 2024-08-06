@@ -1,0 +1,1188 @@
+
+ Základné Informácie o Organizácii
+1. Viacero právnych subjektov v rámci organizácie:
+   - [Áno/Nie]
+
+2. Zoznam zamestnancov v systéme:
+   - [Áno/Nie]
+
+3. Centralizovaná alebo decentralizovaná správa?
+   - [Áno/Nie]
+
+4. Sledovanie interných komunikácií v systéme?
+   - [Áno/Nie]
+
+5. Potrebujete riadiť dokumentáciu a záznamy?
+   - [Áno/Nie]
+
+---
+
+ Lokácie a Pobočky
+6. Viacero pobočiek alebo lokalít:
+   - [Áno/Nie]
+
+7. Pobočky v rôznych krajinách:
+   - [Áno/Nie]
+
+8. Pobočky v rôznych mestách:
+   - [Áno/Nie]
+
+9. Sledovanie pobočiek podľa krajín a miest v systéme:
+   - [Áno/Nie]
+
+10. Mapa zobrazujúca pobočky:
+   - [Áno/Nie]
+
+11. Záznam počtu zamestnancov v jednotlivých pobočkách:
+   - [Áno/Nie]
+
+12. Sledovanie prenájmov pobočiek?
+   - [Áno/Nie]
+
+---
+
+ Správa Aktív
+
+ Nehnuteľnosti
+13. Sledovanie nehnuteľností v systéme:
+    - [Áno/Nie]
+
+14. Nehnuteľnosti v rôznych lokalitách:
+    - [Áno/Nie]
+
+15. Sledovanie jednotlivých nehnuteľností podľa lokalít:
+    - [Áno/Nie]
+
+16. Prenájmy a využitie nehnuteľností:
+    - [Áno/Nie]
+
+ Stroje
+17. Sledovanie strojov v systéme:
+    - [Áno/Nie]
+
+18. Rôzne typy strojov:
+    - [Áno/Nie]
+
+19. Sledovanie strojov podľa typu:
+    - [Áno/Nie]
+
+20. Dátumy údržby strojov:
+    - [Áno/Nie]
+
+21. Opravy strojov:
+    - [Áno/Nie]
+
+22. Sledovanie využitia strojov:
+    - [Áno/Nie]
+
+23. Sledovanie strojov na výrobu:
+    - [Áno/Nie]
+
+24. Sledovanie strojov na ťažbu:
+    - [Áno/Nie]
+
+25. Sledovanie strojov na spracovanie potravín:
+    - [Áno/Nie]
+
+ Vozidlá
+26. Sledovanie vozidiel v systéme:
+    - [Áno/Nie]
+
+27. Rôzne typy vozidiel:
+    - [Áno/Nie]
+
+28. Sledovanie vozidiel podľa typu:
+    - [Áno/Nie]
+
+29. Dátumy údržby vozidiel:
+    - [Áno/Nie]
+
+30. Opravy vozidiel:
+    - [Áno/Nie]
+
+31. Sledovanie spotreby paliva vozidiel:
+    - [Áno/Nie]
+
+32. Sledovanie využitia vozidiel:
+    - [Áno/Nie]
+
+33. Sledovanie dodávok:
+    - [Áno/Nie]
+
+34. Sledovanie osobných áut:
+    - [Áno/Nie]
+
+35. Sledovanie kamiónov:
+    - [Áno/Nie]
+
+36. Sledovanie špeciálnych vozidiel (napr. sanitky, požiarnické autá):
+    - [Áno/Nie]
+
+ Automobily
+37. Sledovanie automobilov v systéme:
+    - [Áno/Nie]
+
+38. Dátumy údržby automobilov:
+    - [Áno/Nie]
+
+39. Opravy automobilov:
+    - [Áno/Nie]
+
+ Lode
+40. Sledovanie lodí v systéme:
+    - [Áno/Nie]
+
+41. Dátumy údržby lodí:
+    - [Áno/Nie]
+
+42. Opravy lodí:
+    - [Áno/Nie]
+
+43. Sledovanie využitia lodí:
+    - [Áno/Nie]
+
+44. Sledovanie rybárskych lodí:
+    - [Áno/Nie]
+
+45. Sledovanie nákladných lodí:
+    - [Áno/Nie]
+
+46. Sledovanie osobných lodí:
+    - [Áno/Nie]
+
+ Člny
+47. Sledovanie člnov v systéme:
+    - [Áno/Nie]
+
+48. Dátumy údržby člnov:
+    - [Áno/Nie]
+
+49. Opravy člnov:
+    - [Áno/Nie]
+
+ Zemné stroje
+50. Sledovanie zemných strojov v systéme:
+    - [Áno/Nie]
+
+51. Dátumy údržby zemných strojov:
+    - [Áno/Nie]
+
+52. Opravy zemných strojov:
+    - [Áno/Nie]
+
+53. Sledovanie bagrov:
+    - [Áno/Nie]
+
+54. Sledovanie buldozérov:
+    - [Áno/Nie]
+
+55. Sledovanie nakladačov:
+    - [Áno/Nie]
+
+ Priemyselné stroje
+56. Sledovanie priemyselných strojov v systéme:
+    - [Áno/Nie]
+
+57. Dátumy údržby priemyselných strojov:
+    - [Áno/Nie]
+
+58. Opravy priemyselných strojov:
+    - [Áno/Nie]
+
+59. Sledovanie CNC strojov:
+    - [Áno/Nie]
+
+60. Sledovanie robotických ramien:
+    - [Áno/Nie]
+
+ IT Zariadenia
+61. Sledovanie IT zariadení v systéme:
+    - [Áno/Nie]
+
+62. Dátumy údržby IT zariadení:
+    - [Áno/Nie]
+
+63. Opravy IT zariadení:
+    - [Áno/Nie]
+
+64. Sledovanie serverov:
+    - [Áno/Nie]
+
+65. Sledovanie počítačov:
+    - [Áno/Nie]
+
+66. Sledovanie tlačiarní:
+    - [Áno/Nie]
+
+67. Sledovanie sieťových zariadení:
+    - [Áno/Nie]
+
+ Iné Aktíva
+68. Sledovanie iných aktív v systéme:
+    - [Áno/Nie]
+
+69. Rôzne typy iných aktív:
+    - [Áno/Nie]
+
+70. Dátumy údržby iných aktív:
+    - [Áno/Nie]
+
+71. Opravy iných aktív:
+    - [Áno/Nie]
+
+ Inventarizácia
+72. Sledovanie inventarizácie aktív v systéme SAMO:
+    - [Áno/Nie]
+
+ Životný cyklus
+73. Sledovanie životného cyklu aktív:
+    - [Áno/Nie]
+
+74. Amortizácia aktív:
+    - [Áno/Nie]
+
+75. Zostatková hodnota aktív:
+    - [Áno/Nie]
+
+ Údržba
+76. Pravidelná údržba aktív:
+    - [Áno/Nie]
+
+77. Upozornenia na plánovanú údržbu aktív:
+    - [Áno/Nie]
+
+ Prenájmy a Leasing
+78. Sledovanie prenájmov nehnuteľností:
+    - [Áno/Nie]
+
+79. Sledovanie leasingových zmlúv na vozidlá a stroje:
+    - [Áno/Nie]
+
+ Nábytok
+80. Sledovanie nábytku v systéme:
+    - [Áno/Nie]
+
+81. Dátumy údržby nábytku:
+    - [Áno/Nie]
+
+82. Opravy nábytku:
+    - [Áno/Nie]
+
+ Kancelárske vybavenie
+83. Sledovanie kancelárskeho vybavenia v systéme:
+    - [Áno/Nie]
+
+84. Dátumy údržby kancelárskeho vybavenia:
+    - [Áno/Nie]
+
+85. Opravy kancelárskeho vybavenia:
+    - [Áno/Nie]
+
+ Elektronika
+86. Sledovanie elektroniky v systéme:
+    - [Áno/Nie]
+
+87. Dátumy údržby elektroniky:
+    - [Áno/Nie]
+
+88. Opravy elektroniky:
+    - [Áno/Nie]
+
+ Nástroje a náradie
+89. Sledovanie nástrojov a náradia v systéme:
+    - [Áno/Nie]
+
+90. Dátumy údržby nástrojov a náradia:
+    - [Áno/Nie]
+
+91. Opravy nástrojov a náradia:
+    - [Áno/Nie]
+
+ Zásoby a materiál
+92. Sledovanie zásob a materiálu v systéme:
+    - [Áno/Nie]
+
+93. Automatizácia objednávok zásob:
+    - [Áno/Nie]
+
+94. Sledovanie dát expirácie zásob:
+    - [Áno/Nie]
+
+95. Sledovanie využitia zásob:
+    - [Áno/Nie]
+
+ Zdravotnícke vybavenie
+96. Sledovanie zdravotníckeho vybavenia v systéme:
+    - [Áno/Nie]
+
+97. Dátumy údržby zdravotníckeho vybavenia:
+    - [Áno/Nie]
+
+98. Opravy zdravotníckeho vybavenia:
+    - [Áno/Nie]
+
+ Vybavenie na voľný čas
+99. Sledovanie vybavenia na voľný čas v systéme:
+    - [Áno/Nie]
+
+100. Dátumy údržby vybavenia na voľný čas:
+    - [Áno/Nie]
+
+101. Opravy vybavenia na voľný čas:
+    - [Áno/Nie]
+
+ Poľnohospodárske vybavenie
+102. Sledovanie poľnohospodárskeho vybavenia v systéme:
+    - [Áno/Nie]
+
+103. Dátumy údržby poľnohospodárskeho vybavenia:
+    - [Áno/Nie]
+
+104. Opravy poľnohospodárskeho vybavenia:
+    - [Áno/Nie]
+
+105. Sledovanie traktorov:
+    - [Áno/Nie]
+
+106. Sledovanie kombajnov:
+    - [Áno/Nie]
+
+107. Sledovanie siačok:
+    - [Áno/Nie]
+
+108. Sledovanie zariadení na spracovanie obilia:
+    - [Áno/Nie]
+
+ Lesnícke vybavenie
+109. Sledovanie lesníckeho vybavenia v systéme:
+    - [Áno/Nie]
+
+110. Dátumy údržby lesníckeho vybavenia:
+    - [Áno/Nie]
+
+111. Opravy lesníckeho vybavenia:
+    - [Áno/Nie]
+
+112. Sledovanie píl:
+    - [Áno/Nie]
+
+113. Sledovanie lesných traktorov:
+    - [Áno/Nie]
+
+ Energetické vybavenie
+114. Sledovanie energetického vybavenia v systéme:
+    - [Áno/Nie]
+
+115. Dátumy údržby energetického vybavenia:
+    - [Áno/Nie]
+
+116. Opravy energetického vybavenia:
+    - [Áno/Nie]
+
+117. Sledovanie generátorov:
+    - [Áno/Nie]
+
+118. Sledovanie transformátorov:
+    - [Áno/Nie]
+
+119. Sledovanie rozvádzačov:
+    - [Áno/Nie]
+
+ Komunikačné vybavenie
+120. Sledovanie komunikačného vybavenia v systéme:
+    - [Áno/Nie]
+
+121. Dátumy údržby komunikačného vybavenia:
+    - [Áno/Nie]
+
+122. Opravy komunikačného vybavenia:
+    - [Áno/Nie]
+
+123. Sledovanie telekomunikačných zariadení:
+    - [Áno/Nie]
+
+124. Sledovanie rádiových zariadení:
+    - [Áno/Nie]
+
+125. Sledovanie satelitných zariadení:
+    - [Áno/Nie]
+
+ Dopravné vybavenie
+126. Sledovanie dopravného vybavenia v systéme:
+    - [Áno/Nie]
+
+127. Dátumy údržby dopravného vybavenia:
+    - [Áno/Nie]
+
+128. Opravy dopravného vybavenia:
+    - [Áno/Nie]
+
+129. Sledovanie železničných vozidiel:
+    - [Áno/Nie]
+
+130. Sledovanie električiek:
+    - [Áno/Nie]
+
+131. Sledovanie autobusov:
+    - [Áno/Nie]
+
+ Stavebné vybavenie
+132. Sledovanie stavebného vybavenia v systéme:
+    - [Áno/Nie]
+
+133. Dátumy údržby stavebného vybavenia:
+    - [Áno/Nie]
+
+134. Opravy stavebného vybavenia:
+    - [Áno/Nie]
+
+135. Sledovanie žeriavov:
+    - [Áno/Nie]
+
+136. Sledovanie betónových miešačiek:
+    - [Áno/Nie]
+
+ Športové vybavenie
+137. Sledovanie športového vybavenia v systéme:
+    - [Áno/Nie]
+
+138. Dátumy údržby športového vybavenia:
+    - [Áno/Nie]
+
+139. Opravy športového vybavenia:
+    - [Áno/Nie]
+
+140. Sledovanie fitnes strojov:
+    - [Áno/Nie]
+
+141. Sledovanie športových ihrísk:
+    - [Áno/Nie]
+
+ Mediálne vybavenie
+142. Sledovanie mediálneho vybavenia v systéme:
+    - [Áno/Nie]
+
+143. Dátumy údržby mediálneho vybavenia:
+    - [Áno/Nie]
+
+144. Opravy mediálneho vybavenia:
+    - [Áno/Nie]
+
+145. Sledovanie kamier:
+    - [Áno/Nie]
+
+146. Sledovanie osvetľovacích zariadení:
+    - [Áno/Nie]
+
+147. Sledovanie zvukových zariadení:
+    - [Áno/Nie]
+
+ Umelecké diela a exponáty
+148. Sledovanie umeleckých diel a exponátov v systéme:
+    - [Áno/Nie]
+
+149. Dátumy údržby umeleckých diel a exponátov:
+    - [Áno/Nie]
+
+150. Opravy umeleckých diel a exponátov:
+    - [Áno/Nie]
+
+151. Sledovanie obrazov:
+    - [Áno/Nie]
+
+152. Sledovanie soch:
+    - [Áno/Nie]
+
+153. Sledovanie historických artefaktov:
+    - [Áno/Nie]
+
+---
+
+ Riadenie Projektov
+154. Dedikovaný tím pre riadenie projektov:
+    - [Áno/Nie]
+
+155. Sledovanie projektov v systéme SAMO:
+    - [Áno/Nie]
+
+156. Rôzne typy projektov:
+    - [Áno/Nie]
+
+157. Sledovanie projektov podľa typu:
+    - [Áno/Nie]
+
+158. Fázy projektov:
+    - [Áno/Nie]
+
+159. Termíny jednotlivých fáz projektov:
+    - [Áno/Nie]
+
+160. Rozpočet projektov:
+    - [Áno/Nie]
+
+161. Náklady jednotlivých fáz projektov:
+    - [Áno/Nie]
+
+162. Priebeh projektov:
+    - [Áno/Nie]
+
+163. Reporty o priebehu projektov:
+    - [Áno/Nie]
+
+164. Plnenie ú
+
+loh v rámci projektov:
+    - [Áno/Nie]
+
+165. Alokácia zdrojov na projekty:
+    - [Áno/Nie]
+
+166. Riziká a problémy projektov:
+    - [Áno/Nie]
+
+167. Sledovanie projektov podľa jednotlivých tímov:
+    - [Áno/Nie]
+
+168. Sledovanie časových harmonogramov projektov:
+    - [Áno/Nie]
+
+169. Sledovanie externých dodávateľov pre projekty:
+    - [Áno/Nie]
+
+170. Automatizácia pracovných tokov projektov:
+    - [Áno/Nie]
+
+171. Generovanie projektových dokumentov:
+    - [Áno/Nie]
+
+172. Sledovanie dodržiavania projektových termínov:
+    - [Áno/Nie]
+
+173. Sledovanie nákladov na pracovnú silu v projektoch:
+    - [Áno/Nie]
+
+174. Sledovanie nákladov na materiál v projektoch:
+    - [Áno/Nie]
+
+175. Sledovanie subdodávateľov v projektoch:
+    - [Áno/Nie]
+
+176. Sledovanie príjmov z projektov:
+    - [Áno/Nie]
+
+177. Sledovanie ziskovosti projektov:
+    - [Áno/Nie]
+
+---
+
+ Geoprostorové Dáta
+178. Práca s geoprostorovými dátami:
+    - [Áno/Nie]
+
+179. Integrácia geoprostorových dát do systému SAMO:
+    - [Áno/Nie]
+
+180. Zobrazovanie geoprostorových dát na mapách:
+    - [Áno/Nie]
+
+181. Pridávanie GPS koordinátov k jednotlivým objektom:
+    - [Áno/Nie]
+
+182. Sledovanie zmien v geoprostorových dátach v čase:
+    - [Áno/Nie]
+
+183. Generovanie reportov z geoprostorových dát:
+    - [Áno/Nie]
+
+184. Integrácia geoprostorových dát s externými GIS systémami:
+    - [Áno/Nie]
+
+185. Sledovanie geografických polôh zamestnancov:
+    - [Áno/Nie]
+
+186. Sledovanie geografických polôh vozidiel:
+    - [Áno/Nie]
+
+187. Sledovanie geografických polôh strojov:
+    - [Áno/Nie]
+
+188. Zobrazenie dopravných trás a cestovných máp:
+    - [Áno/Nie]
+
+ Formulár pre Konfiguráciu SAMO Systému (pokračovanie)
+
+---
+
+ Geoprostorové Dáta (pokračovanie)
+188. Zobrazenie dopravných trás a cestovných máp:
+    - [Áno/Nie]
+
+189. Sledovanie prírodných zdrojov:
+    - [Áno/Nie]
+
+190. Monitorovanie enviromentálnych faktorov:
+    - [Áno/Nie]
+
+191. Sledovanie hraníc a územných celkov:
+    - [Áno/Nie]
+
+192. Sledovanie geologických dát:
+    - [Áno/Nie]
+
+193. Sledovanie pôdnych analýz:
+    - [Áno/Nie]
+
+194. Sledovanie vodných zdrojov:
+    - [Áno/Nie]
+
+195. Sledovanie povodňových rizík:
+    - [Áno/Nie]
+
+196. Sledovanie meteorologických dát:
+    - [Áno/Nie]
+
+197. Sledovanie geodetických dát:
+    - [Áno/Nie]
+
+198. Integrácia geoprostorových dát s navigačnými systémami:
+    - [Áno/Nie]
+
+199. Zobrazenie a sledovanie turistických trás:
+    - [Áno/Nie]
+
+200. Sledovanie ekologických projektov:
+    - [Áno/Nie]
+
+---
+
+ Externé Služby a Integrácie
+201. Integrácia SAMO s externými službami alebo systémami:
+    - [Áno/Nie]
+
+202. Integrácia cloudových služieb so SAMO:
+    - [Áno/Nie]
+
+203. Synchronizácia dát medzi SAMO a externými systémami:
+    - [Áno/Nie]
+
+204. Automatizácia pracovných tokov medzi SAMO a externými systémami:
+    - [Áno/Nie]
+
+205. Integrácia SAMO so systémami pre správu dokumentov:
+    - [Áno/Nie]
+
+206. Integrácia SAMO s finančnými alebo účtovnými systémami:
+    - [Áno/Nie]
+
+207. Integrácia SAMO s CRM systémami:
+    - [Áno/Nie]
+
+208. Integrácia SAMO s ERP systémami:
+    - [Áno/Nie]
+
+209. Integrácia SAMO s HR systémami:
+    - [Áno/Nie]
+
+210. Integrácia SAMO so systémami na správu skladov:
+    - [Áno/Nie]
+
+211. Integrácia SAMO s IoT zariadeniami:
+    - [Áno/Nie]
+
+212. Integrácia SAMO s bezpečnostnými systémami:
+    - [Áno/Nie]
+
+213. Integrácia SAMO s výrobnými systémami:
+    - [Áno/Nie]
+
+214. Integrácia SAMO s logistickými systémami:
+    - [Áno/Nie]
+
+215. Integrácia SAMO s telekomunikačnými systémami:
+    - [Áno/Nie]
+
+216. Integrácia SAMO s analytickými nástrojmi:
+    - [Áno/Nie]
+
+217. Integrácia SAMO s právnymi systémami:
+    - [Áno/Nie]
+
+218. Integrácia SAMO s marketingovými nástrojmi:
+    - [Áno/Nie]
+
+219. Integrácia SAMO s elektronickými obchodnými systémami:
+    - [Áno/Nie]
+
+220. Integrácia SAMO so zdravotníckymi systémami:
+    - [Áno/Nie]
+
+221. Integrácia SAMO s energetickými systémami:
+    - [Áno/Nie]
+
+222. Integrácia SAMO s poisťovacími systémami:
+    - [Áno/Nie]
+
+223. Integrácia SAMO s právnymi databázami:
+    - [Áno/Nie]
+
+224. Integrácia SAMO so vzdelávacími platformami:
+    - [Áno/Nie]
+
+225. Integrácia SAMO s umeleckými databázami:
+    - [Áno/Nie]
+
+226. Integrácia SAMO s muzeálnymi systémami:
+    - [Áno/Nie]
+
+---
+
+ Užívateľské Role a Povolenia
+227. Priradenie rôznych úrovní prístupu pre rôzne role:
+    - [Áno/Nie]
+
+228. Definovanie špecifických rolí v systéme SAMO:
+    - [Áno/Nie]
+
+229. Použitie existujúcich definovaných rolí v systéme SAMO:
+    - [Áno/Nie]
+
+230. Sledovanie aktivít užívateľov podľa rolí:
+    - [Áno/Nie]
+
+231. Obmedzenie prístupu k dátam podľa rolí:
+    - [Áno/Nie]
+
+232. Integrácia s LDAP alebo Active Directory:
+    - [Áno/Nie]
+
+233. Priradenie dočasných prístupov pre niektoré role:
+    - [Áno/Nie]
+
+234. Sledovanie zmien vykonaných jednotlivými užívateľmi:
+    - [Áno/Nie]
+
+235. Nastavenie audit trail pre užívateľské aktivity:
+    - [Áno/Nie]
+
+236. Nastavenie prístupových práv podľa projektov:
+    - [Áno/Nie]
+
+237. Nastavenie prístupových práv podľa lokalít:
+    - [Áno/Nie]
+
+238. Nastavenie prístupových práv podľa typov aktív:
+    - [Áno/Nie]
+
+239. Nastavenie prístupových práv podľa geoprostorových dát:
+    - [Áno/Nie]
+
+240. Nastavenie prístupových práv pre externých dodávateľov:
+    - [Áno/Nie]
+
+241. Nastavenie prístupových práv pre konzultantov:
+    - [Áno/Nie]
+
+242. Nastavenie prístupových práv pre projektových manažérov:
+    - [Áno/Nie]
+
+243. Nastavenie prístupových práv pre technikov:
+    - [Áno/Nie]
+
+244. Nastavenie prístupových práv pre údržbu:
+    - [Áno/Nie]
+
+245. Nastavenie prístupových práv pre administátorov:
+    - [Áno/Nie]
+
+---
+
+ Údržba a Monitoring
+246. Plánovanie údržby a kontroly aktív:
+    - [Áno/Nie]
+
+247. Automatické upozornenia na plánovanú údržbu:
+    - [Áno/Nie]
+
+248. Sledovanie termínov údržby aktív:
+    - [Áno/Nie]
+
+249. Sledovanie stavu aktív v reálnom čase:
+    - [Áno/Nie]
+
+250. Sledovanie výkonnosti údržby:
+    - [Áno/Nie]
+
+251. Stanovené metriky pre hodnotenie výkonu údržby:
+    - [Áno/Nie]
+
+252. Sledovanie týchto metrík v systéme SAMO:
+    - [Áno/Nie]
+
+253. Generovanie reportov o údržbe:
+    - [Áno/Nie]
+
+254. Sledovanie nákladov na údržbu:
+    - [Áno/Nie]
+
+255. Sledovanie dodávateľov údržby:
+    - [Áno/Nie]
+
+256. Sledovanie inventára náhradných dielov pre údržbu:
+    - [Áno/Nie]
+
+257. Sledovanie životnosti náhradných dielov:
+    - [Áno/Nie]
+
+258. Automatizácia pracovných tokov údržby:
+    - [Áno/Nie]
+
+259. Sledovanie plánov údržby pre rôzne typy aktív:
+    - [Áno/Nie]
+
+260. Nastavenie prioritných úloh údržby:
+    - [Áno/Nie]
+
+261. Sledovanie externých dodávateľov údržby:
+    - [Áno/Nie]
+
+262. Sledovanie interných tímov údržby:
+    - [Áno/Nie]
+
+263. Sledovanie výkonnosti tímov údržby:
+    - [Áno/Nie]
+
+264. Sledovanie pracovných hodín údržby:
+    - [Áno/Nie]
+
+265. Nastavenie automatických notifikácií pre údržbu:
+    - [Áno/Nie]
+
+266. Sledovanie plánovaných a neplánovaných údržieb:
+    - [Áno/Nie]
+
+267. Sledovanie údržby podľa lokalít:
+    - [Áno/Nie]
+
+268. Sledovanie údržby podľa typov aktív:
+    - [Áno/Nie]
+
+269
+
+. Sledovanie údržby vozidiel:
+    - [Áno/Nie]
+
+270. Sledovanie údržby strojov:
+    - [Áno/Nie]
+
+271. Sledovanie údržby budov:
+    - [Áno/Nie]
+
+272. Sledovanie údržby elektroniky:
+    - [Áno/Nie]
+
+273. Sledovanie údržby infraštruktúry:
+    - [Áno/Nie]
+
+---
+
+ Bezpečnosť a Zálohovanie
+274. Šifrovanie dát:
+    - [Áno/Nie]
+
+275. Politika zálohovania a obnovy dát:
+    - [Áno/Nie]
+
+276. Automatické zálohovanie dát:
+    - [Áno/Nie]
+
+277. Sledovanie histórie zmien v dátach:
+    - [Áno/Nie]
+
+278. Nastavenie prístupových práv na základe dátového obsahu:
+    - [Áno/Nie]
+
+279. Viacúrovňové autentifikácie:
+    - [Áno/Nie]
+
+280. Podpora pre Disaster Recovery:
+    - [Áno/Nie]
+
+281. Nastavenie časovej politiky pre prístup k citlivým dátam:
+    - [Áno/Nie]
+
+282. Sledovanie bezpečnostných incidentov:
+    - [Áno/Nie]
+
+283. Generovanie reportov o bezpečnostných incidentoch:
+    - [Áno/Nie]
+
+284. Nastavenie prístupových práv podľa úrovne citlivosti dát:
+    - [Áno/Nie]
+
+285. Nastavenie alarmov pre bezpečnostné incidenty:
+    - [Áno/Nie]
+
+286. Integrácia bezpečnostných systémov so SAMO:
+    - [Áno/Nie]
+
+287. Sledovanie prístupových práv na základe rolí:
+    - [Áno/Nie]
+
+288. Sledovanie audit trail pre prístup k dátam:
+    - [Áno/Nie]
+
+289. Nastavenie politík pre uchovávanie dát:
+    - [Áno/Nie]
+
+290. Sledovanie neoprávneného prístupu:
+    - [Áno/Nie]
+
+291. Sledovanie fyzickej bezpečnosti (napr. kamery, vstupné karty):
+    - [Áno/Nie]
+
+292. Generovanie reportov o fyzickej bezpečnosti:
+    - [Áno/Nie]
+
+293. Sledovanie bezpečnosti pracovného prostredia:
+    - [Áno/Nie]
+
+---
+
+ Reportovanie a Analytika
+294. Generovanie reportov:
+    - [Áno/Nie]
+
+295. Prispôsobiteľné šablóny reportov:
+    - [Áno/Nie]
+
+296. Vizualizácie dát:
+    - [Áno/Nie]
+
+297. Export dát do formátov ako Excel, CSV, PDF:
+    - [Áno/Nie]
+
+298. Automatizácia generovania reportov:
+    - [Áno/Nie]
+
+299. Plánované generovanie reportov:
+    - [Áno/Nie]
+
+300. Integrácia reportovania s externými analytickými nástrojmi:
+    - [Áno/Nie]
+
+301. Sledovanie výkonu reportov v reálnom čase:
+    - [Áno/Nie]
+
+302. Sledovanie historických trendov cez reporty:
+    - [Áno/Nie]
+
+303. Sledovanie KPI cez reporty:
+    - [Áno/Nie]
+
+304. Generovanie finančných reportov:
+    - [Áno/Nie]
+
+305. Generovanie prevádzkových reportov:
+    - [Áno/Nie]
+
+306. Generovanie bezpečnostných reportov:
+    - [Áno/Nie]
+
+307. Generovanie reportov pre manažment:
+    - [Áno/Nie]
+
+308. Generovanie reportov pre externých dodávateľov:
+    - [Áno/Nie]
+
+309. Generovanie reportov pre interné tímy:
+    - [Áno/Nie]
+
+310. Generovanie environmentálnych reportov:
+    - [Áno/Nie]
+
+311. Generovanie reportov o údržbe:
+    - [Áno/Nie]
+
+312. Generovanie reportov o inventarizácii:
+    - [Áno/Nie]
+
+313. Generovanie reportov o bezpečnosti:
+    - [Áno/Nie]
+
+314. Generovanie reportov o dodržiavaní predpisov:
+    - [Áno/Nie]
+
+315. Generovanie analytických reportov:
+    - [Áno/Nie]
+
+316. Generovanie reportov o produktivite zamestnancov:
+    - [Áno/Nie]
+
+317. Generovanie reportov o spotrebe materiálov:
+    - [Áno/Nie]
+
+318. Generovanie reportov o spotrebe energie:
+    - [Áno/Nie]
+
+319. Generovanie reportov o spotrebe paliva:
+    - [Áno/Nie]
+
+320. Generovanie reportov o environmentálnych vplyvoch:
+    - [Áno/Nie]
+
+321. Generovanie reportov o dodávateľoch:
+    - [Áno/Nie]
+
+322. Generovanie reportov o zákazníkoch:
+    - [Áno/Nie]
+
+323. Generovanie reportov o predaji:
+    - [Áno/Nie]
+
+324. Generovanie marketingových reportov:
+    - [Áno/Nie]
+
+325. Generovanie právnych reportov:
+    - [Áno/Nie]
+
+326. Generovanie vzdelávacích reportov:
+    - [Áno/Nie]
+
+327. Generovanie reportov o umeleckých dielach:
+    - [Áno/Nie]
+
+---
+
+ Ďalšie Požiadavky a Špecifikácie
+328. Špecifické požiadavky na používateľské rozhranie:
+    - [Áno/Nie]
+
+329. Prispôsobenie farebnej schémy a loga systému:
+    - [Áno/Nie]
+
+330. Podpora pre viaceré jazyky:
+    - [Áno/Nie]
+
+331. Prístupnosť systému z mobilných zariadení:
+    - [Áno/Nie]
+
+332. Integrácia s existujúcimi systémami:
+    - [Áno/Nie]
+
+333. Školenie pre zamestnancov na používanie systému:
+    - [Áno/Nie]
+
+334. Podpora pre zdieľanie dát medzi užívateľmi:
+    - [Áno/Nie]
+
+335. Automatické aktualizácie systému:
+    - [Áno/Nie]
+
+336. Sledovanie legislatívnych zmien a ich implementácia:
+    - [Áno/Nie]
+
+337. Integrácia systému s verejnými databázami:
+    - [Áno/Nie]
+
+338. Sledovanie zmlúv a ich dodržiavania:
+    - [Áno/Nie]
+
+339. Generovanie právnych dokumentov:
+    - [Áno/Nie]
+
+340. Sledovanie kvality služieb:
+    - [Áno/Nie]
+
+341. Sledovanie spätnej väzby od zákazníkov:
+    - [Áno/Nie]
+
+342. Nastavenie automatických pripomienok pre úlohy:
+    - [Áno/Nie]
+
+343. Sledovanie a monitorovanie KPI:
+    - [Áno/Nie]
+
+344. Generovanie marketingových reportov:
+    - [Áno/Nie]
+
+345. Sledovanie súladu s GDPR:
+    - [Áno/Nie]
+
+346. Automatizácia procesov súvisiacich s GDPR:
+    - [Áno/Nie]
+
+347. Nastavenie časových intervalov pre obnovu údajov:
+    - [Áno/Nie]
+
+348. Integrácia s platformami pre riadenie vzťahov so zákazníkmi:
+    - [Áno/Nie]
+
+349. Sledovanie výkonu zamestnancov:
+    - [Áno/Nie]
+
+350. Sledovanie dochádzky zamestnancov:
+    - [Áno/Nie]
+
+351. Sledovanie výkonnosti projektových tímov:
+    - [Áno/Nie]
+
+352. Sledovanie nákladov na projekty:
+    - [Áno/Nie]
+
+353. Sledovanie výnosov z projektov:
+    - [Áno/Nie]
+
+354. Generovanie reportov pre investorov:
+    - [Áno/Nie]
+
+355. Automatizácia procesov kontroly kvality:
+    - [Áno/Nie]
+
+356. Integrácia s platobnými
+
+ bránami:
+    - [Áno/Nie]
+
+357. Sledovanie pohľadávok a záväzkov:
+    - [Áno/Nie]
+
+358. Automatizácia procesov fakturácie:
+    - [Áno/Nie]
+
+359. Sledovanie finančných tokov:
+    - [Áno/Nie]
+
+360. Generovanie prehľadov o výkonnosti firmy:
+    - [Áno/Nie]
+
+361. Automatizácia riadenia zdrojov:
+    - [Áno/Nie]
+
+362. Sledovanie dodržiavania pracovných postupov:
+    - [Áno/Nie]
+
+363. Sledovanie inovácií a výskumu:
+    - [Áno/Nie]
+
+364. Sledovanie investícií a kapitálových výdavkov:
+    - [Áno/Nie]
+
+365. Sledovanie výdavkov na marketing:
+    - [Áno/Nie]
+
+366. Sledovanie efektívnosti marketingových kampaní:
+    - [Áno/Nie]
+
+367. Generovanie výskumných správ:
+    - [Áno/Nie]
+
+368. Generovanie správ o spoločenskej zodpovednosti:
+    - [Áno/Nie]
+
+369. Sledovanie dodržiavania environmentálnych štandardov:
+    - [Áno/Nie]
+
+370. Automatizácia sledovania environmentálnych dopadov:
+    - [Áno/Nie]
+
+
