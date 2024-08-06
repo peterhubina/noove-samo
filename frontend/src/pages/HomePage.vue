@@ -14,7 +14,7 @@
           <q-btn flat color="primary" label="Log In" class="q-ml-md" />
         </q-toolbar>
       </q-header>
-  
+
       <!-- Main Content -->
       <q-page-container>
         <q-page class="bg-grey-1">
@@ -43,7 +43,7 @@
           </div>
         </q-page>
       </q-page-container>
-  
+
       <!-- Footer -->
       <q-footer class="bg-grey-8 text-white q-pa-md" elevated>
         <div class="row items-center q-gutter-md">
@@ -51,7 +51,7 @@
             <img src="https://via.placeholder.com/100x50" alt="WebbyFrames Logo" style="height: 50px;" />
           </div>
           <div class="col text-center">
-            CompanyName @ 202X. All rights reserved.
+            CompanyName @ 2024. All rights reserved.
           </div>
           <div class="col-auto">
             <q-btn flat icon="mdi-facebook" color="white" />
@@ -63,16 +63,15 @@
       </q-footer>
     </q-page>
   </template>
-  
+
   <script>
   export default {
-    name: "HomePage"
+    name: 'HomePage'
   };
   </script>
-  
+
   <style>
   .q-page-container {
     min-height: 100vh;
   }
   </style>
-  
