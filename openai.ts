@@ -14,62 +14,55 @@ const encodeImage = (imagePath: string): string => {
   return imageBuffer.toString('base64');
 };
 
+//const dataTypes = 'Code_T, Description_T, CodeList_T, Currency_T, DateOnly_T'
+
+/*const prompt = `Describe feature types and attributes of individual images.
+                Name and types of attributes are 
+                separated by : and we only need the name of the attribute.
+                It's important to describe every single attribute of the data model. 
+                The data types are named in this format: datatype_T. Also describe relations between individual entities.`;*/
+
+const prompt = 'Analyse this image and write it as .json' 
+
 async function main() {
   try {
     const result = await client.chat.completions.create({
       model: 'gpt-4o',
-      messages: [{ 
+      messages: [
+        {
+          role: "system",
+          content: "You are a helpful assistant designed to analyze data model image and write it in .json format.",
+        },
+        { 
         role: 'user', 
         content: [
-          { "type": "text", "text": "Describe the image" },
+          { "type": "text", "text": prompt },
           {
             "type": "image_url",
             "image_url": {
-                "url": `data:image/jpeg;base64,${encodeImage(path.join(__dirname, 'images', 'img_p2_1.png'))}`
-              }
-          },
-          {
-            "type": "image_url",
-            "image_url": {
-                "url": `data:image/jpeg;base64,${encodeImage(path.join(__dirname, 'images', 'img_p3_1.png'))}`
-              }
-          },
-          {
-            "type": "image_url",
-            "image_url": {
-                "url": `data:image/jpeg;base64,${encodeImage(path.join(__dirname, 'images', 'img_p4_1.png'))}`
-              }
-          },
-          {
-            "type": "image_url",
-            "image_url": {
-                "url": `data:image/jpeg;base64,${encodeImage(path.join(__dirname, 'images', 'img_p5_1.png'))}`
-              }
-          },
-          {
-            "type": "image_url",
-            "image_url": {
-                "url": `data:image/jpeg;base64,${encodeImage(path.join(__dirname, 'images', 'img_p6_1.png'))}`
+                "url": `data:image/png;base64,${encodeImage(path.join(__dirname, 'images', 'img_p3_1.png'))}`,
+                "detail": "high"
               }
           },
         ]
       }],
-      max_tokens: 600,
+      response_format: { "type": "json_object" },
+      max_tokens: 2000,
     });
     
     const content = result.choices[0].message.content;
-    console.log(content);
+
+    const jsonObject = JSON.parse(content || '');
 
     const now = new Date();
     const dateString = now.toISOString().replace(/:/g, '-');
-    const outputPath = path.join(__dirname, 'output', `output-${dateString}.md`);
+    const outputPath = path.join(__dirname, 'output', `output-${dateString}.json`);
 
     if (!fs.existsSync(path.join(__dirname, 'output'))) {
       fs.mkdirSync(path.join(__dirname, 'output'));
     }
 
-    // Save the output to a .md file
-    fs.writeFileSync(outputPath, content);
+    fs.writeFileSync(outputPath, JSON.stringify(jsonObject, null, 2));
     console.log(`Output saved to ${outputPath}`);
   } catch (error) {
     console.error('Error generating or saving output:', error);
