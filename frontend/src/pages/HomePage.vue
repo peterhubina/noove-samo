@@ -1,19 +1,5 @@
 <template>
     <q-page class="q-pa-none">
-      <!-- Header -->
-      <q-header class="bg-white text-primary" elevated>
-        <q-toolbar>
-          <q-toolbar-title>
-            <img src="https://via.placeholder.com/100x50" alt="WebbyFrames Logo" style="height: 50px;" />
-          </q-toolbar-title>
-          <q-btn flat label="Eleven" />
-          <q-btn flat label="Twelve" />
-          <q-btn flat label="Thirteen" />
-          <q-btn flat label="Sixteen" />
-          <q-space />
-          <q-btn flat color="primary" label="Log In" class="q-ml-md" />
-        </q-toolbar>
-      </q-header>
 
       <!-- Main Content -->
       <q-page-container>
@@ -44,23 +30,6 @@
         </q-page>
       </q-page-container>
 
-      <!-- Footer -->
-      <q-footer class="bg-grey-8 text-white q-pa-md" elevated>
-        <div class="row items-center q-gutter-md">
-          <div class="col">
-            <img src="https://via.placeholder.com/100x50" alt="WebbyFrames Logo" style="height: 50px;" />
-          </div>
-          <div class="col text-center">
-            CompanyName @ 2024. All rights reserved.
-          </div>
-          <div class="col-auto">
-            <q-btn flat icon="mdi-facebook" color="white" />
-            <q-btn flat icon="mdi-twitter" color="white" />
-            <q-btn flat icon="mdi-instagram" color="white" />
-            <q-btn flat icon="mdi-linkedin" color="white" />
-          </div>
-        </div>
-      </q-footer>
     </q-page>
   </template>
 
