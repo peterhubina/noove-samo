@@ -132,3 +132,5 @@ dist
 output/
 .idea
 text_specification/questions/*
+
+configurations/
