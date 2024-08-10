@@ -1,4 +1,5 @@
 import { getDocument, OPS } from 'pdfjs-dist';
+// @ts-ignore
 import fs from 'fs';
 import { encode } from 'fast-png';
 import { TextItem } from 'pdfjs-dist/types/src/display/api';

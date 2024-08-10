@@ -1,6 +1,8 @@
 import OpenAI from 'openai';
 import 'dotenv/config';
+// @ts-ignore
 import fs from 'fs';
+// @ts-ignore
 import path from 'path';
 
 const client = new OpenAI({

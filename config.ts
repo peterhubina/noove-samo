@@ -1,4 +1,5 @@
 import { create } from 'xmlbuilder2';
+// @ts-ignore
 import fs from 'fs';
 
 // Load configuration JSON
@@ -38,6 +39,33 @@ if (config.system) {
     version.ele('ber:minAS').txt(config.system.version.minAS);
   }
 }
+
+const rootFeatureType = root.ele('ber:rootFeatureType', {
+  id: 'ft_5000002',
+  name: 'Root',
+  abstract: 'true'
+});
+
+rootFeatureType.ele('ber:description').txt('ROOT_NODE');
+const featureAttributeArray = rootFeatureType.ele('ber:featureAttributeArray');
+const systemAttributes = [
+  { id: 'id', name: 'Feature ID' },
+  { id: 'sid', name: 'Semantic ID' },
+  { id: 'ftid', name: 'Feature Type' },
+  { id: 'createdBy', name: 'Created_by' },
+  { id: 'updatedBy', name: 'Updated_by' },
+  { id: 'createDate', name: 'Create_date' },
+  { id: 'updateDate', name: 'Update_date' },
+  { id: 'longTransactionId', name: 'Long_trans_ID' },
+  { id: 'symbologyTokens', name: 'Symbology tokens' },
+  { id: 'validFrom', name: 'Valid From' },
+  { id: 'validTo', name: 'Valid To' },
+  { id: 'featureInfo', name: 'Feature Info' }
+];
+
+systemAttributes.forEach(attr => {
+  featureAttributeArray.ele('ber:systemAttribute', { id: attr.id, name: attr.name });
+});
 
 // Add numberGeneratorArray
 if (config.numberGeneratorArray) {

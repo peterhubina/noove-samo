@@ -1,8 +1,7 @@
 import OpenAI from 'openai';
 import 'dotenv/config';
-
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -14,46 +13,62 @@ const encodeImage = (imagePath: string): string => {
   return imageBuffer.toString('base64');
 };
 
-//const dataTypes = 'Code_T, Description_T, CodeList_T, Currency_T, DateOnly_T'
-
-/*const prompt = `Describe feature types and attributes of individual images.
-                Name and types of attributes are 
-                separated by : and we only need the name of the attribute.
-                It's important to describe every single attribute of the data model. 
-                The data types are named in this format: datatype_T. Also describe relations between individual entities.`;*/
-
-const prompt = 'Analyse the image and output it as .json' 
+const prompt = 'Analyze the images and output them as .json';
 
 async function main() {
   try {
+    const imagesDir = path.join(__dirname, 'images');
+    const imageFiles = fs.readdirSync(imagesDir);
+
+    const imageMessages = imageFiles.map((fileName: string) => {
+      const filePath = path.join(imagesDir, fileName);
+      const base64Image = encodeImage(filePath);
+      return {
+        type: "image_url",
+        image_url: {
+          url: `data:image/png;base64,${base64Image}`,
+          detail: "high"
+        }
+      };
+    });
+
+    const messages: any = [
+      {
+        role: "system",
+        content: "You are a helpful assistant designed to analyze data model images to output JSON.",
+      },
+      {
+        role: 'user',
+        content: [
+          { type: "text", text: prompt },
+          ...imageMessages
+        ]
+      }
+    ];
+
     const result = await client.chat.completions.create({
       model: 'gpt-4o',
-      messages: [
-        {
-          role: "system",
-          content: "You are a helpful assistant designed to analyze data model image to output JSON.",
-        },
-        { 
-        role: 'user', 
-        content: [
-          { "type": "text", "text": prompt },
-          {
-            "type": "image_url",
-            "image_url": {
-                "url": `data:image/png;base64,${encodeImage(path.join(__dirname, 'images', 'img_p3_1_resized.png'))}`,
-                "detail": "high"
-              }
-          },
-        ]
-      }],
-      response_format: { "type": "json_object" },
-      max_tokens: 2000,
+      messages: messages,
+      //max_tokens: 100,
     });
-    
-    const content = result.choices[0].message.content;
-    console.log(result.choices[0])
 
-    const jsonObject = JSON.parse(content || '');
+    const content = result.choices[0].message?.content;
+
+    console.log(result);
+
+    if (!content || !content.startsWith('{')) {
+      throw new Error('Incomplete or invalid JSON received');
+    }
+
+    //console.log(result.choices[0]);
+
+    let jsonObject: any;
+    try {
+      jsonObject = JSON.parse(content);
+    } catch (parseError) {
+      console.error('Error parsing JSON:', parseError);
+      return;
+    }
 
     const now = new Date();
     const dateString = now.toISOString().replace(/:/g, '-');
@@ -68,6 +83,6 @@ async function main() {
   } catch (error) {
     console.error('Error generating or saving output:', error);
   }
-} 
+}
 
 main();
