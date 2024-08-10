@@ -13,14 +13,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fast-png": "^6.2.0",
-    "openai": "^4.54.0",
-    "pdfjs-dist": "^4.5.136",
-    "xmlbuilder2": "^3.1.1",
     "@prisma/client": "^5.18.0",
-    "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "pg": "^8.12.0"
+    "fast-png": "^6.2.0",
+    "openai": "^4.55.4",
+    "pdfjs-dist": "^4.5.136",
+    "pg": "^8.12.0",
+    "xmlbuilder2": "^3.1.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "dotenv": "^16.4.5",

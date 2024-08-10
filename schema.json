@@ -1,0 +1,74 @@
+{
+  "parts": [
+    {
+      "title": "Fish and Ponds Management System",
+      "pages": [
+        {
+          "title": "Fish Overview",
+          "closeMenu": false,
+          "module": {
+            "type": "samo-browse",
+            "allowNearbyFilter": false,
+            "allowAdvancedFilter": true,
+            "listDisplayOptions": [
+              "list3",
+              "table",
+              "tiles"
+            ],
+            "defaultView": "table",
+            "entities": [
+              "ft_boFish",
+              "ft_boPond"
+            ]
+          }
+        },
+        {
+          "title": "Ponds and Geography",
+          "closeMenu": true,
+          "module": {
+            "type": "samo-browse",
+            "allowNearbyFilter": true,
+            "allowAdvancedFilter": true,
+            "listDisplayOptions": [
+              "table",
+              "tiles",
+              "auto"
+            ],
+            "defaultView": "map",
+            "entities": [
+              "ft_boPond"
+            ]
+          }
+        },
+        {
+          "title": "External Workforce",
+          "closeMenu": false,
+          "module": {
+            "type": "samo-browse",
+            "allowNearbyFilter": false,
+            "allowAdvancedFilter": true,
+            "listDisplayOptions": [
+              "list3",
+              "tiles"
+            ],
+            "defaultView": "table",
+            "entities": [
+              "ft_boCompany",
+              "ft_boPerson"
+            ]
+          }
+        },
+        {
+          "title": "Inspection and Workflow",
+          "closeMenu": true,
+          "module": {
+            "type": "samo-planning-board",
+            "resourceEntity": "ft_boInspection",
+            "activityEntity": "ft_boInspectionType",
+            "allocationEntity": "ft_boAllocation"
+          }
+        }
+      ]
+    }
+  ]
+}
