@@ -13,7 +13,7 @@ const module = z.discriminatedUnion('type', [
   z.object({
     type: z.literal('samo-planning-board'),
     resourceEntity: z.string(),
-    activityEntity: z.string(),
+    taskEntity: z.string(),
     allocationEntity: z.string(),
   })
 ]);
@@ -52,7 +52,15 @@ const completion = await client.beta.chat.completions.parse({
       The schema describes application parts their corresponding pages.
       Each page has a specific module type with its own parameters.
       The modules often interact with entites in the database.
-      For example the samo-browse module is used to show a list of entities in a table or on a map.
+
+      Description of modules:
+      
+      samo-browse:
+      Displays a list of entities with options to filter and sort, the entites can be displayed in a table or on a map
+      
+      samo-planning-board:
+      Displays a planning board where you can allocate resources to tasks at specific times creating an allocation entity that connects them
+
 
       Entities available:
       ft_boCompany

@@ -1,54 +1,97 @@
 {
   "parts": [
     {
-      "title": "Fish and Ponds Management System",
+      "title": "Fish Management",
       "pages": [
         {
-          "title": "Fish Overview",
+          "title": "Fish Database",
           "closeMenu": false,
           "module": {
             "type": "samo-browse",
-            "allowNearbyFilter": false,
+            "allowNearbyFilter": true,
             "allowAdvancedFilter": true,
             "listDisplayOptions": [
+              "auto",
               "list3",
               "table",
               "tiles"
             ],
             "defaultView": "table",
             "entities": [
-              "ft_boFish",
-              "ft_boPond"
+              "ft_boFish"
             ]
           }
         },
         {
-          "title": "Ponds and Geography",
-          "closeMenu": true,
+          "title": "Pond Overview",
+          "closeMenu": false,
           "module": {
             "type": "samo-browse",
             "allowNearbyFilter": true,
             "allowAdvancedFilter": true,
             "listDisplayOptions": [
+              "auto",
+              "list3",
               "table",
-              "tiles",
-              "auto"
+              "tiles"
             ],
             "defaultView": "map",
             "entities": [
               "ft_boPond"
             ]
           }
+        }
+      ]
+    },
+    {
+      "title": "Work and Resources",
+      "pages": [
+        {
+          "title": "Planning Board",
+          "closeMenu": true,
+          "module": {
+            "type": "samo-planning-board",
+            "resourceEntity": "ft_boFishingGuard",
+            "taskEntity": "ft_boInspection",
+            "allocationEntity": "ft_boAllocation"
+          }
         },
         {
-          "title": "External Workforce",
+          "title": "Inspection Management",
           "closeMenu": false,
           "module": {
             "type": "samo-browse",
             "allowNearbyFilter": false,
             "allowAdvancedFilter": true,
             "listDisplayOptions": [
+              "auto",
               "list3",
+              "table",
+              "tiles"
+            ],
+            "defaultView": "table",
+            "entities": [
+              "ft_boInspection",
+              "ft_boInspectionType"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "External Workforce",
+      "pages": [
+        {
+          "title": "External Labour Management",
+          "closeMenu": false,
+          "module": {
+            "type": "samo-browse",
+            "allowNearbyFilter": true,
+            "allowAdvancedFilter": true,
+            "listDisplayOptions": [
+              "auto",
+              "list3",
+              "table",
               "tiles"
             ],
             "defaultView": "table",
@@ -56,16 +99,6 @@
               "ft_boCompany",
               "ft_boPerson"
             ]
-          }
-        },
-        {
-          "title": "Inspection and Workflow",
-          "closeMenu": true,
-          "module": {
-            "type": "samo-planning-board",
-            "resourceEntity": "ft_boInspection",
-            "activityEntity": "ft_boInspectionType",
-            "allocationEntity": "ft_boAllocation"
           }
         }
       ]
