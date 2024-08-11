@@ -1,5 +1,5 @@
 import { z } from 'zod';
-
+import Case from 'case';
 
 const module = z.discriminatedUnion('type', [
   z.object({
@@ -22,12 +22,18 @@ export const page = z.object({
   title: z.string(),
   closeMenu: z.boolean().optional(),
   module: module,
-});
+}).transform((data) => ({
+  id: `pg_${Case.camel(data.title)}`,
+  ...data,
+}));
 
 export const part = z.object({
   title: z.string(),
   pages: z.array(page),
-});
+}).transform((data) => ({
+  id: `ap_${Case.camel(data.title)}`,
+  ...data,
+}));
 
 export const schema = z.object({
   parts: z.array(part),

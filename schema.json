@@ -1,10 +1,12 @@
 {
   "parts": [
     {
-      "title": "Fish Management",
+      "id": "ap_fishAndPondsManagement",
+      "title": "Fish and Ponds Management",
       "pages": [
         {
-          "title": "Fish Database",
+          "id": "pg_fishOverview",
+          "title": "Fish Overview",
           "closeMenu": false,
           "module": {
             "type": "samo-browse",
@@ -23,7 +25,8 @@
           }
         },
         {
-          "title": "Pond Overview",
+          "id": "pg_pondsAndMaintenance",
+          "title": "Ponds and Maintenance",
           "closeMenu": false,
           "module": {
             "type": "samo-browse",
@@ -40,28 +43,14 @@
               "ft_boPond"
             ]
           }
-        }
-      ]
-    },
-    {
-      "title": "Work and Resources",
-      "pages": [
-        {
-          "title": "Planning Board",
-          "closeMenu": true,
-          "module": {
-            "type": "samo-planning-board",
-            "resourceEntity": "ft_boFishingGuard",
-            "taskEntity": "ft_boInspection",
-            "allocationEntity": "ft_boAllocation"
-          }
         },
         {
+          "id": "pg_inspectionManagement",
           "title": "Inspection Management",
-          "closeMenu": false,
+          "closeMenu": true,
           "module": {
             "type": "samo-browse",
-            "allowNearbyFilter": false,
+            "allowNearbyFilter": true,
             "allowAdvancedFilter": true,
             "listDisplayOptions": [
               "auto",
@@ -75,14 +64,27 @@
               "ft_boInspectionType"
             ]
           }
+        },
+        {
+          "id": "pg_planningBoard",
+          "title": "Planning Board",
+          "closeMenu": false,
+          "module": {
+            "type": "samo-planning-board",
+            "resourceEntity": "ft_boFishingGuard",
+            "taskEntity": "ft_boInspection",
+            "allocationEntity": "ft_boAllocation"
+          }
         }
       ]
     },
     {
+      "id": "ap_externalWorkforce",
       "title": "External Workforce",
       "pages": [
         {
-          "title": "External Labour Management",
+          "id": "pg_workforceOverview",
+          "title": "Workforce Overview",
           "closeMenu": false,
           "module": {
             "type": "samo-browse",
