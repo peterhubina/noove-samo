@@ -3,9 +3,54 @@ import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 
+import {zodResponseFormat} from "openai/helpers/zod";
+import {z} from "zod";
+
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
+
+// Schema for attributes, assuming attributes can have various types
+const AttributeSchema = z.object({
+  name: z.string(),            // The name of the attribute
+  type: z.string(),            // The data type of the attribute
+});
+
+// Schema for associations between entities
+const AssociationSchema = z.object({
+  associationName: z.string(), // Name of the association
+  targetEntity: z.string(),    // The target entity in the association
+  associationType: z.enum(['one-to-one', 'one-to-many', 'many-to-one', 'many-to-many']),
+  featureRefAttribute: z.string().optional(), // Reference attribute, if applicable
+});
+
+// Schema for an entity
+const EntitySchema = z.object({
+  entityName: z.string(),             // The name of the entity
+  attributes: z.array(AttributeSchema), // List of attributes for the entity
+  associations: z.array(AssociationSchema).optional(), // Associations with other entities
+});
+
+// Schema for a code list item
+const CodeListItemSchema = z.object({
+  id: z.string(),           // The identifier of the code list item
+  code: z.string(),         // The code value
+  description: z.string(),  // Description of the code
+});
+
+// Schema for a code list
+const CodeListSchema = z.object({
+  codeListName: z.string(),        // The name of the code list
+  items: z.array(CodeListItemSchema), // The list of codes in this code list
+});
+
+// General schema for the entire data model
+const GeneralERDiagramSchema = z.object({
+  entities: z.array(EntitySchema),
+  codeLists: z.array(CodeListSchema).optional(),
+});
+
+export default GeneralERDiagramSchema;
 
 // Function to encode an image to Base64
 const encodeImage = (imagePath: string): string => {
@@ -35,7 +80,7 @@ async function main() {
     const messages: any = [
       {
         role: "system",
-        content: "You are a helpful assistant designed to analyze data model images to output JSON.",
+        content: "You are a helpful assistant designed to analyze ER diagram images to output them as JSON.",
       },
       {
         role: 'user',
@@ -47,28 +92,13 @@ async function main() {
     ];
 
     const result = await client.chat.completions.create({
-      model: 'gpt-4o',
+      model: 'gpt-4o-2024-08-06',
       messages: messages,
-      //max_tokens: 100,
+      response_format: zodResponseFormat(GeneralERDiagramSchema, 'schema'),
     });
 
-    const content = result.choices[0].message?.content;
-
-    console.log(result);
-
-    if (!content || !content.startsWith('{')) {
-      throw new Error('Incomplete or invalid JSON received');
-    }
-
-    //console.log(result.choices[0]);
-
-    let jsonObject: any;
-    try {
-      jsonObject = JSON.parse(content);
-    } catch (parseError) {
-      console.error('Error parsing JSON:', parseError);
-      return;
-    }
+    const content : string = result.choices[0].message?.content || '';
+    let jsonObject = JSON.parse(content);
 
     const now = new Date();
     const dateString = now.toISOString().replace(/:/g, '-');
