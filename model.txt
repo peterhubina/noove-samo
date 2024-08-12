@@ -1,0 +1,1439 @@
+<?xml version="1.0" ?>
+<ber:model xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:se="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc" xmlns:sld="http://www.opengis.net/sld" xmlns:ber="http://www.berit.com/ber">
+    <ber:project name="SAMO-TRAINING project" version="LATEST">
+        <ber:spatialInfo baseUnit="m" srs="EPSG:5514">
+            <ber:range>
+                <ber:x min="-587353.82" max="-165200.36"/>
+                <ber:y min="-1334538.53" max="-1131299.58"/>
+            </ber:range>
+            <ber:tolerance>0.001</ber:tolerance>
+        </ber:spatialInfo>
+    </ber:project>
+    <ber:system id="0">
+        <ber:version>
+            <ber:model>128</ber:model>
+            <ber:minClient>3064</ber:minClient>
+            <ber:minAS>136001</ber:minAS>
+        </ber:version>
+    </ber:system>
+    <ber:numberGeneratorArray>
+        <ber:numberGenerator id="seq_code" name="CODE" dbName="SEQ_CODE" startValue="1" step="1">
+            <ber:description>Optional description</ber:description>
+        </ber:numberGenerator>
+    </ber:numberGeneratorArray>
+    <ber:containerArray>
+        <ber:container id="ct_boAllocation" name="Allocation" dbName="CT_BOALLOCATION" versioned="true">
+        </ber:container>
+        <ber:container id="ct_boExtParty" name="External Party" dbName="CT_BOEXTPARTY" versioned="true">
+            <ber:description>Table containing the information about given external party.</ber:description>
+        </ber:container>
+        <ber:container id="ct_boFish" name="Fish species" dbName="CT_BOFISH" versioned="true">
+        </ber:container>
+        <ber:container id="ct_boInspection" name="Inspection" dbName="CT_BOINSPECTION" versioned="true">
+        </ber:container>
+        <ber:container id="ct_boPond" name="PondRegister" dbName="CT_BOPOND" versioned="true">
+        </ber:container>
+        <ber:container id="ct_boPondboPerson" name="Pend Person Association" dbName="CT_BOPONDBOPERSON" versioned="true">
+        </ber:container>
+        <ber:container id="ct_boSponsor" name="Sponsors" dbName="CT_BOSPONSOR" versioned="true">
+        </ber:container>
+        <ber:container id="ct_boInspectionType" name="Inspection type" dbName="CT_BOINSPECTIONTYPE" versioned="true">
+        </ber:container>
+        <ber:container id="ct_taiAddrPoint" name="Address point" dbName="CT_TAIADDRPOINT" versioned="true">
+        </ber:container>
+    </ber:containerArray>
+    <ber:codeListArray>
+        <ber:codeList id="cl_boAllocationState" name="boAllocationState" dbName="CL_BOALLOCATIONSTATE" size="small" hierarchical="false">
+            <ber:columnArray>
+                <ber:column id="ca_boAllocationState_code" name="Code" dbName="CODE" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_boAllocationState_description" name="Description" dbName="DESCRIPTION" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_boAllocationState_id" name="Id" dbName="ID" nillable="true" primaryKey="true" display="false">
+                    <ber:dataType>
+                        <ber:decimal precision="10"/>
+                    </ber:dataType>
+                </ber:column>
+            </ber:columnArray>
+        </ber:codeList>
+        <ber:codeList id="cl_boFishSpecies" name="Fish species" dbName="CL_BOFISHSPECIES" size="small" hierarchical="false">
+            <ber:columnArray>
+                <ber:column id="ca_boFishSpecies_code" name="Code" dbName="CODE" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_boFishSpecies_description" name="Description" dbName="DESCRIPTION" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_boFishSpecies_id" name="Id" dbName="ID" nillable="true" primaryKey="true" display="false">
+                    <ber:dataType>
+                        <ber:decimal precision="10"/>
+                    </ber:dataType>
+                </ber:column>
+            </ber:columnArray>
+        </ber:codeList>
+        <ber:codeList id="cl_boInspectionState" name="boInspectionState" dbName="CL_BOINSPECTIONSTATE" size="small" hierarchical="false">
+            <ber:columnArray>
+                <ber:column id="ca_boInspectionState_code" name="Code" dbName="CODE" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_boInspectionState_description" name="Description" dbName="DESCRIPTION" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_boInspectionState_id" name="ID" dbName="ID" nillable="true" primaryKey="true" display="false">
+                    <ber:dataType>
+                        <ber:decimal precision="10"/>
+                    </ber:dataType>
+                </ber:column>
+            </ber:columnArray>
+        </ber:codeList>
+        <ber:codeList id="cl_boPondType" name="Pond Type" dbName="CL_BOPONDTYPE" size="small" hierarchical="false">
+            <ber:description>List of competencies needed to perform a particular job.</ber:description>
+            <ber:columnArray>
+                <ber:column id="ca_boPondType_code" name="Code" dbName="CODE" nillable="true" primaryKey="false" display="false">
+                    <ber:description>Code</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_boPondType_description" name="Description" dbName="DESCRIPTION" nillable="true" primaryKey="false" display="true">
+                    <ber:description>Description</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_boPondType_id" name="Id" dbName="ID" nillable="false" primaryKey="true" display="false">
+                    <ber:description>Codelist Id</ber:description>
+                    <ber:dataType>
+                        <ber:decimal precision="10"/>
+                    </ber:dataType>
+                </ber:column>
+            </ber:columnArray>
+        </ber:codeList>
+        <ber:securityCodeList id="cl_boSecWorkPlace" name="boSecWorkPlace" dbName="CL_BOSECWORKPLACE" size="small" hierarchical="false" secRefDbName="SECWORKPLACEID" secRefNullValue="-1">
+            <ber:columnArray>
+                <ber:column id="ca_boSecWorkPlace_code" name="Code" dbName="CODE" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_boSecWorkPlace_description" name="Description" dbName="DESCRIPTION" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_boSecWorkPlace_id" name="Id" dbName="ID" nillable="false" primaryKey="true" display="false">
+                    <ber:dataType>
+                        <ber:decimal precision="10"/>
+                    </ber:dataType>
+                </ber:column>
+            </ber:columnArray>
+        </ber:securityCodeList>
+        <ber:codeList id="cl_boYesNo" name="Codelist Boolean" dbName="CL_BOYESNO" size="small" hierarchical="false">
+            <ber:description>Code list for Boolean (Yes/No).</ber:description>
+            <ber:columnArray>
+                <ber:column id="ca_boYesNo_description" name="Description" dbName="DESCRIPTION" nillable="true" primaryKey="false" display="true">
+                    <ber:description>Description</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_boYesNo_id" name="Id" dbName="ID" nillable="false" primaryKey="true" display="false">
+                    <ber:description>Codelist Id</ber:description>
+                    <ber:dataType>
+                        <ber:decimal precision="10"/>
+                    </ber:dataType>
+                </ber:column>
+            </ber:columnArray>
+        </ber:codeList>
+        <ber:codeList id="cl_taiAddrPoint" name="TAI Address point" dbName="CL_TAIADDRPOINT" size="small" hierarchical="false">
+            <ber:columnArray>
+                <ber:column id="ca_taiAddrPoint_code" name="Code" dbName="CODE" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiAddrPoint_description" name="Description" dbName="DESCRIPTION" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiAddrPoint_extId" name="External Id" dbName="EXTID" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="50"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiAddrPoint_houseNo" name="House Number" dbName="HOUSENO" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="10"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiAddrPoint_houseNoAdd" name="House Number (additional)" dbName="HOUSENOADD" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="10"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiAddrPoint_id" name="Id" dbName="ID" nillable="false" primaryKey="true" display="false">
+                    <ber:dataType>
+                        <ber:decimal precision="10"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiAddrPoint_zipCode" name="Post Code" dbName="ZIPCODE" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="10"/>
+                    </ber:dataType>
+                </ber:column>
+            </ber:columnArray>
+        </ber:codeList>
+        <ber:codeList id="cl_taiCity" name="TAI City" dbName="CL_TAICITY" size="small" hierarchical="false">
+            <ber:columnArray>
+                <ber:column id="ca_taiCity_code" name="Code" dbName="CODE" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiCity_description" name="Description" dbName="DESCRIPTION" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiCity_extId" name="External Id" dbName="EXTID" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="50"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiCity_id" name="Id" dbName="ID" nillable="false" primaryKey="true" display="false">
+                    <ber:dataType>
+                        <ber:decimal precision="10"/>
+                    </ber:dataType>
+                </ber:column>
+            </ber:columnArray>
+        </ber:codeList>
+                <ber:codeList id="cl_taiCityPart" name="City part" dbName="CL_TAICITYPART" size="small" hierarchical="false">
+            <ber:columnArray>
+                <ber:column id="ca_taiCityPart_code" name="Code" dbName="CODE" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiCityPart_description" name="Description" dbName="DESCRIPTION" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiCityPart_extId" name="External Id" dbName="EXTID" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="50"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiCityPart_id" name="Id" dbName="ID" nillable="true" primaryKey="true" display="false">
+                    <ber:dataType>
+                        <ber:decimal precision="10"/>
+                    </ber:dataType>
+                </ber:column>
+            </ber:columnArray>
+        </ber:codeList>
+        <ber:codeList id="cl_taiDistrict" name="TAI District" dbName="CL_TAIDISTRICT" size="small" hierarchical="false">
+            <ber:columnArray>
+                <ber:column id="ca_taiDistrict_code" name="Code" dbName="CODE" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiDistrict_description" name="Description" dbName="DESCRIPTION" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiDistrict_extId" name="External Id" dbName="EXTID" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="50"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiDistrict_id" name="Id" dbName="ID" nillable="false" primaryKey="true" display="false">
+                    <ber:dataType>
+                        <ber:decimal precision="10"/>
+                    </ber:dataType>
+                </ber:column>
+            </ber:columnArray>
+        </ber:codeList>
+        <ber:codeList id="cl_taiRegion" name="TAI Region" dbName="CL_TAIREGION" size="small" hierarchical="false">
+            <ber:columnArray>
+                <ber:column id="ca_taiRegion_code" name="Code" dbName="CODE" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiRegion_description" name="Description" dbName="DESCRIPTION" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiRegion_extId" name="External Id" dbName="EXTID" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="50"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiRegion_id" name="Id" dbName="ID" nillable="false" primaryKey="true" display="false">
+                    <ber:dataType>
+                        <ber:decimal precision="10"/>
+                    </ber:dataType>
+                </ber:column>
+            </ber:columnArray>
+        </ber:codeList>
+        <ber:codeList id="cl_taiStreet" name="TAI Street" dbName="CL_TAISTREET" size="small" hierarchical="false">
+            <ber:columnArray>
+                <ber:column id="ca_taiStreet_code" name="Code" dbName="CODE" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiStreet_description" name="Description" dbName="DESCRIPTION" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiStreet_extId" name="External Id" dbName="EXTID" nillable="true" primaryKey="false" display="false">
+                    <ber:dataType>
+                        <ber:string maxLength="50"/>
+                    </ber:dataType>
+                </ber:column>
+                <ber:column id="ca_taiStreet_id" name="Id" dbName="ID" nillable="false" primaryKey="true" display="false">
+                    <ber:dataType>
+                        <ber:decimal precision="10"/>
+                    </ber:dataType>
+                </ber:column>
+            </ber:columnArray>
+        </ber:codeList>
+    </ber:codeListArray>
+    <ber:codeListBindingArray>
+        <ber:codeListBinding id="cb_taiCity_AddrPoint" name="City x City Part x Street x Address Point" dbName="CB_TAICITY_ADDRPOINT" ordered="false">
+            <ber:boundedItemArray>
+                <ber:boundedItem dbName="CL_TAIADDRESSPOINT">
+                    <ber:codeList refId="cl_taiAddrPoint"/>
+                </ber:boundedItem>
+                <ber:boundedItem dbName="CL_TAICITY">
+                    <ber:codeList refId="cl_taiCity"/>
+                </ber:boundedItem>
+                <ber:boundedItem dbName="CL_TAICITYPART">
+                    <ber:codeList refId="cl_taiCityPart"/>
+                </ber:boundedItem>
+                <ber:boundedItem dbName="CL_TAISTREET">
+                    <ber:codeList refId="cl_taiStreet"/>
+                </ber:boundedItem>
+            </ber:boundedItemArray>
+        </ber:codeListBinding>
+        <ber:codeListBinding id="cb_taiCity_CityPart" name="City x City Part" dbName="CB_TAICITY_CITYPART" ordered="false">
+            <ber:boundedItemArray>
+                <ber:boundedItem dbName="CL_TAICITY">
+                    <ber:codeList refId="cl_taiCity"/>
+                </ber:boundedItem>
+                <ber:boundedItem dbName="CL_TAICITYPART">
+                    <ber:codeList refId="cl_taiCityPart"/>
+                </ber:boundedItem>
+            </ber:boundedItemArray>
+        </ber:codeListBinding>
+        <ber:codeListBinding id="cb_taiCity_Street" name="City x Street" dbName="CB_TAICITY_STREET" ordered="false">
+            <ber:boundedItemArray>
+                <ber:boundedItem dbName="CL_TAICITY">
+                    <ber:codeList refId="cl_taiCity"/>
+                </ber:boundedItem>
+                <ber:boundedItem dbName="CL_TAISTREET">
+                    <ber:codeList refId="cl_taiStreet"/>
+                </ber:boundedItem>
+            </ber:boundedItemArray>
+        </ber:codeListBinding>
+        <ber:codeListBinding id="cb_taiCityPart_AddrPoint" name="City Part x Street x Address Point" dbName="CB_TAICITYPART_ADDRPOINT" ordered="false">
+            <ber:boundedItemArray>
+                <ber:boundedItem dbName="CL_TAIADDRESSPOINT">
+                    <ber:codeList refId="cl_taiAddrPoint"/>
+                </ber:boundedItem>
+                <ber:boundedItem dbName="CL_TAICITYPART">
+                    <ber:codeList refId="cl_taiCityPart"/>
+                </ber:boundedItem>
+                <ber:boundedItem dbName="CL_TAISTREET">
+                    <ber:codeList refId="cl_taiStreet"/>
+                </ber:boundedItem>
+            </ber:boundedItemArray>
+        </ber:codeListBinding>
+        <ber:codeListBinding id="cb_taiCityPart_Street" name="CityPart x Street" dbName="CB_TAICITYPART_STREET" ordered="false">
+            <ber:boundedItemArray>
+                <ber:boundedItem dbName="CL_TAICITYPART">
+                    <ber:codeList refId="cl_taiCityPart"/>
+                </ber:boundedItem>
+                <ber:boundedItem dbName="CL_TAISTREET">
+                    <ber:codeList refId="cl_taiStreet"/>
+                </ber:boundedItem>
+            </ber:boundedItemArray>
+        </ber:codeListBinding>
+        <ber:codeListBinding id="cb_taiDistrict_City" name="District x City" dbName="CB_TAIDISTRICT_CITY" ordered="false">
+            <ber:boundedItemArray>
+                <ber:boundedItem dbName="CL_TAICITY">
+                    <ber:codeList refId="cl_taiCity"/>
+                </ber:boundedItem>
+                <ber:boundedItem dbName="CL_TAIDISTRICT">
+                    <ber:codeList refId="cl_taiDistrict"/>
+                </ber:boundedItem>
+            </ber:boundedItemArray>
+        </ber:codeListBinding>
+        <ber:codeListBinding id="cb_taiRegion_District" name="Region x District" dbName="CB_TAIREGION_DISTRICT" ordered="false">
+            <ber:boundedItemArray>
+                <ber:boundedItem dbName="CL_TAIDISTRICT">
+                    <ber:codeList refId="cl_taiDistrict"/>
+                </ber:boundedItem>
+                <ber:boundedItem dbName="CL_TAIREGION">
+                    <ber:codeList refId="cl_taiRegion"/>
+                </ber:boundedItem>
+            </ber:boundedItemArray>
+        </ber:codeListBinding>
+    </ber:codeListBindingArray>
+    <ber:attachmentTypeArray>
+        <ber:attachmentType id="att_filesystem" name="Filesystem attachment type" storage="filesystem">
+            <ber:description>Filesystem attachment type</ber:description>
+        </ber:attachmentType>
+        <ber:attachmentType id="att_database" name="Database attachment type" storage="database">
+            <ber:description>Database attachment type</ber:description>
+        </ber:attachmentType>
+        <ber:attachmentType id="att_pond" name="Attachment type for ponds" storage="filesystem">
+            <ber:description>Attachment type for ponds</ber:description>
+        </ber:attachmentType>
+    </ber:attachmentTypeArray>
+    <ber:featureTypeArray>
+        <ber:rootFeatureType id="ft_5000002" name="Root" abstract="true">
+            <ber:description>ROOT_NODE</ber:description>
+            <ber:featureAttributeArray>
+                <ber:systemAttribute id="id" name="Feature ID"/>
+                <ber:systemAttribute id="sid" name="Semantic ID"/>
+                <ber:systemAttribute id="ftid" name="Feature Type"/>
+                <ber:systemAttribute id="createdBy" name="Created_by"/>
+                <ber:systemAttribute id="updatedBy" name="Updated_by"/>
+                <ber:systemAttribute id="createDate" name="Create_date"/>
+                <ber:systemAttribute id="updateDate" name="Update_date"/>
+                <ber:systemAttribute id="longTransactionId" name="Long_trans_ID"/>
+                <ber:systemAttribute id="symbologyTokens" name="Symbology tokens"/>
+                <ber:systemAttribute id="validFrom" name="Valid From"/>
+                <ber:systemAttribute id="validTo" name="Valid To"/>
+                <ber:systemAttribute id="featureInfo" name="Feature Info"/>
+            </ber:featureAttributeArray>
+        </ber:rootFeatureType>
+        <ber:featureType id="ft_boAllocation" name="Allocation" parentId="ft_5000002" abstract="false">
+            <ber:container refId="ct_boAllocation"/>
+            <ber:featureAttributeArray>
+                <ber:attribute id="at_boAllocation_cl_boAllocationState" name="Allocation state" dbName="CL_BOALLOCATIONSTATE" nillable="true">
+                    <ber:dataType>
+                        <ber:codeListRef refId="cl_boAllocationState" displayColumn="ca_boAllocationState_description"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boAllocation_completed" name="Completed Yes/No" dbName="COMPLETED" nillable="true">
+                    <ber:dataType>
+                        <ber:codeListRef refId="cl_boYesNo" displayColumn="ca_boYesNo_description"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boAllocation_title" name="Title" dbName="TITLE" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="255"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boAllocation_note" name="Note" dbName="NOTE" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="4000"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boAllocation_dateFrom" name="Date From" dbName="DATEFROM" nillable="true">
+                    <ber:dataType>
+                        <ber:date/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boAllocation_dateTo" name="Date To" dbName="DATETO" nillable="true">
+                    <ber:dataType>
+                        <ber:date/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:featureRefAttribute id="at_boAllocation_fr_boFishingGuard" name="Fisching Guard" dbName="FR_BOFISHINGGUARD" nillable="true">
+                    <ber:dataType>
+                        <ber:featureRef>
+                            <ber:attribute refId="at_boPerson_fullName"/>
+                            <ber:featureRefRelationAssoc refId="as_boFishingGuard_boAllocation"/>
+                        </ber:featureRef>
+                    </ber:dataType>
+                </ber:featureRefAttribute>
+                <ber:featureRefAttribute id="at_boAllocation_fr_boInspection" name="FR boInspection" dbName="FR_BOINSPECTION" nillable="true">
+                    <ber:dataType>
+                        <ber:featureRef>
+                            <ber:attribute refId="at_boInspection_description"/>
+                            <ber:featureRefRelationAssoc refId="as_boInspection_boAllocation"/>
+                        </ber:featureRef>
+                    </ber:dataType>
+                </ber:featureRefAttribute>
+            </ber:featureAttributeArray>
+            <ber:formArray>
+                <ber:form id="fmd_boAllocation_list" name="Allocation list">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boAllocation_cl_boAllocationState"/>
+                        <ber:field refId="at_boAllocation_completed"/>
+                        <ber:field refId="at_boAllocation_title"/>
+                        <ber:field refId="at_boAllocation_note"/>
+                        <ber:field refId="at_boAllocation_dateFrom"/>
+                        <ber:field refId="at_boAllocation_dateTo"/>
+                        <ber:field refId="at_boAllocation_fr_boFishingGuard"/>
+                    </ber:fieldGroup>
+                </ber:form>
+            </ber:formArray>
+        </ber:featureType>
+        <ber:featureType id="ft_boExtParty" name="External Party" parentId="ft_5000002" abstract="true">
+            <ber:description>Table containing the information about given external party.</ber:description>
+            <ber:container refId="ct_boExtParty"/>
+            <ber:featureAttributeArray>
+                <ber:attribute id="at_boExtParty_cl_taiAddrPoint" name="Address point" dbName="CL_TAIADDRPOINT" nillable="true">
+                    <ber:dataType>
+                        <ber:codeListRef refId="cl_taiAddrPoint" displayColumn="ca_taiAddrPoint_description"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:generatedAttribute id="at_boExtParty_code" name="ExtParty Code" dbName="CODE" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                    <ber:attributeQuery>
+                        <ber:numberGeneratorQuery>
+                            <ber:numberGenerator refId="seq_code"/>
+                            <ber:format>P{0}</ber:format>
+                        </ber:numberGeneratorQuery>
+                    </ber:attributeQuery>
+                </ber:generatedAttribute>
+                <ber:attribute id="at_boExtParty_extId" name="External ID" dbName="EXTID" nillable="true">
+                    <ber:description>External ID.</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="50"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boExtParty_userIdProperty" name="User ID Property" dbName="USERIDPROPERTY" nillable="true">
+                    <ber:description>Contains UserId for given external party.</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="100"/>
+                    </ber:dataType>
+                </ber:attribute>
+
+                <ber:derivedAttribute id="at_boExtParty_name" name="Name" dbName="EXTNAME" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="100"/>
+                    </ber:dataType>
+                    <ber:attributeQuery preventRegeneration="true">
+                        <ber:simpleQuery>
+                            <ber:attributeArray>
+                                <ber:attribute xpath="at_boCompany_companyName"/>
+                                <ber:attribute xpath="at_boPerson_fullName"/>
+                            </ber:attributeArray>
+                            <ber:expression>COALESCE({1},{0})</ber:expression>
+                        </ber:simpleQuery>
+                    </ber:attributeQuery>
+                </ber:derivedAttribute>
+
+                <ber:derivedAttribute id="at_boExtParty_addressText" name="Address" dbName="ADDRESSTEXT" nillable="true">
+                    <ber:description>addressText={district}{city}{Street}{houseNum}{houseNumAdd}</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="4000"/>
+                    </ber:dataType>
+                    <ber:attributeQuery>
+                        <ber:simpleQuery>
+                            <ber:attributeArray>
+                                <ber:attribute xpath="at_boExtParty_cl_taiAddrPoint/ca_taiAddrPoint_description"/>
+                            </ber:attributeArray>
+                            <ber:format>{0}</ber:format>
+                        </ber:simpleQuery>
+                    </ber:attributeQuery>
+                </ber:derivedAttribute>
+            </ber:featureAttributeArray>
+            <!--ber:boundedAttributesArray>
+                <ber:boundedAttributes>
+                    <ber:codeListBinding refId="cb_taiCity_AddrPoint"/>
+                    <ber:attribute refId="at_boExtParty_cl_taiAddrPoint"/>
+                </ber:boundedAttributes>
+            </ber:boundedAttributesArray-->
+            <!--ber:formArray>
+                <ber:form id="fmd_address_extParty" name="Address ExtParty">
+                    <ber:fieldGroup>
+                        <ber:caption label="Address" collapsible="false"/>
+                        <ber:field refId="at_boExtParty_cl_taiAddrPoint"/>
+                        <ber:field refId="at_boExtPond_cl_taiStreet"/>
+                        <ber:field refId="at_boExtPond_cl_taiCity"/>
+                        <ber:field refId="at_boExtPond_cl_taiDistrict"/>
+                        <ber:field refId="at_boExtPond_cl_taiRegion"/>
+                    </ber:fieldGroup>
+                </ber:form>
+            </ber:formArray-->
+            <ber:formArray>
+                <ber:form id="fmd_boExtParty_section" name="External Party section">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boExtParty_name"/>
+                        <ber:field refId="at_boExtParty_extId"/>
+                    </ber:fieldGroup>
+                </ber:form>
+                <ber:assignedForms>
+                    <ber:assignedForm usage="default" refId="fmd_boExtParty_section"/>
+                </ber:assignedForms>
+            </ber:formArray>
+        </ber:featureType>
+        <ber:featureType id="ft_boFish" name="Fish species" parentId="ft_5000002" abstract="false">
+            <ber:container refId="ct_boFish"/>
+            <ber:featureAttributeArray>
+                <ber:attribute id="at_boFish_cl_fishSpecies" name="Fish species" dbName="CL_FISHSPECIES" nillable="true">
+                    <ber:dataType>
+                        <ber:codeListRef refId="cl_boFishSpecies" displayColumn="ca_boFishSpecies_description"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boFish_amount" name="Amount of fish species" dbName="AMOUNT" nillable="true">
+                    <ber:dataType>
+                        <ber:decimal precision="16" scale="4"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:featureRefAttribute id="at_boFish_fr_boPond" name="Pond reference" dbName="FR_BOPOND" nillable="true">
+                    <ber:dataType>
+                        <ber:featureRef>
+                            <ber:attribute refId="at_boPond_code"/>
+                            <ber:featureRefRelationAssoc refId="as_boPond_boFish"/>
+                        </ber:featureRef>
+                    </ber:dataType>
+                </ber:featureRefAttribute>
+            </ber:featureAttributeArray>
+            <ber:formArray>
+                <ber:form id="fmd_boFish" name="Fish Species">
+                <ber:fieldGroup>
+                    <ber:field refId="at_boFish_cl_fishSpecies" readOnly="false"/>
+                    <ber:field refId="at_boFish_amount" readOnly="false"/>
+                </ber:fieldGroup>
+                <ber:fieldGroup>
+                    <ber:field refId="at_boFish_fr_boPond" readOnly="false"/>
+                </ber:fieldGroup>
+                </ber:form>
+                <ber:assignedForms>
+                    <ber:assignedForm usage="default" refId="fmd_boFish"/>
+                </ber:assignedForms>
+            </ber:formArray>
+        </ber:featureType>
+        <ber:featureType id="ft_boInspection" name="Inspection" parentId="ft_5000002" abstract="false" sharedSemantics="false">
+            <ber:container refId="ct_boInspection"/>
+            <ber:featureAttributeArray>
+                <ber:attribute id="at_boInspection_cl_boInspectionState" name="Inspection State" dbName="CL_BOINSPECTIONSTATE" nillable="true">
+                    <ber:dataType>
+                        <ber:codeListRef refId="cl_boInspectionState" displayColumn="ca_boInspectionState_description"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boInspection_estimation" name="Estimation" dbName="ESTIMATION" nillable="true">
+                    <ber:dataType>
+                        <ber:decimal precision="7" scale="1"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boInspection_code" name="Code" dbName="CODE" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boInspection_description" name="Description" dbName="DESCRIPTION" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boInspection_dateFrom" name="Inspection Start" dbName="DATEFROM" nillable="true">
+                    <ber:dataType>
+                        <ber:date/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boInspection_dateTo" name="Inspection End" dbName="DATETO" nillable="true">
+                    <ber:dataType>
+                        <ber:date/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:featureRefAttribute id="at_boInspection_fr_boPond" name="Place of inspection" dbName="FR_BOPOND" nillable="true">
+                    <ber:dataType>
+                        <ber:featureRef>
+                            <ber:attribute refId="at_boPond_description"/>
+                            <ber:featureRefRelationAssoc refId="as_boPond_boInspection"/>
+                        </ber:featureRef>
+                    </ber:dataType>
+                </ber:featureRefAttribute>
+                <ber:featureRefAttribute id="at_boInspection_fr_boFishingGuard" name="Fisching Guard" dbName="FR_BOFISHINGGUARD" nillable="true">
+                    <ber:dataType>
+                        <ber:featureRef>
+                            <ber:attribute refId="at_boExtParty_code"/>
+                            <ber:featureRefRelationAssoc refId="as_boFishingGuard_boInspection"/>
+                        </ber:featureRef>
+                    </ber:dataType>
+                </ber:featureRefAttribute>
+                <ber:featureRefAttribute id="at_boInspection_fr_boInspectionType" name="Inspection Type" dbName="FR_BOINSPECTIONTYPE" nillable="true">
+                    <ber:dataType>
+                        <ber:featureRef>
+                            <ber:attribute refId="at_boInspectionType_name"/>
+                            <ber:featureRefRelationAssoc refId="as_boInspectionType_boInspection"/>
+                        </ber:featureRef>
+                    </ber:dataType>
+                </ber:featureRefAttribute>
+            </ber:featureAttributeArray>
+            <ber:featureInfo refId="at_boInspection_code"/>
+            <ber:formArray>
+                <ber:form id="fmd_boInspection_list" name="Inspection list">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boInspection_code"/>
+                        <ber:field refId="at_boInspection_cl_boInspectionState"/>
+                        <ber:field refId="at_boInspection_fr_boInspectionType"/>
+                        <ber:field refId="at_boInspection_fr_boPond"/>
+                        <ber:field refId="at_boInspection_fr_boFishingGuard"/>
+                        <ber:field refId="at_boInspection_dateFrom"/>
+                        <ber:field refId="at_boInspection_dateTo"/>
+                        <ber:field refId="at_boInspection_estimation"/>
+                    </ber:fieldGroup>
+                </ber:form>
+                <ber:form id="fmd_boInspection_detail" name="Inspection detail">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boInspection_code"/>
+                        <ber:field refId="at_boInspection_fr_boInspectionType"/>
+                        <ber:field refId="at_boInspection_fr_boPond"/>
+                        <ber:field refId="at_boInspection_fr_boFishingGuard"/>
+                        <ber:field refId="at_boInspection_dateFrom"/>
+                        <ber:field refId="at_boInspection_dateTo"/>
+                        <ber:field refId="at_boInspection_estimation"/>
+                        <ber:field refId="at_boInspection_description"/>
+                    </ber:fieldGroup>
+                </ber:form>
+                <ber:form id="fmd_boInspection_insert" name="Inspection insert">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boInspection_code"/>
+                        <ber:field refId="at_boInspection_fr_boInspectionType"/>
+                        <ber:field refId="at_boInspection_fr_boPond"/>
+                        <ber:field refId="at_boInspection_description"/>
+                    </ber:fieldGroup>
+                </ber:form>
+            </ber:formArray>
+        </ber:featureType>
+        <ber:featureType id="ft_boInspectionType" name="Inspection type" parentId="ft_5000002" abstract="false" sharedSemantics="false">
+            <ber:container refId="ct_boInspectionType"/>
+            <ber:featureAttributeArray>
+                <ber:attribute id="at_boInspectionType_estimation" name="Estimation" dbName="ESTIMATION" nillable="true">
+                    <ber:dataType>
+                        <ber:decimal precision="7" scale="1"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boInspectionType_name" name="Name" dbName="NAME" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="100"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boInspectionType_description" name="Description" dbName="DESCRIPTION" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:attribute>
+            </ber:featureAttributeArray>
+            <ber:formArray>
+                <ber:form id="fmd_boInspectionType_list" name="Inspection type list">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boInspectionType_name"/>
+                        <ber:field refId="at_boInspectionType_estimation"/>
+                        <ber:field refId="at_boInspectionType_description"/>
+                    </ber:fieldGroup>
+                </ber:form>
+                <ber:form id="fmd_boInspectionType_insert" name="Inspection type insert">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boInspectionType_name"/>
+                        <ber:field refId="at_boInspectionType_estimation"/>
+                        <ber:field refId="at_boInspectionType_description"/>
+                    </ber:fieldGroup>
+                </ber:form>
+                <ber:form id="fmd_boInspectionType_edit" name="Inspection type edit">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boInspectionType_name"/>
+                        <ber:field refId="at_boInspectionType_estimation"/>
+                        <ber:field refId="at_boInspectionType_description"/>
+                    </ber:fieldGroup>
+                </ber:form>
+            </ber:formArray>
+        </ber:featureType>
+        <ber:featureType id="ft_boPond" name="PondRegister" parentId="ft_5000002" abstract="false">
+            <ber:container refId="ct_boPond"/>
+            <ber:masterGraphics nillable="true">
+                <ber:surfaceGraphicType>
+                    <ber:symbology>
+                        <ber:polygonSymbolizer>
+                            <ber:fill>
+                                <se:SvgParameter name="fill">#99c2ff</se:SvgParameter>
+                                <se:SvgParameter name="fill-opacity">1</se:SvgParameter>
+                                <ber:fillStyle>solid</ber:fillStyle>
+                            </ber:fill>
+                            <se:Stroke>
+                                <se:SvgParameter name="stroke">#0066ff</se:SvgParameter>
+                                <se:SvgParameter name="stroke-width">1</se:SvgParameter>
+                            </se:Stroke>
+                        </ber:polygonSymbolizer>
+                    </ber:symbology>
+                </ber:surfaceGraphicType>
+            </ber:masterGraphics>
+            <ber:featureAttributeArray>
+                <ber:securityAttribute id="at_boPond_cl_secAttrWorkPlace" name="Workplace">
+                    <ber:description>WorkPlace security attribute</ber:description>
+                    <ber:dataType>
+                        <ber:codeListRef refId="cl_boSecWorkPlace" displayColumn="ca_boSecWorkPlace_description"/>
+                    </ber:dataType>
+                    <!--ber:attributeQuery>UNDEFINED</ber:attributeQuery-->
+                </ber:securityAttribute>
+                <ber:attribute id="at_boPond_cl_boPondType" name="Purpose" dbName="CL_BOPONDTYPE" nillable="true">
+                    <ber:dataType>
+                        <ber:codeListRef refId="cl_boPondType" displayColumn="ca_boPondType_description"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boPond_is_drained" name="Pond currently drained" dbName="IS_DRAINED" nillable="true">
+                    <ber:dataType>
+                        <ber:codeListRef refId="cl_boYesNo" displayColumn="ca_boYesNo_description"/>
+                    </ber:dataType>
+                    <ber:defaultValue>
+                        <ber:value>0</ber:value>
+                    </ber:defaultValue>
+                </ber:attribute>
+                <ber:attribute id="at_boPond_is_protectedArea" name="In protected area" dbName="IS_PROTECTEDAREA" nillable="true">
+                    <ber:dataType>
+                        <ber:codeListRef refId="cl_boYesNo" displayColumn="ca_boYesNo_description"/>
+                    </ber:dataType>
+                    <ber:defaultValue>
+                        <ber:value>0</ber:value>
+                    </ber:defaultValue>
+                </ber:attribute>
+                <ber:attribute id="at_boPond_cl_taiCity" name="City" dbName="CL_TAICITY" nillable="true">
+                    <ber:dataType>
+                        <ber:codeListRef refId="cl_taiCity" displayColumn="ca_taiCity_description"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boPond_areaSize" name="Area Size" dbName="AREASIZE" nillable="true">
+                    <ber:dataType>
+                        <ber:decimal precision="16" scale="4"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:generatedAttribute id="at_boPond_code" name="Pond Code" dbName="CODE" nillable="true">
+                    <ber:description>Generated attribute from sequence</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                    <ber:attributeQuery>
+                        <ber:numberGeneratorQuery>
+                            <ber:numberGenerator refId="seq_code"/>
+                            <ber:format>P{0}</ber:format>
+                        </ber:numberGeneratorQuery>
+                    </ber:attributeQuery>
+                </ber:generatedAttribute>
+                <ber:attribute id="at_boPond_description" name="Pond Name" dbName="DESCRIPTION" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boPond_managementDesc" name="Rich formated text" dbName="MANAGEMENTDESC" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="4000"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boPond_note" name="Note" dbName="NOTE" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="4000"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boPond_attachment" name="Attachment" dbName="ATTACHMENT" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="4000"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boPond_dateOrigin" name="Date of creation" dbName="DATEORIGIN" nillable="true">
+                    <ber:dataType>
+                        <ber:shortDate/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boPond_dateExpiry" name="Date of Expiry" dbName="DATEEXPIRY" nillable="true">
+                    <ber:dataType>
+                        <ber:shortDate/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:featureRefAttribute id="at_boPond_fr_boOwnerId" name="Owner" dbName="FR_BOOWNERID" nillable="true">
+                    <ber:dataType>
+                        <ber:featureRef>
+                            <ber:attribute refId="at_boExtParty_name"/>
+                            <ber:featureRefRelationAssoc refId="as_boExtParty_boPond"/>
+                        </ber:featureRef>
+                    </ber:dataType>
+                </ber:featureRefAttribute>
+                <ber:derivedAttribute id="at_boPond_addressText" name="Address" dbName="ADDRESSTEXT" nillable="true">
+                    <ber:description>addressTexty = {taiRegion}, {taiDistrict},{taiCity}</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="4000"/>
+                    </ber:dataType>
+                    <ber:attributeQuery>
+                        <ber:simpleQuery>
+                            <ber:attributeArray>
+                                <ber:attribute xpath="at_boPond_cl_taiCity/ca_taiCity_description"/>
+                                <!--ber:attribute xpath="at_boPond_cl_taiDistrict/ca_taiDistrict_description"/-->
+                            </ber:attributeArray>
+                            <ber:format>{2}, {1}, {0}</ber:format>
+                        </ber:simpleQuery>
+                    </ber:attributeQuery>
+                </ber:derivedAttribute>
+                <ber:derivedAttribute id="at_boPond_numSponsors" name="Number of sponsors" dbName="NUMSPONSORS">
+                    <ber:dataType>
+                        <ber:decimal precision="10" scale="0"/>
+                    </ber:dataType>
+                    <ber:attributeQuery>
+                        <ber:relationQuery>
+                            <ber:expression>count(*)</ber:expression>
+                            <ber:relationAssoc refId="as_boPond_boSponsor"/>
+                        </ber:relationQuery>
+                    </ber:attributeQuery>
+                </ber:derivedAttribute>
+                <ber:derivedAttribute id="at_boPond_pondAge" name="Age of Pond" dbName="PONDAGE">
+                    <ber:description>pondAge = {currentDate} - {dateOrigin}</ber:description>
+                    <ber:dataType>
+                        <ber:decimal precision="10" scale="0"/>
+                    </ber:dataType>
+                    <ber:attributeQuery>
+                        <ber:simpleQuery>
+                            <ber:attributeArray>
+                                <ber:attribute xpath="at_boPond_dateOrigin"/>
+                            </ber:attributeArray>
+                            <ber:expression>date_part(&apos;day&apos;,now()-{0})::integer</ber:expression>
+                        </ber:simpleQuery>
+                    </ber:attributeQuery>
+                </ber:derivedAttribute>
+            </ber:featureAttributeArray>
+            <!--ber:boundedAttributesArray>
+                <ber:boundedAttributes>
+                    <ber:codeListBinding refId="cb_taiDistrict_City"/>
+                    <ber:attribute refId="at_boPond_cl_taiCity"/>
+                    <ber:attribute refId="at_boPond_cl_taiDistrict"/>
+                </ber:boundedAttributes>
+            </ber:boundedAttributesArray-->
+            <ber:featureInfo refId="at_boPond_description"/>
+            <ber:formArray>
+                <ber:form id="fmd_address_boPond" name="Address Pond">
+                    <ber:fieldGroup>
+                        <ber:caption label="Address" collapsible="false"/>
+                        <ber:field refId="at_boPond_cl_taiCity"/>
+                        <!--ber:field refId="at_boPond_cl_taiDistrict"/-->
+                    </ber:fieldGroup>
+                </ber:form>
+
+                <ber:form id="fmd_boPondEdit" name="Pond add and edit detail">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boPond_description" readOnly="false"/>
+                        <ber:field refId="at_boPond_cl_secAttrWorkPlace" readOnly="false"/>
+                        <ber:field refId="at_boPond_fr_boOwnerId" readOnly="false"/>
+                    </ber:fieldGroup>
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boPond_cl_boPondType" readOnly="false"/>
+                        <ber:field refId="at_boPond_is_drained" readOnly="false"/>
+                        <ber:field refId="at_boPond_is_protectedArea" readOnly="false"/>
+                        <ber:field refId="at_boPond_areaSize" readOnly="false"/>
+                    </ber:fieldGroup>
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boPond_dateOrigin" readOnly="false"/>
+                        <ber:field refId="at_boPond_dateExpiry" readOnly="false"/>
+                    </ber:fieldGroup>
+                </ber:form>
+
+                <ber:form id="fmd_boPondDetail" name="Pond detail">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boPond_description" readOnly="false"/>
+                        <ber:field refId="at_boPond_cl_secAttrWorkPlace" readOnly="false"/>
+                        <ber:field refId="at_boPond_fr_boOwnerId" readOnly="false"/>
+
+                        <ber:field refId="at_boPond_cl_boPondType" readOnly="false"/>
+                        <ber:field refId="at_boPond_is_drained" readOnly="false"/>
+                        <ber:field refId="at_boPond_is_protectedArea" readOnly="false"/>
+                        <ber:field refId="at_boPond_areaSize" readOnly="false"/>
+
+                        <ber:field refId="at_boPond_dateOrigin" readOnly="false"/>
+                        <ber:field refId="at_boPond_dateExpiry" readOnly="false"/>
+
+                        <ber:field refId="at_boPond_numSponsors" readOnly="false"/>
+                        <ber:field refId="at_boPond_pondAge" readOnly="false"/>
+
+                        <ber:field refId="at_boPond_note" readOnly="false"/>
+                    </ber:fieldGroup>
+                </ber:form>
+
+                <ber:form id="fmd_boPondBrowse" name="Pond browse">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boPond_description" readOnly="false"/>
+                        <ber:field refId="at_boPond_cl_secAttrWorkPlace" readOnly="false"/>
+                        <ber:field refId="at_boPond_cl_boPondType" readOnly="false"/>
+                        <ber:field refId="at_boPond_is_drained" readOnly="false"/>
+                        <ber:field refId="at_boPond_is_protectedArea" readOnly="false"/>
+                    </ber:fieldGroup>
+                </ber:form>
+
+                <ber:form id="fmd_boPondRelated" name="Pond related">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boPond_description" readOnly="false"/>
+                        <ber:field refId="at_boPond_cl_secAttrWorkPlace" readOnly="false"/>
+                    </ber:fieldGroup>
+                </ber:form>
+
+                <ber:assignedForms>
+                    <ber:assignedForm usage="default" refId="fmd_boPondBrowse"/>
+                    <ber:assignedForm usage="insertSemantics" refId="fmd_boPondEdit"/>
+                    <ber:assignedForm usage="updateSemantics" refId="fmd_boPondEdit"/>
+                </ber:assignedForms>
+
+            </ber:formArray>
+            <ber:attachmentTypeArray>
+                <ber:attachmentType refId="att_database"/>
+            </ber:attachmentTypeArray>
+        </ber:featureType>
+        <ber:featureType id="ft_boPondboPerson" name="Pond Person Association" parentId="ft_5000002" abstract="false">
+            <ber:container refId="ct_boPondboPerson"/>
+            <ber:featureAttributeArray>
+                <ber:featureRefAttribute id="at_boPondboPerson_fr_boPond" name="boPond" dbName="FR_BOPOND" nillable="true">
+                    <ber:dataType>
+                        <ber:featureRef>
+                            <ber:attribute refId="at_boPond_description"/>
+                            <ber:featureRefRelationAssoc refId="as_boPond_boPondboPerson"/>
+                        </ber:featureRef>
+                    </ber:dataType>
+                </ber:featureRefAttribute>
+                <ber:featureRefAttribute id="at_boPondboPerson_fr_boExtParty" name="boExtparty" dbName="FR_BOEXTPARTY" nillable="true">
+                    <ber:dataType>
+                        <ber:featureRef>
+                            <ber:attribute refId="at_boExtParty_name"/>
+                            <ber:featureRefRelationAssoc refId="as_boExtParty_boPondboPerson"/>
+                        </ber:featureRef>
+                    </ber:dataType>
+                </ber:featureRefAttribute>
+            </ber:featureAttributeArray>
+            <ber:formArray>
+                <ber:form id="fmd_boPondboPerson" name="Pond Person Association">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boPondboPerson_fr_boPond" readOnly="false"/>
+                        <ber:field refId="at_boPondboPerson_fr_boExtParty" readOnly="false"/>
+                    </ber:fieldGroup>
+                </ber:form>
+                <ber:assignedForms>
+                    <ber:assignedForm usage="default" refId="fmd_boPondboPerson"/>
+                </ber:assignedForms>
+            </ber:formArray>
+        </ber:featureType>
+        <ber:featureType id="ft_boSponsor" name="Sponsors" parentId="ft_5000002" abstract="false">
+            <ber:container refId="ct_boSponsor"/>
+            <ber:featureAttributeArray>
+                <ber:generatedAttribute id="at_boSponsor_code" name="Sponsor code" dbName="CODE" nillable="true">
+                    <ber:description>Generated attribute from sequence</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                    <ber:attributeQuery>
+                        <ber:numberGeneratorQuery>
+                            <ber:numberGenerator refId="seq_code"/>
+                            <ber:format>S{0}</ber:format>
+                        </ber:numberGeneratorQuery>
+                    </ber:attributeQuery>
+                </ber:generatedAttribute>
+                <ber:attribute id="at_boSponsor_name" name="Name" dbName="NAME" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="100"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:featureRefAttribute id="at_boSponsor_fr_boPond" name="Pond reference" dbName="FR_BOPOND" nillable="true">
+                    <ber:dataType>
+                        <ber:featureRef>
+                            <ber:attribute refId="at_boPond_code"/>
+                            <ber:featureRefRelationAssoc refId="as_boPond_boSponsor"/>
+                        </ber:featureRef>
+                    </ber:dataType>
+                </ber:featureRefAttribute>
+            </ber:featureAttributeArray>
+            <ber:formArray>
+                <ber:form id="fmd_boSponsor" name="Sponsor">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boSponsor_name" readOnly="false"/>
+                    </ber:fieldGroup>
+                </ber:form>
+                <ber:assignedForms>
+                    <ber:assignedForm usage="default" refId="fmd_boSponsor"/>
+                </ber:assignedForms>
+            </ber:formArray>
+        </ber:featureType>
+        <ber:featureType id="ft_taiAddrPoint" name="Address point" parentId="ft_5000002" abstract="false">
+            <ber:container refId="ct_taiAddrPoint"/>
+            <ber:masterGraphics nillable="true">
+                <ber:pointGraphicType>
+                    <ber:symbology>
+                        <ber:pointSymbolizer>
+                            <se:Graphic>
+                                <se:ExternalGraphic>
+                                    <se:OnlineResource xlink:href="resource.xml#ber_LIDSdemo/46/center-center"/>
+                                    <se:Format/>
+                                </se:ExternalGraphic>
+                                <se:Opacity>1.0</se:Opacity>
+                            </se:Graphic>
+                            <ber:rgbColor>#8B0000</ber:rgbColor>
+                            <ber:symbolHeight>1</ber:symbolHeight>
+                        </ber:pointSymbolizer>
+                    </ber:symbology>
+                </ber:pointGraphicType>
+            </ber:masterGraphics>
+            <ber:featureAttributeArray>
+                <ber:attribute id="at_taiAddrPoint_is_valid" name="Is valid" dbName="IS_VALID" nillable="true">
+                    <ber:dataType>
+                        <ber:codeListRef refId="cl_boYesNo" displayColumn="ca_boYesNo_description"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_taiAddrPoint_code" name="Code" dbName="CODE" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_taiAddrPoint_description" name="Description" dbName="DESCRIPTION" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_taiAddrPoint_description_ext" name="Extended description" dbName="DESCRIPTION_EXT" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="150"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_taiAddrPoint_houseNoAdd" name="House Number (Additional)" dbName="HOUSENOADD" nillable="true">
+                    <ber:description>Additional house number (specified based on given country needs)</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="10"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_taiAddrPoint_houseNo" name="House Number" dbName="HOUSENO" nillable="true">
+                    <ber:description>House number</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="10"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_taiAddrPoint_zipCode" name="Post Code" dbName="ZIPCODE" nillable="true">
+                    <ber:description>Post code</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="10"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_taiAddrPoint_taiStreet" name="Street" dbName="TAISTREET" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="100"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_taiAddrPoint_extId" name="External ID" dbName="EXTID" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="50"/>
+                    </ber:dataType>
+                </ber:attribute>
+            </ber:featureAttributeArray>
+        </ber:featureType>
+        <ber:featureType id="ft_boCompany" name="Company" parentId="ft_boExtParty" abstract="false">
+            <ber:description>Information concerning the given company.</ber:description>
+            <ber:featureAttributeArray>
+                <ber:attribute id="at_boCompany_companyName" name="Company name" dbName="COMPANYNAME" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="100"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boCompany_CIN" name="Company identification number" dbName="CIN" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boCompany_CID" name="Tax identification number" dbName="CID" nillable="true">
+                    <ber:description>Tax number.</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <!-- <ber:derivedAttribute id="at_boExtParty_name" name="Company external name" dbName="EXTNAME" nillable="true">
+                    <ber:description>addressText={district}{city}{Street}{houseNum}{houseNumAdd}</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="100"/>
+                    </ber:dataType>
+                    <ber:attributeQuery>
+                        <ber:simpleQuery>
+                            <ber:attributeArray>
+                                <ber:attribute xpath="at_boCompany_companyName"/>
+                            </ber:attributeArray>
+                            <ber:format>{0}</ber:format>
+                        </ber:simpleQuery>
+                    </ber:attributeQuery>
+                </ber:derivedAttribute> -->
+            </ber:featureAttributeArray>
+            <ber:redefinedFeatureAttributeArray>
+                <ber:redefinedDerivedAttribute refId="at_boExtParty_name">
+                    <ber:attributeQuery>
+                        <ber:simpleQuery>
+                            <ber:attributeArray>
+                                <ber:attribute xpath="at_boCompany_companyName"/>
+                            </ber:attributeArray>
+                            <ber:format>{0}</ber:format>
+                        </ber:simpleQuery>
+                    </ber:attributeQuery>
+                </ber:redefinedDerivedAttribute>
+            </ber:redefinedFeatureAttributeArray>
+            <ber:formArray>
+                <ber:form id="fmd_boCompany" name="Company">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boCompany_companyName" readOnly="false"/>
+                        <ber:field refId="at_boCompany_CIN" readOnly="false"/>
+                        <ber:field refId="at_boCompany_CID" readOnly="false"/>
+                    </ber:fieldGroup>
+                </ber:form>
+                <ber:form id="fmd_boCompany_insert" name="Company insert">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boCompany_companyName" readOnly="false"/>
+                        <ber:field refId="at_boCompany_CIN" readOnly="false"/>
+                        <ber:field refId="at_boCompany_CID" readOnly="false"/>
+                    </ber:fieldGroup>
+                </ber:form>
+                <ber:form id="fmd_boCompany_edit" name="Company edit">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boCompany_companyName" readOnly="false"/>
+                        <ber:field refId="at_boCompany_CIN" readOnly="false"/>
+                        <ber:field refId="at_boCompany_CID" readOnly="false"/>
+                    </ber:fieldGroup>
+                </ber:form>
+                <ber:assignedForms>
+                    <ber:assignedForm usage="default" refId="fmd_boCompany"/>
+                </ber:assignedForms>
+        </ber:formArray>
+        </ber:featureType>
+        <ber:featureType id="ft_boPerson" name="Person" parentId="ft_boExtParty" abstract="false">
+            <ber:description>Information concerning the given (legal)person.</ber:description>
+            <ber:featureAttributeArray>
+                <ber:attribute id="at_boPerson_firstName" name="First Name" dbName="FIRSTNAME" nillable="true">
+                    <ber:description>First name.</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="50"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boPerson_middleName" name="Middle Name" dbName="MIDDLENAME" nillable="true">
+                    <ber:description>Middle name.</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="50"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boPerson_surname" name="Surname" dbName="SURNAME" nillable="true">
+                    <ber:description>Surname.</ber:description>
+                    <ber:dataType>
+                        <ber:string maxLength="50"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boPerson_dateOfBirth" name="Date of Birth" dbName="DATEOFBIRTH" nillable="true">
+                    <ber:description>Date of birth.</ber:description>
+                    <ber:dataType>
+                        <ber:shortDate/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:derivedAttribute id="at_boPerson_fullName" name="Full name" dbName="FULLNAME" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="100"/>
+                    </ber:dataType>
+                    <ber:attributeQuery>
+                        <ber:simpleQuery>
+                            <ber:attributeArray>
+                                <ber:attribute xpath="at_boPerson_firstName"/>
+                                <ber:attribute xpath="at_boPerson_middleName"/>
+                                <ber:attribute xpath="at_boPerson_surname"/>
+                            </ber:attributeArray>
+                            <ber:format>{0} {2} {1}</ber:format>
+                        </ber:simpleQuery>
+                    </ber:attributeQuery>
+                </ber:derivedAttribute>
+            </ber:featureAttributeArray>
+            <ber:redefinedFeatureAttributeArray>
+                <ber:redefinedDerivedAttribute refId="at_boExtParty_name">
+                    <ber:attributeQuery>
+                        <ber:simpleQuery>
+                            <ber:attributeArray>
+                                <ber:attribute xpath="at_boPerson_fullName"/>
+                            </ber:attributeArray>
+                            <ber:format>{0}</ber:format>
+                        </ber:simpleQuery>
+                    </ber:attributeQuery>
+                </ber:redefinedDerivedAttribute>
+            </ber:redefinedFeatureAttributeArray>
+            <ber:formArray>
+               <ber:form id="fmd_boPersonDetail" name="Person detail and edit">
+                  <ber:fieldGroup>
+                    <ber:field refId="at_boPerson_firstName" label="First name" readOnly="false"/>
+                    <ber:field refId="at_boPerson_middleName" label="Middle name" readOnly="false"/>
+                    <ber:field refId="at_boPerson_surname" label="Surname" readOnly="false"/>
+                    <ber:field refId="at_boPerson_dateOfBirth" readOnly="false"/>
+                  </ber:fieldGroup>
+                </ber:form>
+                <ber:form id="fmd_boPersonBrowse" name="Person browse">
+                  <ber:fieldGroup>
+                    <ber:field refId="at_boPerson_firstName" readOnly="false"/>
+                    <ber:field refId="at_boPerson_surname" readOnly="false"/>
+                    <ber:field refId="at_boPerson_dateOfBirth" readOnly="false"/>
+                  </ber:fieldGroup>
+                </ber:form>
+                <ber:form id="fmd_boPersonRelated" name="Person related">
+                  <ber:fieldGroup>
+                    <ber:field refId="at_boPerson_fullName" readOnly="true"/>
+                    <ber:field refId="at_boPerson_dateOfBirth" readOnly="false"/>
+                  </ber:fieldGroup>
+                </ber:form>
+                <ber:assignedForms>
+                  <ber:assignedForm usage="default" refId="fmd_boPersonBrowse"/>
+                  <ber:assignedForm usage="insertSemantics" refId="fmd_boPersonDetail"/>
+                  <ber:assignedForm usage="updateSemantics" refId="fmd_boPersonDetail"/>
+                </ber:assignedForms>
+            </ber:formArray>
+        </ber:featureType>
+        <ber:featureType id="ft_boFishingGuard" name="Fishing Guard" parentId="ft_boPerson" abstract="false">
+            <ber:featureAttributeArray>
+                <ber:attribute id="at_boFishingGuard_cardId" name="Identification ID" dbName="CARDID" nillable="true">
+                    <ber:dataType>
+                        <ber:string maxLength="30"/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:attribute id="at_boFishingGuard_cardValidTo" name="Card Valid To" dbName="CARDVALIDTO" nillable="true">
+                    <ber:dataType>
+                        <ber:shortDate/>
+                    </ber:dataType>
+                </ber:attribute>
+                <ber:featureRefAttribute id="at_boFishingGuard_fr_boCompany" name="Local Organization" dbName="FR_BOCOMPANY" nillable="true">
+                    <ber:dataType>
+                        <ber:featureRef>
+                            <ber:attribute refId="at_boCompany_companyName"/>
+                            <ber:featureRefRelationAssoc refId="as_boCompany_boFishingGuard"/>
+                        </ber:featureRef>
+                    </ber:dataType>
+                </ber:featureRefAttribute>
+            </ber:featureAttributeArray>
+            <ber:formArray>
+                <ber:form id="fmd_boFishingGuardBrowse" name="Pond browse">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boExtParty_code" readOnly="false"/>
+                        <ber:field refId="at_boPerson_fullName" readOnly="false"/>
+                        <ber:field refId="at_boFishingGuard_cardId" readOnly="false"/>
+                        <ber:field refId="at_boFishingGuard_cardValidTo" readOnly="false"/>
+                        <ber:field refId="at_boFishingGuard_fr_boCompany" readOnly="false"/>
+                    </ber:fieldGroup>
+                </ber:form>
+                <ber:form id="fmd_boFishingGuardDetail" name="Pond detail">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boPerson_firstName" readOnly="false"/>
+                        <ber:field refId="at_boPerson_middleName" readOnly="false"/>
+                        <ber:field refId="at_boPerson_surname" readOnly="false"/>
+                        <ber:field refId="at_boFishingGuard_cardId" readOnly="false"/>
+                        <ber:field refId="at_boFishingGuard_cardValidTo" readOnly="false"/>
+                        <ber:field refId="at_boFishingGuard_fr_boCompany" readOnly="false"/>
+                    </ber:fieldGroup>
+                </ber:form>
+                <ber:form id="fmd_boFishingGuardRelated" name="Pond related">
+                    <ber:fieldGroup>
+                        <ber:field refId="at_boPerson_fullName" readOnly="false"/>
+                        <ber:field refId="at_boExtParty_code" readOnly="false"/>
+                        <ber:field refId="at_boFishingGuard_cardId" readOnly="false"/>
+                        <ber:field refId="at_boFishingGuard_cardValidTo" readOnly="false"/>
+                        <ber:field refId="at_boFishingGuard_fr_boCompany" readOnly="false"/>
+                    </ber:fieldGroup>
+                </ber:form>
+                <ber:assignedForms>
+                    <ber:assignedForm usage="default" refId="fmd_boFishingGuardBrowse"/>
+                    <ber:assignedForm usage="insertSemantics" refId="fmd_boFishingGuardDetail"/>
+                    <ber:assignedForm usage="updateSemantics" refId="fmd_boFishingGuardDetail"/>
+                </ber:assignedForms>
+            </ber:formArray>
+        </ber:featureType>
+    </ber:featureTypeArray>
+    <ber:roleTypeArray>
+        <ber:relationRole id="rt_boAllocation" name="Allocation" dbName="RT_BOALLOCATION">
+            <ber:ftItem refId="ft_boAllocation"/>
+        </ber:relationRole>
+        <ber:relationRole id="rt_boCompany" name="Company" dbName="RT_BOCOMPANY">
+            <ber:ftItem refId="ft_boCompany"/>
+        </ber:relationRole>
+        <ber:relationRole id="rt_boExtParty" name="External Party" dbName="RT_BOEXTPARTY">
+            <ber:ftItem refId="ft_boExtParty"/>
+            <ber:ftItem refId="ft_boCompany"/>
+            <ber:ftItem refId="ft_boPerson"/>
+        </ber:relationRole>
+        <ber:relationRole id="rt_boFish" name="Fish species" dbName="RT_BOFISH">
+            <ber:ftItem refId="ft_boFish"/>
+        </ber:relationRole>
+        <ber:relationRole id="rt_boFishingGuard" name="Fishing Guard" dbName="RT_BOFISHINGGUARD">
+            <ber:ftItem refId="ft_boFishingGuard"/>
+        </ber:relationRole>
+        <ber:relationRole id="rt_boInspection" name="Inspection" dbName="RT_BOINSPECTION">
+            <ber:ftItem refId="ft_boInspection"/>
+        </ber:relationRole>
+                <ber:relationRole id="rt_boInspectionType" name="Inspection type" dbName="RT_BOINSPECTIONTYPE">
+            <ber:ftItem refId="ft_boInspectionType"/>
+        </ber:relationRole>
+        <ber:relationRole id="rt_boPerson" name="Person" dbName="RT_BOPERSON">
+            <ber:ftItem refId="ft_boPerson"/>
+        </ber:relationRole>
+        <ber:relationRole id="rt_boPond" name="PondRegister" dbName="RT_BOPOND">
+            <ber:ftItem refId="ft_boPond"/>
+        </ber:relationRole>
+        <ber:relationRole id="rt_boPondboPerson" name="Pend Person Association" dbName="RT_BOPONDBOPERSON">
+            <ber:ftItem refId="ft_boPondboPerson"/>
+        </ber:relationRole>
+        <ber:relationRole id="rt_boSponsor" name="Sponsors" dbName="RT_BOSPONSOR">
+            <ber:ftItem refId="ft_boSponsor"/>
+        </ber:relationRole>
+        <ber:relationRole id="rt_taiAddrPoint" name="Address point" dbName="RT_TAIADDRPOINT">
+            <ber:ftItem refId="ft_taiAddrPoint"/>
+        </ber:relationRole>
+    </ber:roleTypeArray>
+    <ber:assocTypeArray>
+        <ber:featureRefRelationAssoc id="as_boCompany_boFishingGuard" name="boCompany -&gt; boFishingGuard">
+            <ber:masterRole refId="rt_boCompany" cardinality="1"/>
+            <ber:childRole refId="rt_boFishingGuard" cardinality="unbounded"/>
+        </ber:featureRefRelationAssoc>
+        <ber:featureRefRelationAssoc id="as_boExtParty_boPond" name="boExtParty -&gt; boPond">
+            <ber:masterRole refId="rt_boExtParty" cardinality="1"/>
+            <ber:childRole refId="rt_boPond" cardinality="unbounded"/>
+        </ber:featureRefRelationAssoc>
+        <ber:featureRefRelationAssoc id="as_boExtParty_boPondboPerson" name="boExtParty -&gt; boPondboPerson">
+            <ber:masterRole refId="rt_boExtParty" cardinality="1"/>
+            <ber:childRole refId="rt_boPondboPerson" cardinality="unbounded"/>
+        </ber:featureRefRelationAssoc>
+        <ber:featureRefRelationAssoc id="as_boFishingGuard_boInspection" name="boFishingGuard -&gt; boInspection">
+            <ber:masterRole refId="rt_boFishingGuard" cardinality="1"/>
+            <ber:childRole refId="rt_boInspection" cardinality="unbounded"/>
+        </ber:featureRefRelationAssoc>
+        <ber:featureRefRelationAssoc id="as_boInspectionType_boInspection" name="boInspectionType -&gt; boInspection">
+            <ber:masterRole refId="rt_boInspectionType" cardinality="1"/>
+            <ber:childRole refId="rt_boInspection" cardinality="unbounded"/>
+        </ber:featureRefRelationAssoc>
+        <ber:featureRefRelationAssoc id="as_boInspection_boAllocation" name="boInspection -&gt; boAllocation">
+            <ber:masterRole refId="rt_boInspection" cardinality="1"/>
+            <ber:childRole refId="rt_boAllocation" cardinality="unbounded"/>
+        </ber:featureRefRelationAssoc>
+        <ber:featureRefRelationAssoc id="as_boFishingGuard_boAllocation" name="boPerson -&gt; boAllocation">
+            <ber:masterRole refId="rt_boFishingGuard" cardinality="1"/>
+            <ber:childRole refId="rt_boAllocation" cardinality="unbounded"/>
+        </ber:featureRefRelationAssoc>
+        <ber:featureRefRelationAssoc id="as_boPond_boFish" name="boPond -&gt; boFish">
+            <ber:masterRole refId="rt_boPond" cardinality="1"/>
+            <ber:childRole refId="rt_boFish" cardinality="unbounded"/>
+        </ber:featureRefRelationAssoc>
+        <ber:featureRefRelationAssoc id="as_boPond_boInspection" name="boPond -&gt; boInspection">
+            <ber:masterRole refId="rt_boPond" cardinality="1"/>
+            <ber:childRole refId="rt_boInspection" cardinality="unbounded"/>
+        </ber:featureRefRelationAssoc>
+        <ber:featureRefRelationAssoc id="as_boPond_boPondboPerson" name="boPond -&gt; boPondboPerson">
+            <ber:masterRole refId="rt_boPond" cardinality="1"/>
+            <ber:childRole refId="rt_boPondboPerson" cardinality="unbounded"/>
+        </ber:featureRefRelationAssoc>
+        <ber:featureRefRelationAssoc id="as_boPond_boSponsor" name="boPond -&gt; boSponsor">
+            <ber:masterRole refId="rt_boPond" cardinality="1"/>
+            <ber:childRole refId="rt_boSponsor" cardinality="unbounded"/>
+        </ber:featureRefRelationAssoc>
+    </ber:assocTypeArray>
+</ber:model>

@@ -25,7 +25,8 @@ function generateFolderStructureDict(rootDir: string): { [key: string]: any } {
     return folderStructure;
 }
 
-const rootDir = '/Users/peter_hubina/Desktop/noove challenge/Example Project/environments/samo-training/configuration/packages/samo_samo-training'; // Replace with your actual project root directory
+// samo root dir
+const rootDir = path.join(__dirname, 'src');
 
 const folderStructure = generateFolderStructureDict(rootDir);
 

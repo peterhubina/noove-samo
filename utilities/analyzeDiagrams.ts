@@ -28,7 +28,7 @@ const AssociationSchema = z.object({
 const EntitySchema = z.object({
   entityName: z.string(),             // The name of the entity
   attributes: z.array(AttributeSchema), // List of attributes for the entity
-  associations: z.array(AssociationSchema).optional(), // Associations with other entities
+  associations: z.array(AssociationSchema).optional()
 });
 
 // Schema for a code list item
@@ -102,7 +102,7 @@ async function main() {
 
     const now = new Date();
     const dateString = now.toISOString().replace(/:/g, '-');
-    const outputPath = path.join(__dirname, 'output', `output-${dateString}.json`);
+    const outputPath = path.join(__dirname, '..', 'output', `output-${dateString}.json`);
 
     if (!fs.existsSync(path.join(__dirname, 'output'))) {
       fs.mkdirSync(path.join(__dirname, 'output'));
