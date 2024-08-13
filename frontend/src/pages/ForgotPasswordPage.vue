@@ -1,36 +1,44 @@
 <template>
-    <q-page class="flex flex-center q-pa-md q-gutter-sm">
-      <q-card flat bordered class="q-pa-md" style="width: 100%; max-width: 600px;">
-        <div class="text-center q-pa-md">
-          <h4>Forgotten your password?</h4>
-          <p>There is nothing to worry about, we'll send you a message to help you reset your password.</p>
-          <q-form @submit="onSubmit">
-            <q-input filled v-model="email" label="Email Address" placeholder="Enter company's email address" type="email" />
-            <q-btn type="submit" color="primary" label="Send Reset Link" class="full-width q-mt-md" />
-          </q-form>
-        </div>
-      </q-card>
-    </q-page>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        email: ''
-      };
-    },
-    methods: {
-      onSubmit() {
-        // Handle the form submission for password reset
-      }
+  <div class="min-h-dvh grid" style="grid-template-rows: auto 1fr auto">
+    <!--  Header  -->
+    <HeaderComponent :auth="true"/>
+
+    <!--  Main Content  -->
+    <div class="flex h-full justify-center items-center">
+      <div class="flex flex-col p-8 sm:w-[560px] font-light">
+        <h1 class="text-2xl sm:text-4xl font-medium mb-4">Forgotten your password?</h1>
+        <p class="mb-6 sm:mb-10 sm:text-base">There is nothing to worry about, we'll send you a message to help you
+          reset your
+          password.</p>
+        <q-form @submit="onSubmit">
+          <q-input outlined v-model="email" label="Email Address" type="email" name="email" class="mb-4"/>
+          <q-btn unelevated no-caps color="primary" label="Send Reset Link" type="submit"
+                 class="w-full py-4 text-base font-medium rounded"/>
+        </q-form>
+      </div>
+    </div>
+
+    <!--  Footer  -->
+    <FooterComponent/>
+  </div>
+</template>
+
+<script>
+import FooterComponent from 'components/FooterComponent.vue';
+import HeaderComponent from 'components/HeaderComponent.vue';
+
+export default {
+  components: {HeaderComponent, FooterComponent},
+  data() {
+    return {
+      email: ''
+    };
+  },
+  methods: {
+    onSubmit() {
+      // Handle the form submission for password reset
     }
-  };
-  </script>
-  
-  <style>
-  .q-page {
-    background-color: #f5f5f5;
   }
-  </style>
-  
+};
+</script>
+
