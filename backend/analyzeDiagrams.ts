@@ -14,6 +14,7 @@ const client = new OpenAI({
 
 const projectSpecification = fs.readFileSync('text.txt', 'utf-8');
 const namingConventions = fs.readFileSync('data/conventions.txt', 'utf-8');
+const implementationGuide = fs.readFileSync('data/implementation-guide.txt', 'utf-8');
 
 // Function to encode an image to Base64
 const encodeImage = (imagePath: string): string => {
@@ -46,6 +47,7 @@ async function main() {
         content: `You are a helpful assistant designed to analyze ER diagram images to output them as JSON.
                   Also analyze Project Specification to produce a JSON schema for the project.
                   Project specification: ${projectSpecification}
+                  Implementation guide: ${implementationGuide}
                   You should preserve naming conventions that are described here: ${namingConventions}`,
       },
       {
