@@ -130,3 +130,5 @@ dist
 
 # idea
 .idea
+/frontend/.quasar
+/frontend/node_modules

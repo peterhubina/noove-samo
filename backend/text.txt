@@ -1,0 +1,94 @@
+INTERNAL
+How I met the fish in the information system
+The Fish and Ponds e-learning system demonstrates the principles and the way of
+using the SAMO technology platform. To better illustrate and understand how to work
+with data, an example of fish, ponds, work and partners is used. It shows how the data
+is related and how it can be displayed.
+SAMO can be used to create both simple and complex agenda systems. Systematic
+data capture and structured data display leaves your hands free for business or
+administrative activities.
+The intuitive interface, easy configuration and the possibility of integration with existing
+systems is a given.
+The concept of tiles
+The tiles in the cockpit represent the different agendas. Each tile has its own limited
+range of functions. The purpose of each tile is made clear by a pictogram. Some tiles
+display basic data in a preview, such as counts.
+Together, the tiles form a system of linked data. The configuration determines which
+data and to what level of detail it is necessary to see. The data can also be further
+filtered. Each user can only access data to which they have set permissions or are in
+the area of interest.
+Map application
+Ponds are spatially displayable data that have GPS coordinates. They can be viewed
+on available map layers. Each pond also has an information overview. Here the data is
+entered from the dials or in free text. This is defined in the metadata. The codebook is
+an ordered list of unique entities and ensures data consistency.
+It is also possible to display the data simultaneously in a list. You can choose to display
+tiles or tables. For example, it is possible to filter ponds by type. For more detailed
+analysis there is an export function to Excel.
+You can show or hide the information summary for each item in the list. For example,
+you can display the fish in a particular pond and details about them. The overview
+window can be zoomed in and out by scrolling, or the user can use the arrow keys to
+move to the next overview.
+
+
+INTERNAL
+Fish - data that arrive
+Another agenda is the fish database. The interconnection allows you to access
+individual fish through the Fish agenda and at the same time through the Ponds
+agenda.
+For each fish there is a link to the corresponding pond.
+Sponsors have a similar type of attachment to the pond as the fish and for our purposes
+represent a source of funding. Details can also be seen in the overview.
+Ponds
+Ponds are similar to branches or workplaces in the demo system. Fish can swim in the
+ponds, but at the same time the ponds need to be maintained. Ponds also need to be
+guarded or stocked. There are different types of ponds. Ponds have statuses that can
+change. They are assigned to each county and each pond has an owner. The list of
+owners is in the People agenda, where each owner has a list of their respective ponds.
+In addition to the owners, fishing guards and external labour also work on the ponds.
+This brings us to the next agenda - the management of external labour.
+External workforce
+Fish work in ponds just like employees. Other workers look after the ponds. It is
+common practice to manage external labour. The partners may be, for example,
+certification bodies or suppliers of services and materials.
+For the workforce, we will be primarily interested in time-distributed data with an
+emphasis on scheduling. The assignment to a pond located in the space can be traced
+in a detailed report for the workforce.
+Workflow
+The pond owner needs to keep track of work progress and status changes. Is
+maintenance/inspection scheduled, underway or already done? A simple workflow
+diagram is used to illustrate this.
+
+
+INTERNAL
+The diagram shows which phases have passed and which will follow by means of points
+and arrows. The inspection types themselves are managed in a separate tile for clarity.
+All inspection and other work can be viewed in a calendar-like overview. The Planning
+board function is a summary view and can be used as the main dashboard for work
+management.
+Other related agendas
+The strength of the metadata-driven SAMO platform is the ability to add additional
+agendas that work with downstream data. This helps to keep the data in order, see the
+connections between it and easily move between areas of interest.
+The agenda tiles make the amount of data clearer. In addition, data can be displayed in
+charts and we can change the depth of detail we need to see.
+Context between objects and data types
+The information system is broken down into individual business objects in the charts
+below. The graphs represent real-world objects, such as ponds. The links between
+objects are shown. There is a diamond symbol between the pond and the fish to
+represent the relationship. One-way arrows show which objects serve other objects. For
+example, the fish species object serves only the fish object.
+The diagrams also show data types (boolean, integer...), links to dials or where free text
+can be entered.
+
+
+INTERNAL
+
+
+INTERNAL
+
+
+INTERNAL
+
+
+INTERNAL

@@ -1,0 +1,110 @@
+<?xml version="1.0" ?>
+<ber:model xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:se="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc" xmlns:sld="http://www.opengis.net/sld" xmlns:ber="http://www.berit.com/ber">
+    <ber:project name="{{ project.name }}" version="{{ project.version }}">
+        <ber:spatialInfo baseUnit="{{ project.spatialInfo.baseUnit }}" srs="{{ project.spatialInfo.srs }}">
+            <ber:range>
+                <ber:x min="{{ project.spatialInfo.range.x.min }}" max="{{ project.spatialInfo.range.x.max }}"/>
+                <ber:y min="{{ project.spatialInfo.range.y.min }}" max="{{ project.spatialInfo.range.y.max }}"/>
+            </ber:range>
+            <ber:tolerance>{{ project.spatialInfo.tolerance }}</ber:tolerance>
+        </ber:spatialInfo>
+    </ber:project>
+    <ber:system id="{{ system.id }}">
+        <ber:version>
+            <ber:model>{{ system.version.model }}</ber:model>
+            <ber:minClient>{{ system.version.minClient }}</ber:minClient>
+            <ber:minAS>{{ system.version.minAS }}</ber:minAS>
+        </ber:version>
+    </ber:system>
+    <ber:numberGeneratorArray>
+        {% for generator in numberGeneratorArray %}
+        <ber:numberGenerator id="{{ generator.id }}" name="{{ generator.name }}" dbName="{{ generator.dbName }}" startValue="{{ generator.startValue }}" step="{{ generator.step }}"/>
+        {% endfor %}
+    </ber:numberGeneratorArray>
+    <ber:containerArray>
+        {% for container in containerArray %}
+        <ber:container id="{{ container.id }}" name="{{ container.name }}" dbName="{{ container.dbName }}" versioned="{{ container.versioned }}"/>
+        {% endfor %}
+    </ber:containerArray>
+    <ber:codeListArray>
+        {% for codeList in codeListArray %}
+        <ber:codeList id="{{ codeList.id }}" name="{{ codeList.name }}" dbName="{{ codeList.dbName }}" size="{{ codeList.size }}">
+            <ber:columnArray>
+                {% for column in codeList.columnArray %}
+                <ber:column id="{{ column.id }}" name="{{ column.name }}" dbName="{{ column.dbName }}" nillable="{{ column.nillable }}">
+                    <ber:string maxLength="{{ column.maxLength }}"/>
+                </ber:column>
+                {% endfor %}
+            </ber:columnArray>
+        </ber:codeList>
+        {% endfor %}
+    </ber:codeListArray>
+    <ber:codeListBindingArray>
+        {% for codeListBinding in codeListBindingArray %}
+        <ber:codeListBinding id="{{ codeListBinding.id }}" name="{{ codeListBinding.name }}" dbName="{{ codeListBinding.dbName }}" ordered="{{ codeListBinding.ordered }}">
+            <ber:boundedItemArray>
+                {% for boundedItem in codeListBinding.boundedItemArray %}
+                <ber:boundedItem dbName="{{ boundedItem.dbName }}">
+                    <ber:codeList refId="{{ boundedItem.refId }}"/>
+                </ber:boundedItem>
+                {% endfor %}
+            </ber:boundedItemArray>
+        </ber:codeListBinding>
+        {% endfor %}
+    </ber:codeListBindingArray>
+    <ber:attachmentTypeArray>
+        {% for attachmentType in attachmentTypeArray %}
+        <ber:attachmentType id="{{ attachmentType.id }}" name="{{ attachmentType.name }}" storage="{{ attachmentType.storage }}">
+            <ber:description>{{ attachmentType.description }}</ber:description>
+        </ber:attachmentType>
+        {% endfor %}
+    </ber:attachmentTypeArray>
+    <ber:featureTypeArray>
+        <ber:rootFeatureType id="ft_5000002" name="Root" abstract="true">
+            <ber:description>ROOT_NODE</ber:description>
+            <ber:featureAttributeArray>
+                <ber:systemAttribute id="id" name="Feature ID"/>
+                <ber:systemAttribute id="sid" name="Semantic ID"/>
+                <ber:systemAttribute id="ftid" name="Feature Type"/>
+                <ber:systemAttribute id="createdBy" name="Created_by"/>
+                <ber:systemAttribute id="updatedBy" name="Updated_by"/>
+                <ber:systemAttribute id="createDate" name="Create_date"/>
+                <ber:systemAttribute id="updateDate" name="Update_date"/>
+                <ber:systemAttribute id="longTransactionId" name="Long_trans_ID"/>
+                <ber:systemAttribute id="symbologyTokens" name="Symbology tokens"/>
+                <ber:systemAttribute id="validFrom" name="Valid From"/>
+                <ber:systemAttribute id="validTo" name="Valid To"/>
+                <ber:systemAttribute id="featureInfo" name="Feature Info"/>
+            </ber:featureAttributeArray>
+        </ber:rootFeatureType>
+        {% for featureType in featureTypeArray %}
+        <ber:featureType id="{{ featureType.id }}" name="{{ featureType.name }}" parentId="{{ featureType.parentId }}" abstract="{{ featureType.abstract }}">
+            <ber:container refId="{{ featureType.container }}"/>
+            <ber:featureAttributeArray>
+                {% for attribute in featureType.attributes %}
+                <ber:attribute id="{{ attribute.id }}" name="{{ attribute.name }}" dbName="{{ attribute.dbName }}" nillable="{{ attribute.nillable }}">
+                    <ber:string maxLength="{{ attribute.maxLength }}"/>
+                </ber:attribute>
+                {% endfor %}
+            </ber:featureAttributeArray>
+        </ber:featureType>
+        {% endfor %}
+    </ber:featureTypeArray>
+    <ber:roleTypeArray>
+        {% for relationRole in roleTypeArray %}
+        <ber:relationRole id="{{ relationRole.id }}" name="{{ relationRole.name }}" dbName="{{ relationRole.dbName }}">
+            {% for ftItem in ftItems %}
+            <ber:ftItem refId="{{ ftItem.refId }}"/>
+            {% endfor %}
+        </ber:relationRole>
+        {% endfor %}
+    </ber:roleTypeArray>
+    <ber:assocTypeArray>
+        {% for assoc in assocTypeArray %}
+        <ber:featureRefRelationAssoc id="{{ assoc.id }}" name="{{ assoc.name }}">
+            <ber:masterRole refId="{{ assoc.masterRole.refId }}" cardinality="{{ assoc.masterRole.cardinality }}"/>
+            <ber:childRole refId="{{ assoc.childRole.refId }}" cardinality="{{ assoc.childRole.cardinality }}"/>
+        </ber:featureRefRelationAssoc>
+        {% endfor %}
+    </ber:assocTypeArray>
+</ber:model>

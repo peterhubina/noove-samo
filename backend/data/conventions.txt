@@ -1,0 +1,158 @@
+{
+    "conventions": [
+    {
+        "name": "Codelist",
+        "prefix": "cl_",
+        "description": "Used for naming codelists. The ID starts with 'cl_' followed by the business domain and the codelist name.",
+        "examples": [
+            "cl_boDefectType",
+            "cl_eleMaterial"
+        ],
+        "db": {
+            "prefix": "CL_",
+            "description": "The database equivalent for the codelist, using the same name in uppercase.",
+            "examples": [
+                "CL_BODEFECTTYPE",
+                "CL_ELEMATERIAL"
+            ]
+        }
+    },
+    {
+        "name": "Codelist Column",
+        "prefix": "ca_",
+        "description": "Used for naming columns in a codelist. The ID starts with 'ca_' followed by the business domain, codelist name, and column name.",
+        "examples": [
+            "ca_boDefectType_code",
+            "ca_eleMaterial_id"
+        ],
+        "db": {
+            "prefix": "Column name only",
+            "description": "For columns, use the attribute name directly without prefix, typically in uppercase.",
+            "examples": [
+                "CODE",
+                "ID"
+            ]
+        }
+    },
+    {
+        "name": "Codelist Binding",
+        "prefix": "cb_",
+        "description": "Used to bind two or more codelists. The ID starts with 'cb_' followed by the business domain and the names of the codelists being bound.",
+        "examples": [
+            "cb_boDefectType_eleMaterial"
+        ],
+        "db": {
+            "prefix": "CB_",
+            "description": "The database equivalent for the codelist binding, using the same name in uppercase.",
+            "examples": [
+                "CB_BODEFECTTYPE_ELEMATERIAL"
+            ]
+        }
+    },
+    {
+        "name": "Filtered Codelist",
+        "prefix": "cf_",
+        "description": "Used for naming filtered codelists. The ID starts with 'cf_' followed by the base codelist name and the purpose of the filter.",
+        "examples": [
+            "cf_boDefectType_damage",
+            "cf_eleMaterial_cable"
+        ],
+        "db": {
+            "prefix": "Not applicable",
+            "description": "Filtered codelists do not exist in the database."
+        }
+    },
+    {
+        "name": "Feature Type",
+        "prefix": "ft_",
+        "description": "Used for naming feature types. The ID starts with 'ft_' followed by the business domain and the feature type name. Recommended to keep the identifier at most 15 characters long.",
+        "examples": [
+            "ft_boDefect",
+            "ft_eleCable"
+        ],
+        "db": {
+            "prefix": "Not required",
+            "description": "Feature types are represented in the database via the assigned container DB name."
+        }
+    },
+    {
+        "name": "Feature Attribute",
+        "prefix": "at_",
+        "description": "Used for naming attributes of feature types. The ID starts with 'at_' followed by the business domain, feature type name, and attribute name.",
+        "examples": [
+            "at_boDefect_code",
+            "at_eleCable_description"
+        ],
+        "db": {
+            "prefix": "Attribute name only",
+            "description": "For attributes, use the attribute name directly without prefix, typically in uppercase.",
+            "examples": [
+                "CODE",
+                "DESCRIPTION"
+            ]
+        }
+    },
+    {
+        "name": "Feature Attribute (Codelist Reference)",
+        "prefix": "at_",
+        "description": "Used when the feature attribute is a reference to a codelist. The ID starts with 'at_' followed by the feature type name, 'cl_', and the codelist name.",
+        "examples": [
+            "at_boDefect_cl_boDefectType"
+        ],
+        "db": {
+            "prefix": "CL_",
+            "description": "For codelist references, use the codelist name in uppercase.",
+            "examples": [
+                "CL_BODEFECTTYPE"
+            ]
+        }
+    },
+    {
+        "name": "Feature Attribute (Feature Reference)",
+        "prefix": "at_",
+        "description": "Used when the feature attribute is a reference to another feature type. The ID starts with 'at_' followed by the feature type name, 'fr_', and the referred feature type name.",
+        "examples": [
+            "at_boDefect_fr_boWorkOrder"
+        ],
+        "db": {
+            "prefix": "FR_",
+            "description": "For feature references, use the referred feature type name in uppercase.",
+            "examples": [
+                "FR_BOWORKORDER"
+            ]
+        }
+    },
+    {
+        "name": "Boolean Feature Attribute",
+        "prefix": "at_",
+        "description": "Used for naming boolean attributes. The ID starts with 'at_' followed by the feature type name, 'is_', and the attribute name.",
+        "examples": [
+            "at_boDefect_is_fixed"
+        ],
+        "db": {
+            "prefix": "IS_",
+            "description": "For boolean attributes, use the attribute name prefixed with 'IS_' in uppercase.",
+            "examples": [
+                "IS_FIXED"
+            ]
+        }
+    },
+    {
+        "name": "Container",
+        "prefix": "ct_",
+        "description": "Used for naming containers. The ID starts with 'ct_' followed by the business domain and the container name. If the container is intended for a single feature type, the name should match the feature type.",
+        "examples": [
+            "ct_boDefect",
+            "ct_eleCable"
+        ],
+        "db": {
+            "prefix": "CT_",
+            "description": "The database equivalent for the container, using the same name in uppercase.",
+            "examples": [
+                "CT_BODEFECT",
+                "CT_ELECABLE"
+            ]
+        }
+    }
+]
+}

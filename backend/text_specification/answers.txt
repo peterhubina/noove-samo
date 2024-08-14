@@ -1,0 +1,414 @@
+### Základné Informácie o Organizácii
+1. Viacero právnych subjektov v rámci organizácie: 
+   - [Nie]
+2. Zoznam zamestnancov v systéme: 
+   - [Nie]
+3. Centralizovaná alebo decentralizovaná správa? 
+   - [Nie]
+4. Sledovanie interných komunikácií v systéme? 
+   - [Nie]
+5. Potrebujete riadiť dokumentáciu a záznamy? 
+   - [Áno]
+
+---
+
+### Lokácie a Pobočky
+6. Viacero pobočiek alebo lokalít:
+   - [Áno]
+7. Pobočky v rôznych krajinách:
+   - [Nie]
+8. Pobočky v rôznych mestách:
+   - [Áno]
+9. Sledovanie pobočiek podľa krajín a miest v systéme:
+   - [Áno]
+10. Mapa zobrazujúca pobočky:
+   - [Áno]
+11. Záznam počtu zamestnancov v jednotlivých pobočkách:
+   - [Nie]
+12. Sledovanie prenájmov pobočiek?
+   - [Nie]
+
+---
+
+### Správa Aktív
+
+#### Nehnuteľnosti
+13. Sledovanie nehnuteľností v systéme:
+    - [Áno]
+14. Nehnuteľnosti v rôznych lokalitách:
+    - [Áno]
+15. Sledovanie jednotlivých nehnuteľností podľa lokalít:
+    - [Áno]
+16. Prenájmy a využitie nehnuteľností:
+    - [Nie]
+
+#### Stroje
+17. Sledovanie strojov v systéme:
+    - [Nie]
+18. Rôzne typy strojov:
+    - [Nie]
+19. Sledovanie strojov podľa typu:
+    - [Nie]
+20. Dátumy údržby strojov:
+    - [Nie]
+21. Opravy strojov:
+    - [Nie]
+22. Sledovanie využitia strojov:
+    - [Nie]
+23. Sledovanie strojov na výrobu:
+    - [Nie]
+24. Sledovanie strojov na ťažbu:
+    - [Nie]
+25. Sledovanie strojov na spracovanie potravín:
+    - [Nie]
+
+#### Vozidlá
+26. Sledovanie vozidiel v systéme:
+    - [Nie]
+27. Rôzne typy vozidiel:
+    - [Nie]
+28. Sledovanie vozidiel podľa typu:
+    - [Nie]
+29. Dátumy údržby vozidiel:
+    - [Nie]
+30. Opravy vozidiel:
+    - [Nie]
+31. Sledovanie spotreby paliva vozidiel:
+    - [Nie]
+32. Sledovanie využitia vozidiel:
+    - [Nie]
+33. Sledovanie dodávok:
+    - [Nie]
+34. Sledovanie osobných áut:
+    - [Nie]
+35. Sledovanie kamiónov:
+    - [Nie]
+36. Sledovanie špeciálnych vozidiel (napr. sanitky, požiarnické autá):
+    - [Nie]
+
+#### Automobily
+37. Sledovanie automobilov v systéme:
+    - [Nie]
+38. Dátumy údržby automobilov:
+    - [Nie]
+39. Opravy automobilov:
+    - [Nie]
+
+#### Lode
+40. Sledovanie lodí v systéme:
+    - [Nie]
+41. Dátumy údržby lodí:
+    - [Nie]
+42. Opravy lodí:
+    - [Nie]
+43. Sledovanie využitia lodí:
+    - [Nie]
+44. Sledovanie rybárskych lodí:
+    - [Nie]
+45. Sledovanie nákladných lodí:
+    - [Nie]
+46. Sledovanie osobných lodí:
+    - [Nie]
+
+#### Člny
+47. Sledovanie člnov v systéme:
+    - [Nie]
+48. Dátumy údržby člnov:
+    - [Nie]
+49. Opravy člnov:
+    - [Nie]
+
+#### Zemné stroje
+50. Sledovanie zemných strojov v systéme:
+    - [Nie]
+51. Dátumy údržby zemných strojov:
+    - [Nie]
+52. Opravy zemných strojov:
+    - [Nie]
+53. Sledovanie bagrov:
+    - [Nie]
+54. Sledovanie buldozérov:
+    - [Nie]
+55. Sledovanie nakladačov:
+    - [Nie]
+
+#### Priemyselné stroje
+56. Sledovanie priemyselných strojov v systéme:
+    - [Nie]
+57. Dátumy údržby priemyselných strojov:
+    - [Nie]
+58. Opravy priemyselných strojov:
+    - [Nie]
+59. Sledovanie CNC strojov:
+    - [Nie]
+60. Sledovanie robotických ramien:
+    - [Nie]
+
+#### IT Zariadenia
+61. Sledovanie IT zariadení v systéme:
+    - [Nie]
+62. Dátumy údržby IT zariadení:
+    - [Nie]
+63. Opravy IT zariadení:
+    - [Nie]
+64. Sledovanie serverov:
+    - [Nie]
+65. Sledovanie počítačov:
+    - [Nie]
+66. Sledovanie tlačiarní:
+    - [Nie]
+67. Sledovanie sieťových zariadení:
+    - [Nie]
+
+#### Iné Aktíva
+68. Sledovanie iných aktív v systéme:
+    - [Nie]
+69. Rôzne typy iných aktív:
+    - [Nie]
+70. Dátumy údržby iných aktív:
+    - [Nie]
+71. Opravy iných aktív:
+    - [Nie]
+
+---
+
+### Inventarizácia
+72. Sledovanie inventarizácie aktív v systéme SAMO:
+    - [Nie]
+
+---
+
+### Životný cyklus
+73. Sledovanie životného cyklu aktív:
+    - [Nie]
+74. Amortizácia aktív:
+    - [Nie]
+75. Zostatková hodnota aktív:
+    - [Nie]
+
+---
+
+### Údržba
+76. Pravidelná údržba aktív:
+    - [Nie]
+77. Upozornenia na plánovanú údržbu aktív:
+    - [Nie]
+
+---
+
+### Prenájmy a Leasing
+78. Sledovanie prenájmov nehnuteľností:
+    - [Nie]
+79. Sledovanie leasingových zmlúv na vozidlá a stroje:
+    - [Nie]
+
+---
+
+### Nábytok
+80. Sledovanie nábytku v systéme:
+    - [Nie]
+81. Dátumy údržby nábytku:
+    - [Nie]
+82. Opravy nábytku:
+    - [Nie]
+
+---
+
+### Kancelárske vybavenie
+83. Sledovanie kancelárskeho vybavenia v systéme:
+    - [Nie]
+84. Dátumy údržby kancelárskeho vybavenia:
+    - [Nie]
+85. Opravy kancelárskeho vybavenia:
+    - [Nie]
+
+---
+
+### Elektronika
+86. Sledovanie elektroniky v systéme:
+    - [Nie]
+87. Dátumy údržby elektroniky:
+    - [Nie]
+88. Opravy elektroniky:
+    - [Nie]
+
+---
+
+### Nástroje a náradie
+89. Sledovanie nástrojov a náradia v systéme:
+    - [Nie]
+90. Dátumy údržby nástrojov a náradia:
+    - [Nie]
+91. Opravy nástrojov a náradia:
+    - [Nie]
+
+---
+
+### Zásoby a materiál
+92. Sledovanie zásob a materiálu v systéme:
+    - [Nie]
+93. Automatizácia objednávok zásob:
+    - [Nie]
+94. Sledovanie dát expirácie zásob:
+    - [Nie]
+95. Sledovanie využitia zásob:
+    - [Nie]
+
+---
+
+### Zdravotnícke vybavenie
+96. Sledovanie zdravotníckeho vybavenia v systéme:
+    - [Nie]
+97. Dátumy údržby zdravotníckeho vybavenia:
+    - [Nie]
+98. Opravy zdravotníckeho vybavenia:
+    - [Nie]
+
+---
+
+### Vybavenie na voľný čas
+99. Sledovanie vybavenia na voľný čas v systéme:
+    - [Nie]
+100. Dátumy údržby vybavenia na voľný čas:
+    - [Nie]
+101. Opravy vybavenia na voľný čas:
+    - [Nie]
+
+---
+
+### Poľnohospodárske vybavenie
+102. Sledovanie poľnohospodárskeho vybavenia v systéme:
+    - [Nie]
+103. Dátumy údržby poľnohospodárskeho vybavenia:
+    - [Nie]
+104. Opravy poľnohospodárskeho vybavenia:
+    - [Nie]
+105. Sledovanie traktorov:
+    - [Nie]
+106. Sledovanie kombajnov:
+    - [Nie]
+107. Sledovanie siačok:
+    - [Nie]
+108. Sledovanie zariadení na spracovanie obilia:
+    - [Nie]
+
+---
+
+### Lesnícke vybavenie
+109. Sledovanie lesníckeho vybavenia v systéme:
+    - [Nie]
+110. Dátumy údržby lesníckeho vybavenia:
+    - [Nie]
+111. Opravy lesníckeho vybavenia:
+    - [Nie]
+112. Sledovanie píl:
+    - [Nie]
+113. Sledovanie lesných traktorov:
+    - [Nie]
+
+---
+
+### Energetické vybavenie
+114. Sledovanie energetického vybavenia v systéme:
+    - [Nie]
+115. Dátumy údržby energetického vybavenia:
+    - [Nie]
+116. Opravy energetického vybavenia:
+    - [Nie]
+117. Sledovanie generátorov:
+    - [Nie]
+118. Sledovanie transformátorov:
+    - [Nie]
+119. Sledovanie rozvádzačov:
+    - [Nie]
+
+---
+
+### Komunikačné vybavenie
+120. Sledovanie komunikačného vybavenia v systéme:
+    - [Nie]
+121. Dátumy údržby komunikačného vybavenia:
+    - [Nie]
+122. Opravy komunikačného vybavenia:
+    - [Nie]
+123. Sledovanie telekomunikačných zariadení:
+    - [Nie]
+124. Sledovanie rádiových zariadení:
+    - [Nie]
+125. Sledovanie satelitných zariadení:
+    - [Nie]
+
+---
+
+### Dopravné vybavenie
+126. Sledovanie dopravného vybavenia v systéme:
+    - [Nie]
+127. Dátumy údržby dopravného vybavenia:
+    - [Nie]
+128. Opravy dopravného vybavenia:
+    - [Nie]
+129. Sledovanie železničných vozidiel:
+    - [Nie]
+130. Sledovanie električiek:
+    - [Nie]
+131. Sledovanie autobusov:
+    - [Nie]
+
+---
+
+### Stavebné vybavenie
+132. Sledovanie stavebného vybavenia v systéme:
+    - [Nie]
+133. Dátumy údržby stavebného vybavenia:
+    - [Nie]
+134. Opravy stavebného vybavenia:
+    - [Nie]
+135. Sledovanie žeriavov:
+    - [Nie]
+136. Sledovanie betónových miešačiek:
+    - [Nie]
+
+---
+
+### Športové vybavenie
+137. Sledovanie športového vybavenia v systéme:
+    - [Nie]
+138. Dátumy údržby športového vybavenia:
+    - [Nie]
+139. Opravy športového vybavenia:
+    - [Nie]
+140. Sledovanie fitnes strojov:
+    - [Nie]
+141. Sledovanie športových ihrísk:
+    - [Nie]
+
+---
+
+### Mediálne vybavenie
+142. Sledovanie mediálneho vybavenia v systéme:
+    - [Nie]
+143. Dátumy údržby mediálneho vybavenia:
+    - [Nie]
+144. Opravy mediálneho vybavenia:
+    - [Nie]
+145. Sledovanie kamier:
+    - [Nie]
+146. Sledovanie osvetľovacích zariadení:
+    - [Nie]
+147. Sledovanie zvukových zariadení:
+    - [Nie]
+
+---
+
+### Umelecké diela a exponáty
+148. Sledovanie umeleckých diel a exponátov v systéme:
+    - [Nie]
+149. Dátumy údržby umeleckých diel a exponátov:
+    - [Nie]
+150. Opravy umeleckých diel a exponátov:
+    - [Nie]
+151. Sledovanie obrazov:
+    - [Nie]
+152. Sledovanie soch:
+    - [Nie]
+153. Sledovanie historických arte
