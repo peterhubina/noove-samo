@@ -1,2 +1,3 @@
 .idea
-frontend
+/frontend/.quasar
+/frontend/node_modules
