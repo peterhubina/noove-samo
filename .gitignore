@@ -1,0 +1,7 @@
+.idea
+
+backend/node_modules
+backend/.env
+
+frontend/.quasar
+frontend/node_modules
