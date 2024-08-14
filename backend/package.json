@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/index.ts",
-    "dev": "nodemon --watch src -e ts --exec ts-node src/index.ts",
-    "build": "tsc"
+    "start": "../node_modules/.bin/ts-node backend/src/index.ts",
+    "dev": "../node_modules/.bin/nodemon --watch backend/src -e ts --exec ts-node src/index.ts",
+    "build": "../node_modules/.bin/tsc"
   },
   "keywords": [],
   "author": "",
