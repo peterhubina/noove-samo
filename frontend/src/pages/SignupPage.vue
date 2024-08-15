@@ -65,8 +65,19 @@ export default {
     togglePasswordVisibility() {
       this.showPassword = !this.showPassword;
     },
-    onSubmit() {
-      // TODO: Handle signup here
+    // TODO: Handle validation
+    async onSubmit() {
+      try {
+        const response = await this.$axios.post('http://localhost:3000/auth/signup', {
+          name: this.companyName,
+          email: this.email,
+          password: this.password
+        });
+        this.$q.notify({type: 'positive', message: response.data.message, position: 'top'});
+        this.$router.push('/')
+      } catch (error) {
+        this.$q.notify({type: 'negative', message: error.response.data.message, position: 'top'});
+      }
     }
   }
 };

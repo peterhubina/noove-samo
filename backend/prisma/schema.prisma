@@ -18,6 +18,7 @@ model Company {
     name      String
     email     String   @unique
     password  String
-    logoUrl   String
+    logoUrl   String?
     createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }

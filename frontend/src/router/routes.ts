@@ -4,11 +4,20 @@ import SignupPage from 'src/pages/SignupPage.vue';
 import ForgotPasswordPage from 'src/pages/ForgotPasswordPage.vue';
 import HomePage from 'src/pages/HomePage.vue';
 import ConfigurationPage from 'pages/ConfigurationPage.vue';
+import { useAuthStore } from 'stores/auth';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/dashboard',
     component: () => import('layouts/MainLayout.vue'),
+    beforeEnter: (to, from, next) => {
+      const authStore = useAuthStore();
+      if (!authStore.isAuthenticated) {
+        next('/login'); // Redirect to login if not authenticated
+      } else {
+        next();
+      }
+    },
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
       { path: 'configuration', component: ConfigurationPage },

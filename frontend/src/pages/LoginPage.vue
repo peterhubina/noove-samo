@@ -53,8 +53,19 @@ export default {
     togglePasswordVisibility() {
       this.showPassword = !this.showPassword;
     },
-    onSubmit() {
-      // TODO: Handle login logic here
+    async onSubmit() {
+      // TODO: Handle validation here and save to storage and cookies using pinia
+      try {
+        const response = await this.$axios.post('http://localhost:3000/auth/login', {
+          email: this.email,
+          password: this.password
+        });
+
+        this.$q.notify({type: 'positive', message: response.data.message, position: 'top'});
+        this.$router.push('/')
+      } catch (error) {
+        this.$q.notify({type: 'negative', message: error.response.data.message, position: 'top'});
+      }
     }
   },
 };

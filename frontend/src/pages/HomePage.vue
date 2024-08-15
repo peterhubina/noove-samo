@@ -17,8 +17,10 @@
             Quis placerat ac urna, massa lectus. Consequat eu eu quam id sit
             consequat condimentum.
           </p>
-          <q-btn unelevated no-caps color="primary" label="Create Configuration"
-                 class="w-full sm:w-auto py-4 px-12 text-lg lg:text-xl xl:text-2xl mt-10 lg:mt-14 xl:mt-[4.5rem] rounded"/>
+          <router-link to="/dashboard">
+            <q-btn unelevated no-caps color="primary" label="Create Configuration"
+                   class="w-full sm:w-auto py-4 px-12 text-lg lg:text-xl xl:text-2xl mt-10 lg:mt-14 xl:mt-[4.5rem] rounded"/>
+          </router-link>
         </div>
         <div class="sm:h-full xl:-mr-14">
           <img src="src/assets/video-placeholder.svg" class="h-full" alt="video placeholder"/>
