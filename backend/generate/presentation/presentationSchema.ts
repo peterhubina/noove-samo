@@ -1,166 +1,63 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-// Schemas for nested elements
-const onlineResourceSchema = z.object({
-    href: z.string().optional(),
-});
-
-const externalGraphicSchema = z.object({
-    onlineResource: onlineResourceSchema.optional(),
-    format: z.any().optional(), // Adjust if 'Format' has specific content
-});
-
-const graphicSchema = z.object({
-    externalGraphic: externalGraphicSchema.optional(),
-    opacity: z.string().optional(),
-});
-
-const graphicStrokeSchema = z.object({
-    graphic: graphicSchema.optional(),
-});
-
-const svgParameterSchema = z.object({
+// Define the StringAttribute schema (for string attributes with a maxLength)
+const StringAttributeSchema = z.object({
+    id: z.string(),
     name: z.string(),
-    value: z.string(), // Or adjust based on possible parameter value types
+    dbName: z.string(),
+    nillable: z.boolean(),
+    maxLength: z.number().optional(),
 });
 
-const strokeSchema = z.object({
-    graphicStroke: graphicStrokeSchema.optional(),
-    svgParameter: z.array(svgParameterSchema).optional(),
+// Define the FeatureType schema (which includes attributes)
+const FeatureTypeSchema = z.object({
+    id: z.string(),
+    name: z.string(),
+    parentId: z.string().optional(),
+    abstract: z.boolean(),
+    container: z.string().optional(),
+    attributes: z.array(StringAttributeSchema).optional(),
 });
 
-const fillSchema = z.object({
-    svgParameter: z.array(svgParameterSchema).optional(),
-    fillStyle: z.string().optional(),
-});
-
-const graphicFillSchema = z.object({
-    graphic: graphicSchema.optional(),
-});
-
-const patternFillSchema = z.object({
-    graphicFill: graphicFillSchema.optional(),
-    svgParameter: z.array(svgParameterSchema).optional(),
-});
-
-const fontSchema = z.object({
-    'font-family': z.string().optional(),
-    'font-style': z.string().optional(),
-    'font-weight': z.string().optional(),
-});
-
-const maskStrokeSchema = z.object({
-    graphicStroke: graphicStrokeSchema.optional(),
-    svgParameter: z.array(svgParameterSchema).optional(),
-});
-
-const maskSchema = z.object({
-    style: z.string().optional(),
-    shape: z.string().optional(),
-    stroke: maskStrokeSchema.optional(),
-});
-
-const foregroundBackgroundSchema = z.object({
-    rgbColor: z.string().optional(),
-    opacity: z.string().optional(),
-});
-
-const outputFormatSchema = z.object({
-    value: z.string(),
+// Define the OutputFormat schema
+const OutputFormatSchema = z.object({
+    name: z.string(),
     default: z.boolean().optional(),
 });
 
-const inputParameterSchema = z.object({
-    id: z.string(),
-    name: z.string(),
-    description: z.string().optional(),
-    defaultValue: z.string().optional(),
-    dataType: z
-        .object({
-            type: z.enum(["date", "decimal", "string", "codeListRefExt"]),
-            precision: z.number().optional(),
-            scale: z.number().optional(),
-            maxLength: z.number().optional(),
-            codeListRef: z
-                .object({
-                    refId: z.string(),
-                    displayColumn: z.string(),
-                })
-                .optional(),
-        })
-        .optional(),
-    nillable: z.boolean().optional(),
+// Define the ReportQuery schema
+const ReportQuerySchema = z.object({
+    featureType: z.string(),
+    attributes: z.array(z.string()), // Referring to attribute IDs from model.xml
+    filter: z.string(),
+    orderByAttribute: z.string(),
+    orderByFeatureType: z.string(),
 });
 
-
-const reportSchema = z.object({
+// Define the Report schema
+const ReportSchema = z.object({
     id: z.string(),
     name: z.string(),
-    orientation: z.string().optional(),
-    outputFormats: z.array(outputFormatSchema),
+    orientation: z.string(),
+    description: z.string(),
+    type: z.string(),
+    outputFormats: z.array(OutputFormatSchema),
     templateName: z.string(),
-    inputParameters: z.array(inputParameterSchema).optional(),
-    description: z.string().optional(),
-    attributeTemplateName: z.string().optional(),
+    featureTypes: z.array(FeatureTypeSchema).optional(),
+    reportQueries: z.array(ReportQuerySchema).optional(),
 });
 
-const lineWeightSchema = z.object({
-    display: z.string(),
-    print: z.string(),
+// Define the main Presentation schema
+const PresentationSchema = z.object({
+    reports: z.array(ReportSchema),
+    lineWeights: z.array(z.object({
+        display: z.number(),
+        print: z.number(),
+    })).optional(),
+    dwgLineWeights: z.array(z.object({
+        display: z.number(),
+        dwg: z.number(),
+    })).optional(),
 });
 
-const dwgLineWeightSchema = z.object({
-    display: z.string(),
-    dwg: z.string(),
-});
-
-// Main schema for the entire JSON structure
-const presentationSchema = z.object({
-    emptyTextLabel: z.string().optional(),
-    defaultDisplayOverlapWidth: z.string().optional(),
-    lineSymbolizer: z.object({
-        stroke: strokeSchema.optional(),
-    }).optional(),
-    polygonSymbolizer: z.object({
-        fill: fillSchema.optional(),
-        patternFill: patternFillSchema.optional(),
-        stroke: strokeSchema.optional(),
-    }).optional(),
-    pointSymbolizer: z.object({
-        graphic: graphicSchema.optional(),
-        rgbColor: z.string().optional(),
-        symbolHeight: z.string().optional(),
-    }).optional(),
-    textSymbolizer: z.object({
-        font: fontSchema.optional(),
-        fill: fillSchema.optional(),
-        fontHeight: z.string().optional(),
-        lineSpacing: z.string().optional(),
-        mask: maskSchema.optional(),
-    }).optional(),
-    binaryRasterSymbolizer: z.object({
-        foreground: foregroundBackgroundSchema.optional(),
-        background: foregroundBackgroundSchema.optional(),
-    }).optional(),
-    rasterSymbolizer: z.object({
-        opacity: z.string().optional(),
-    }).optional(),
-    simpleVectorSymbolizer: z.object({
-        rgbColor: z.string().optional(),
-        opacity: z.string().optional(),
-    }).optional(),
-    reports: z.array(reportSchema).optional(),
-    defaultNortharrow: z.object({
-        pointSymbolizer: z
-            .object({
-                graphic: graphicSchema.optional(),
-                rgbColor: z.string().optional(),
-                symbolHeight: z.string().optional(),
-            })
-            .optional(),
-    }).optional(),
-    lineWeights: z.array(lineWeightSchema).optional(),
-    dwgLineWeights: z.array(dwgLineWeightSchema).optional(),
-});
-
-export default presentationSchema;
+export default PresentationSchema;

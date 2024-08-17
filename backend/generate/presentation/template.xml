@@ -1,0 +1,75 @@
+<ber:presentation xmlns:ber="http://www.example.com/schemas/ber" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <ber:reportArray>
+        {% for report in reports %}
+        <ber:{{ report.type }} id="{{ report.id }}" name="{{ report.name }}" orientation="{{ report.orientation }}">
+        <ber:description>{{ report.description }}</ber:description>
+        <ber:outputFormatArray>
+            {% for format in report.outputFormats %}
+            <ber:outputFormat{% if format.default %} default="true"{% endif %}>{{ format.name }}</ber:outputFormat>
+        {% endfor %}
+    </ber:outputFormatArray>
+    <ber:templateName>{{ report.templateName }}</ber:templateName>
+    {% if report.featureTypes %}
+    <ber:featureTypeArray>
+        {% for featureType in report.featureTypes %}
+        <ber:featureType id="{{ featureType.id }}" name="{{ featureType.name }}" parentId="{{ featureType.parentId }}" abstract="{{ featureType.abstract }}">
+            <ber:container refId="{{ featureType.container }}"/>
+            <ber:featureAttributeArray>
+                {% for attribute in featureType.attributes %}
+                <ber:attribute id="{{ attribute.id }}" name="{{ attribute.name }}" dbName="{{ attribute.dbName }}" nillable="{{ attribute.nillable }}">
+                    <ber:string maxLength="{{ attribute.maxLength }}"/>
+                </ber:attribute>
+                {% endfor %}
+            </ber:featureAttributeArray>
+        </ber:featureType>
+        {% endfor %}
+    </ber:featureTypeArray>
+    {% endif %}
+    {% if report.reportQueries %}
+    <ber:reportQueryArray>
+        {% for query in report.reportQueries %}
+        <ber:reportQuery>
+            <ber:featureType xlink:href="model.xml#{{ query.featureType }}"/>
+            <ber:attributeArray>
+                {% for attribute in query.attributes %}
+                <ber:attribute xlink:href="model.xml#{{ attribute }}"/>
+                {% endfor %}
+            </ber:attributeArray>
+            <ogc:Filter>
+                {{ query.filter }}
+            </ogc:Filter>
+            <ber:orderBy>
+                <ber:orderByItem direction="ascending">
+                    <ber:commonAttribute attributeName="{{ query.orderByAttribute }}">
+                        <ber:featureType featureTypeName="{{ query.orderByFeatureType }}"/>
+                    </ber:commonAttribute>
+                </ber:orderByItem>
+            </ber:orderBy>
+        </ber:reportQuery>
+        {% endfor %}
+    </ber:reportQueryArray>
+    {% endif %}
+</ber:{{ report.type }}>
+        {% endfor %}
+        </ber:reportArray>
+
+<ber:lineWeights>
+<ber:lineWeight display="0" print="0.025"/>
+<ber:lineWeight display="1" print="0.125"/>
+<ber:lineWeight display="2" print="0.25"/>
+<ber:lineWeight display="3" print="0.35"/>
+<ber:lineWeight display="4" print="0.5"/>
+<ber:lineWeight display="5" print="0.75"/>
+<ber:lineWeight display="6" print="1"/>
+</ber:lineWeights>
+
+<ber:dwgLineWeights>
+<ber:dwgLineWeight display="0" dwg="0"/>
+<ber:dwgLineWeight display="1" dwg="0.13"/>
+<ber:dwgLineWeight display="2" dwg="0.30"/>
+<ber:dwgLineWeight display="3" dwg="0.40"/>
+<ber:dwgLineWeight display="4" dwg="0.53"/>
+<ber:dwgLineWeight display="5" dwg="0.70"/>
+<ber:dwgLineWeight display="6" dwg="0.80"/>
+</ber:dwgLineWeights>
+        </ber:presentation>

@@ -5,6 +5,8 @@ import path from 'path';
 import {zodResponseFormat} from "openai/helpers/zod";
 import {modelSchema} from "./generate/model/modelSchema";
 
+import {rootSchema} from "./generate/globalSchema";
+
 const nunjucks = require('nunjucks');
 
 const client = new OpenAI({
@@ -13,6 +15,7 @@ const client = new OpenAI({
 
 const projectSpecification = fs.readFileSync('text.txt', 'utf-8');
 const namingConventions = fs.readFileSync('data/conventions.txt', 'utf-8');
+const configurationFiles = fs.readFileSync('data/configurationFiles.txt', 'utf-8');
 
 // Function to encode an image to Base64
 const encodeImage = (imagePath: string): string => {
@@ -59,7 +62,12 @@ async function main() {
                   ft_boAllocation
                   
                   Project specification: ${projectSpecification}
-                  You should preserve naming conventions that are described here: ${namingConventions}`,
+                  You should preserve naming conventions that are described here: ${namingConventions}.
+                  
+                  The .json file should contain all the necessary data to generate these configuration files:
+                  model.xml, option.xml, presentation.xml, resouce.xml, thematization.xml, and tool.xml.
+                  
+                  Example of project configuration files: ${configurationFiles}`,
       },
       {
         role: 'user',
@@ -73,7 +81,7 @@ async function main() {
     const result = await client.chat.completions.create({
       model: 'gpt-4o-2024-08-06',
       messages: messages,
-      response_format: zodResponseFormat(modelSchema, 'schema'),
+      response_format: zodResponseFormat(rootSchema, 'schema'),
     });
 
     const content : string = result.choices[0].message?.content || '';

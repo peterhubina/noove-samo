@@ -1,77 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ber:modelResource xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sld="http://www.opengis.net/sld" xmlns:ber="http://www.berit.com/ber">
-
-    {# Symbol Fonts #}
-    <ber:symbolFontArray>
-        {% for font in symbolFonts %}
-        <ber:symbolFont id="{{ font.id }}" name="{{ font.name }}">
-            <ber:formatArray>
-                {% for format in font.formats %}
-                <ber:format file="{{ format.file }}" name="{{ format.name }}" {% if format.extResId %}extResId="{{ format.extResId }}"{% endif %}/>
-                {% endfor %}
-            </ber:formatArray>
-        </ber:symbolFont>
-        {% endfor %}
-    </ber:symbolFontArray>
-
-    {# Line Styles #}
+<ber:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ber="http://www.berit.com/ber">
+    <!-- Line Styles -->
     <ber:lineStyleArray>
-        {% for style in lineStyles %}
-        <ber:lineStyle id="{{ style.id }}" name="{{ style.name }}">
-            <ber:formatArray>
-                {% for format in style.formats %}
-                <ber:format {% if format.extResId %}extResId="{{ format.extResId }}"{% endif %} name="{{ format.name }}" file="{{ format.file }}"/>
-                {% endfor %}
-            </ber:formatArray>
+        {% for lineStyle in lineStyleArray %}
+        <ber:lineStyle id="{{ lineStyle.id }}" name="{{ lineStyle.name }}">
+            <ber:pattern>{{ lineStyle.pattern }}</ber:pattern>
         </ber:lineStyle>
         {% endfor %}
     </ber:lineStyleArray>
 
-    {# Fill Styles (Optional) #}
-    {% if fillStyles %}
-    <ber:fillStyleArray>
-        {% for style in fillStyles %}
-        <ber:fillStyle id="{{ style.id }}" name="{{ style.name }}">
-            <ber:formatArray>
-                {% for format in style.formats %}
-                <ber:format file="{{ format.file }}" name="{{ format.name }}"/>
-                {% endfor %}
-            </ber:formatArray>
-        </ber:fillStyle>
+    <!-- Symbol Fonts -->
+    <ber:symbolFontArray>
+        {% for symbolFont in symbolFontArray %}
+        <ber:symbolFont id="{{ symbolFont.id }}" name="{{ symbolFont.name }}" file="{{ symbolFont.file }}"/>
         {% endfor %}
-    </ber:fillStyleArray>
-    {% endif %}
+    </ber:symbolFontArray>
 
-    {# Other Resource Types (Optional) #}
-    {% if customResources %}
-    {% for type, resources in customResources %}
-    <ber:customResourceArray type="{{ type }}">
-        {% for resource in resources %}
-        <ber:customResource id="{{ resource.id }}" name="{{ resource.name }}">
-            <ber:formatArray>
-                {% for format in resource.formats %}
-                <ber:format name="{{ format.name }}" file="{{ format.file }}" {% if format.extResId %}extResId="{{ format.extResId }}"{% endif %}/>
-                {% endfor %}
-            </ber:formatArray>
-        </ber:customResource>
+    <!-- Icons -->
+    <ber:iconArray>
+        {% for icon in iconArray %}
+        <ber:icon id="{{ icon.id }}" name="{{ icon.name }}" file="{{ icon.file }}"/>
         {% endfor %}
-    </ber:customResourceArray>
-    {% endfor %}
-    {% endif %}
+    </ber:iconArray>
 
-    {# Translations (Optional) #}
-    {% if translations %}
+    <!-- Translations -->
     <ber:translationsArray>
-        {% for translation in translations %}
+        {% for translation in translationsArray %}
         <ber:translation id="{{ translation.id }}" name="{{ translation.name }}">
             <ber:formatArray>
-                {% for format in translation.formats %}
-                <ber:format file="{{ format.file }}" name="{{ format.name }}" separator="{{ format.separator | default(',') }}" {% if format.quote %}quote="{{ format.quote }}"{% endif %} {% if format.escapeChar %}escapeChar="{{ format.escapeChar }}"{% endif %}/>
+                {% for format in translation.formatArray %}
+                <ber:format file="{{ format.file }}" name="{{ format.name }}" separator="{{ format.separator }}" quote="{{ format.quote }}" escapeChar="{{ format.escapeChar }}"/>
                 {% endfor %}
             </ber:formatArray>
         </ber:translation>
         {% endfor %}
     </ber:translationsArray>
-    {% endif %}
-
-</ber:modelResource>
+</ber:resource>

@@ -1,0 +1,158 @@
+presentation.xml – Contains feature presentation metadata. Defines project default symbology, feature info, feature context, reports and symbol masking.
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ber:modelPresentation xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:se="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc" xmlns:ber="http://www.berit.com/ber">
+  <ber:generalProperties>
+    <ber:emptyTextLabel>Empty text</ber:emptyTextLabel>
+    <ber:defaultDisplayOverlap width="10"/>
+  </ber:generalProperties>
+  <ber:defaultSymbology>
+    <ber:lineSymbolizer>
+      <se:Stroke>
+        <se:GraphicStroke>
+          <se:Graphic>
+            <se:ExternalGraphic>
+              <se:OnlineResource xlink:href="system.linestyle#solid"/>
+              <se:Format/>
+            </se:ExternalGraphic>
+          </se:Graphic>
+        </se:GraphicStroke>
+        <se:SvgParameter name="stroke">#FF0000</se:SvgParameter>
+        <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">3</se:SvgParameter>
+      </se:Stroke>
+    </ber:lineSymbolizer>
+    <ber:polygonSymbolizer>
+      <ber:fill>
+        <se:SvgParameter name="fill">#00FF00</se:SvgParameter>
+        <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+        <ber:fillStyle>solid</ber:fillStyle>
+      </ber:fill>
+      <ber:patternFill>
+        <se:GraphicFill>
+          <se:Graphic>
+            <se:ExternalGraphic>
+              <se:OnlineResource xlink:href="system.fill#none"/>
+              <se:Format/>
+            </se:ExternalGraphic>
+          </se:Graphic>
+        </se:GraphicFill>
+        <se:SvgParameter name="fill">#000000</se:SvgParameter>
+        <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+      </ber:patternFill>
+      <se:Stroke>
+        <se:GraphicStroke>
+          <se:Graphic>
+            <se:ExternalGraphic>
+              <se:OnlineResource xlink:href="system.linestyle#solid"/>
+              <se:Format/>
+            </se:ExternalGraphic>
+          </se:Graphic>
+        </se:GraphicStroke>
+        <se:SvgParameter name="stroke">#0000FF</se:SvgParameter>
+        <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">1</se:SvgParameter>
+      </se:Stroke>
+    </ber:polygonSymbolizer>
+    <ber:pointSymbolizer>
+      <se:Graphic>
+        <se:ExternalGraphic>
+          <se:OnlineResource xlink:href="resource.xml#ber_LIDSdemo/35/center-center"/>
+          <se:Format/>
+        </se:ExternalGraphic>
+        <se:Opacity>1.0</se:Opacity>
+      </se:Graphic>
+      <ber:rgbColor>#C80000</ber:rgbColor>
+      <ber:symbolHeight>172</ber:symbolHeight>
+    </ber:pointSymbolizer>
+    <ber:textSymbolizer>
+      <se:Font>
+        <se:SvgParameter name="font-family">Arial</se:SvgParameter>
+        <se:SvgParameter name="font-style">normal</se:SvgParameter>
+        <se:SvgParameter name="font-weight">normal</se:SvgParameter>
+      </se:Font>
+      <se:Fill>
+        <se:SvgParameter name="fill">#AF00A1</se:SvgParameter>
+        <se:SvgParameter name="fill-opacity">1</se:SvgParameter>
+      </se:Fill>
+      <ber:fontHeight>1</ber:fontHeight>
+      <ber:lineSpacing>0.25</ber:lineSpacing>
+      <ber:mask>
+        <ber:style>none</ber:style>
+        <ber:shape>rectangle</ber:shape>
+        <se:Stroke>
+          <se:GraphicStroke>
+            <se:Graphic>
+              <se:ExternalGraphic>
+                <se:OnlineResource xlink:href="system.linestyle#solid"/>
+                <se:Format/>
+              </se:ExternalGraphic>
+            </se:Graphic>
+          </se:GraphicStroke>
+          <se:SvgParameter name="stroke-width">1</se:SvgParameter>
+        </se:Stroke>
+      </ber:mask>
+    </ber:textSymbolizer>
+    <ber:binaryRasterSymbolizer>
+      <ber:foreground>
+        <ber:rgbColor>#000000</ber:rgbColor>
+        <se:Opacity>1.0</se:Opacity>
+      </ber:foreground>
+      <ber:background>
+        <ber:rgbColor>#FFFFFF</ber:rgbColor>
+        <se:Opacity>0</se:Opacity>
+      </ber:background>
+    </ber:binaryRasterSymbolizer>
+    <ber:rasterSymbolizer>
+      <se:Opacity>1.0</se:Opacity>
+    </ber:rasterSymbolizer>
+    <ber:simpleVectorSymbolizer>
+      <ber:rgbColor>#FFFFFF</ber:rgbColor>
+      <se:Opacity>1.0</se:Opacity>
+    </ber:simpleVectorSymbolizer>
+  </ber:defaultSymbology>
+  <ber:reportArray>
+	  <ber:jasperReport id="REP_01_CPA" name="Celkový přehled aplikací" orientation="landscape">
+		<ber:outputFormatArray>
+		  <ber:outputFormat default="true">xls</ber:outputFormat>
+		  <ber:outputFormat>pdf</ber:outputFormat>
+		  <ber:outputFormat>csv</ber:outputFormat>
+		</ber:outputFormatArray>
+		<!--ber:inputParameterArray>
+		  <ber:inputParameter id="DATUM" name="Ke dni">
+			<ber:description>Pokud ponecháte prázdné, tak se vloží dnešní datum</ber:description>
+			  <ber:defaultValue>
+				<ber:currentDate/>
+			  </ber:defaultValue>
+			<ber:dataType>
+			  <ber:date/>
+			</ber:dataType>
+		  </ber:inputParameter>
+		</ber:inputParameterArray-->
+		<ber:templateName>REP_01_CPA.jrxml</ber:templateName>
+	  </ber:jasperReport>
+  </ber:reportArray>
+  <ber:plotting>
+    <ber:defaultNortharrow>
+      <ber:pointSymbolizer>
+        <se:Graphic>
+          <se:ExternalGraphic>
+            <se:OnlineResource xlink:href="resource.xml#ber_LIDSdemo/52"/>
+            <se:Format/>
+          </se:ExternalGraphic>
+        </se:Graphic>
+        <ber:rgbColor>#C80000</ber:rgbColor>
+        <ber:symbolHeight>36</ber:symbolHeight>
+      </ber:pointSymbolizer>
+    </ber:defaultNortharrow>
+    <ber:lineWeights>
+      <ber:lineWeight display="0" print="0.5"/>
+      <ber:lineWeight display="1" print="1"/>
+      <ber:lineWeight display="2" print="1.5"/>
+      <ber:lineWeight display="3" print="2"/>
+      <ber:lineWeight display="4" print="3"/>
+      <ber:lineWeight display="5" print="4"/>
+      <ber:lineWeight display="6" print="5"/>
+    </ber:lineWeights>
+  </ber:plotting>
+</ber:modelPresentation>

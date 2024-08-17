@@ -1,48 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ber:modelTool xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ber="http://www.berit.com/ber">
-
-    {# Tool Palettes #}
-    <ber:toolBoxArray>
-        {% for palette in toolPalettes %}
-        <ber:toolBox id="{{ palette.id }}" name="{{ palette.name }}">
-            <ber:description>{{ palette.description }}</ber:description>
-            <ber:icon xlink:href="resource.xml#{{ palette.iconId }}"/>
-            {% if palette.superToolBox %}
-            <ber:superToolBox refId="{{ palette.superToolBox }}"/>
-            {% endif %}
-            <ber:subToolArray>
-                {% for tool in palette.tools %}
-                <ber:tool refId="{{ tool.refId }}"/>
-                {% endfor %}
-                {% if palette.separators %}
-                <ber:separator/>
-                {% endif %}
-            </ber:subToolArray>
-        </ber:toolBox>
+<ber:tool xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ber="http://www.berit.com/ber">
+    <!-- Tools -->
+    <ber:toolArray>
+        {% for tool in toolArray %}
+        <ber:tool id="{{ tool.id }}" name="{{ tool.name }}">
+            <ber:description>{{ tool.description }}</ber:description>
+        </ber:tool>
         {% endfor %}
-    </ber:toolBoxArray>
+    </ber:toolArray>
 
-    {# Ribbon Pages #}
+    <!-- Toolboxes -->
+    <ber:toolboxArray>
+        {% for toolbox in toolboxArray %}
+        <ber:toolbox id="{{ toolbox.id }}" name="{{ toolbox.name }}">
+            {% for toolRef in toolbox.tools %}
+            <ber:tool refId="{{ toolRef }}"/>
+            {% endfor %}
+        </ber:toolbox>
+        {% endfor %}
+    </ber:toolboxArray>
+
+    <!-- Ribbon Pages -->
     <ber:ribbonPageArray>
-        {% for page in ribbonPages %}
-        <ber:ribbonPage id="{{ page.id }}" name="{{ page.name }}">
-            {% for group in page.groups %}
-            <ber:ribbonPageGroup id="{{ group.id }}" name="{{ group.name }}" {% if group.collapsed %} collapsed="true"{% endif %}>
-                {% if group.collapsed %}
-                <ber:icon xlink:href="resource.xml#{{ group.iconId }}"/>
-                <ber:description>{{ group.description }}</ber:description>
-                <ber:maxRows>{{ group.maxRows }}</ber:maxRows>
-                {% endif %}
-                {% for tool in group.tools %}
-                <ber:tool refId="{{ tool.refId }}"{% if tool.style %} style="{{ tool.style }}"{% endif %}{% if tool.label %} label="{{ tool.label }}"{% endif %}/>
-                {% endfor %}
-                {% if group.separators %}
-                <ber:separator/>
-                {% endif %}
-            </ber:ribbonPageGroup>
+        {% for ribbonPage in ribbonPageArray %}
+        <ber:ribbonPage id="{{ ribbonPage.id }}" name="{{ ribbonPage.name }}">
+            {% for toolboxRef in ribbonPage.toolboxes %}
+            <ber:toolbox refId="{{ toolboxRef }}"/>
+            {% endfor %}
+        </ber:ribbonPage>
         {% endfor %}
-    </ber:ribbonPage>
-    {% endfor %}
-</ber:ribbonPageArray>
-
-</ber:modelTool>
+    </ber:ribbonPageArray>
+</ber:tool>
