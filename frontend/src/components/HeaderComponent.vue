@@ -5,15 +5,49 @@
       <img src="src/assets/asseco_ce.svg" alt="Logo" class="max-sm:block sm:hidden">
     </router-link>
 
-    <router-link v-if="!auth" to="/login" class="rounded">
-      <q-btn unelevated outline color="primary" label="Log In" class="w-max sm:px-8 rounded"/>
-    </router-link>
+    <q-btn
+      v-if="auth"
+      :label="loggedIn ? 'Log Out' : 'Log In'"
+      unelevated
+      outline
+      color="primary"
+      class="w-max sm:px-8 rounded"
+      @click="handleAuthAction"
+    />
   </header>
 </template>
 
-<script>
-export default {
-  props: ['auth'],
-  name: 'HeaderComponent'
-}
+<script lang="ts">
+import { defineComponent, computed  } from 'vue';
+import { useAuthStore } from 'stores/auth';
+import { useRouter } from 'vue-router';
+
+export default defineComponent({
+  props: {
+    auth: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  name: 'HeaderComponent',
+  setup() {
+    const authStore = useAuthStore();
+    const router = useRouter();
+
+    const loggedIn = computed(() => authStore.isAuthenticated);
+
+    const handleAuthAction = () => {
+      if (authStore.isAuthenticated) {
+        authStore.logout();
+      } else {
+        router.push('/login');
+      }
+    };
+
+    return {
+      loggedIn,
+      handleAuthAction,
+    };
+  },
+});
 </script>

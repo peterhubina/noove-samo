@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-dvh grid" style="grid-template-rows: auto 1fr auto">
     <!--  Header  -->
-    <HeaderComponent :auth="true"/>
+    <HeaderComponent/>
 
     <!--  Main Content  -->
     <div class="flex h-full justify-center items-center">

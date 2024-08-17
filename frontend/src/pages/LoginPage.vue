@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-dvh grid" style="grid-template-rows: auto 1fr auto">
     <!--  Header  -->
-    <HeaderComponent :auth="true"/>
+    <HeaderComponent/>
 
     <!--  Main Content  -->
     <div class="flex h-full justify-center items-center">
@@ -38,6 +38,8 @@
 <script>
 import FooterComponent from 'components/FooterComponent.vue';
 import HeaderComponent from 'components/HeaderComponent.vue';
+import { useAuthStore } from 'stores/auth';
+import { validateEmail, validatePassword } from 'src/utils/authValidation';
 
 export default {
   components: {HeaderComponent, FooterComponent},
@@ -54,11 +56,29 @@ export default {
       this.showPassword = !this.showPassword;
     },
     async onSubmit() {
-      // TODO: Handle validation here and save to storage and cookies using pinia
+      const emailError = validateEmail(this.email);
+      const passwordError = validatePassword(false, this.password);
+
+      if (emailError || passwordError) {
+        this.$q.notify({
+          type: 'negative',
+          message: emailError || passwordError,
+          position: 'top'
+        });
+        return;
+      }
+
       try {
         const response = await this.$axios.post('http://localhost:3000/auth/login', {
           email: this.email,
           password: this.password
+        });
+
+        const authStore = useAuthStore();
+
+        authStore.login({
+          token: response.data.token,
+          user: response.data.user,
         });
 
         this.$q.notify({type: 'positive', message: response.data.message, position: 'top'});
