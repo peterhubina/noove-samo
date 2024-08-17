@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ber:modelTool xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ber="http://www.berit.com/ber">
+
+</ber:modelTool>

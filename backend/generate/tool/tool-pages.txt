@@ -1,0 +1,187 @@
+IMPLEMENTATION GUIDE VERSION 9.6
+
+19.
+
+259
+
+Tools
+It’s possible to define set of project specific tools using the tool.xml definition. These tools are available
+in LIDS Edit and LIDS Explorer clients. The tools define their own icons and are organized into tool
+paletes or ribbon pages.
+Common properties of individual tools and tool paletes definitions include:
+• name – Title of the tool displayed as the first line in the tooltip
+• description – Optional description displayed as the second line in the tooltip
+• icon – References an icon representing the tool in GUI. The icons are defined in resource.xml
+metadata file and stored on AS in the appropriate subdirectories of the ${project folder}lidsas/resources/icon/bmp16x16 directory.
+
+
+
+Detailed description of all possible modules and functions which can be defined in tools is included
+in LIDS Edit / Explorer user’s documentation.
+
+19.1 Tool Palettes
+Tool palettes are groups of tools created to enable tools logical arrangement. The palettes can be nested
+into each other, i.e. subpalettes can be created. One tool can be included in several palettes. A definition
+of a tool palette can include:
+- references to the tools it contains
+- separators
+- reference to a superior palette (optional)
+- link to an icon representing the palette in LIDS GUI.
+The definitions of tool palettes are grouped together in the toolBoxArray collection.
+Example: Definition of tool palettes.
+<ber:toolBoxArray>
+<!-- Root level tool palette definition -->
+<ber:toolBox id="tb_01" name="Main toolbox">
+<ber:description>Toolbox with 6 tools and 2 sub-toolboxes</ber:description>
+<ber:icon xlink:href="resource.xml#ic_01"/>
+<ber:subToolArray>
+<ber:tool refId="ti_1"/>
+<ber:tool refId="ti_2"/>
+<ber:tool refId="ti_3"/>
+<ber:separator/>
+<ber:tool refId="ti_4"/>
+<ber:tool refId="ti_5"/>
+<ber:separator/>
+
+Implementation Guide
+
+260
+
+19 – TOOLS
+<ber:tool refId="ti_6"/>
+</ber:subToolArray>
+</ber:toolBox>
+
+<!-- Tool subpalette definition -->
+<ber:toolBox id="tb_011" name="Sub-toolbox 1">
+<ber:description>4 tools</ber:description>
+<ber:icon xlink:href="resource.xml#ic_011"/>
+<ber:superToolBox refId="tb_01"/>
+<ber:subToolArray>
+<ber:tool refId="ti_10"/>
+<ber:tool refId="ti_11"/>
+<ber:tool refId="ti_12"/>
+<ber:tool refId="ti_13"/>
+</ber:subToolArray>
+</ber:toolBox>
+
+<!-- Another tool subpalette definition -->
+<ber:toolBox id="tb_012" name=" Sub-toolbox 2">
+<ber:description>3 tools</ber:description>
+<ber:icon xlink:href="resource.xml#ic_012"/>
+<ber:superToolBox refId="tb_01"/>
+<ber:subToolArray>
+<ber:tool refId="ti_20"/>
+<ber:tool refId="ti_21"/>
+<ber:tool refId="ti_22"/>
+</ber:subToolArray>
+</ber:toolBox>
+</ber:toolBoxArray>
+
+•
+•
+•
+
+toolBox – Defines a tool palette.
+superToolBox – Optionally references a superior palette.
+subToolArray – References tools (tool) that the palette contains.
+
+19.2 Ribbon Pages
+LIDS Explorer enables selection of the menu style as ribbon. In this case the project tools definition in
+toolBoxArray is ignored. It’s necessary to define section ribbonPageArray which will be used instead
+of tool pallettes. The definition of individual tools is common for both modes.
+The definition of ribbon cosists of:
+• ribbonPage – defines the main section in the ribbon
+
+Implementation Guide
+
+IMPLEMENTATION GUIDE VERSION 9.6
+•
+
+261
+
+ribbonPageGroup – section inside a ribbonPage with individual tools and separators
+• collapsed – optional attribute. If set to true, the ribbonPageGroup appears as collapsed list of
+tools.
+• icon – image on button representing the collapsed ribbonPageGroup
+• description – tooltip over the button representing the collapsed ribbonPageGroup
+• maxRows – if the collapsed ribbonPageGroup includes more tools than the value of this
+parameter, the tools are displayed in more columns
+
+Tool definition inside ribbon page group consists of:
+• refId – reference to tool definition in toolArray
+• style – optional definition
+• Large – default
+• SmallWithText
+• SmallWithoutText
+• label - optional definition; tool name is used if omitted
+Example: Definition of ribbon pages.
+<ber:ribbonPageArray>
+<ber:ribbonPage id="rp_p1" name="Page 1">
+<ber:ribbonPageGroup id="rpg_g1" name="Group 1">
+<ber:tool refId="ti_1" style="Large" label="Tool 1"/>
+<ber:tool refId="ti_2" style="SmallWithText" label="Tool 2"/>
+<ber:separator/>
+<ber:tool refId="ti_3"/>
+</ber:ribbonPageGroup>
+<ber:ribbonPageGroup id="rpg_g2" name="Group 2">
+<ber:tool refId="ti_4"/>
+</ber:ribbonPageGroup>
+</ber:ribbonPage>
+<ber:ribbonPage id="rp_p2" name="Page 2">
+<ber:ribbonPageGroup id="rpg_g3" >
+<ber:tool refId="ti_5" style="SmallWithText"/>
+<ber:tool refId="ti_6" style="SmallWithoutText"/>
+</ber:ribbonPageGroup>
+</ber:ribbonPage>
+</ber:ribbonPageArray>
+
+Implementation Guide
+
+IMPLEMENTATION GUIDE VERSION 9.6
+
+415
+
+</ber:formatArray>
+</ber:icon>
+...
+</ber:iconArray>
+
+Example: Use of the icon in tool.xml.
+<ber:toolBoxArray>
+...
+<ber:toolBox id="Tb_ele" name="Electro">
+<ber:description>Tools for electro objects including crosssections</ber:description>
+<ber:icon xlink:href="resource.xml#ic_e"/>
+<ber:subToolArray>
+<ber:tool refId="ti_e_route0"/>
+<ber:tool refId="ti_e_route1"/>
+<ber:tool refId="ti_e_route2"/>
+<ber:tool refId="ti_e_route3"/>
+<ber:tool refId="ti_e_route4"/>
+<ber:tool refId="ti_e_pcs1"/>
+<ber:tool refId="ti_e_pcs2"/>
+<ber:tool refId="csr_1"/>
+<ber:tool refId="csr_2"/>
+<ber:tool refId="ti_parallelDA3"/>
+<ber:tool refId="reduction_route"/>
+<ber:tool refId="rel_showRelated3"/>
+<ber:tool refId="rel_showRelated_route"/>
+<ber:tool refId="rel_showRelated_route_browse"/>
+<ber:tool refId="rel_showRelated_cables_browse"/>
+</ber:subToolArray>
+</ber:toolBox>
+...
+</ber:toolBoxArray>
+
+32.5 importdgn
+Resource is used for importing CAD data. Configuration XML files are stored in {project_folder}\lidsas\resources\importdgn. All XML files are subsequently referenced in resource.xml.
+Example: XML file used for importing DGN data.
+<?xml version="1.0" encoding="utf-8"?>
+<ber:elementClassification xmlns="http://www.berit.com/ber"
+xmlns:ber="http://www.berit.com/ber">
+<ber:attributesDefinitionArray>
+
+Implementation Guide
+
+

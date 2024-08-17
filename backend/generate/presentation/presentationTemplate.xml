@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ber:modelPresentation xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:se="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc" xmlns:ber="http://www.berit.com/ber">
+    <ber:generalProperties>
+        <ber:emptyTextLabel>{{ emptyTextLabel | default('Empty text') }}</ber:emptyTextLabel>
+        <ber:defaultDisplayOverlap width="{{ defaultDisplayOverlapWidth | default('10') }}"/>
+    </ber:generalProperties>
+
+    <ber:defaultSymbology>
+        <ber:lineSymbolizer>
+            <se:Stroke>
+                <se:GraphicStroke>
+                    <se:Graphic>
+                        <se:ExternalGraphic>
+                            <se:OnlineResource xlink:href="{{ lineSymbolizer.stroke.graphicStroke.graphic.externalGraphic.onlineResource.href | default('system.linestyle#solid') }}"/>
+                            <se:Format/>
+                        </se:ExternalGraphic>
+                    </se:Graphic>
+                </se:GraphicStroke>
+                <se:SvgParameter name="stroke">{{ lineSymbolizer.stroke.svgParameter.stroke | default('#FF0000') }}</se:SvgParameter>
+                <se:SvgParameter name="stroke-opacity">{{ lineSymbolizer.stroke.svgParameter['stroke-opacity'] | default('1.0') }}</se:SvgParameter>
+                <se:SvgParameter name="stroke-width">{{ lineSymbolizer.stroke.svgParameter['stroke-width'] | default('3') }}</se:SvgParameter>
+            </se:Stroke>
+        </ber:lineSymbolizer>
+
+        <ber:polygonSymbolizer>
+            <ber:fill>
+                <se:SvgParameter name="fill">{{ polygonSymbolizer.fill.svgParameter.fill | default('#00FF00') }}</se:SvgParameter>
+                <se:SvgParameter name="fill-opacity">{{ polygonSymbolizer.fill.svgParameter['fill-opacity'] | default('1.0') }}</se:SvgParameter>
+                <ber:fillStyle>{{ polygonSymbolizer.fill.fillStyle | default('solid') }}</ber:fillStyle>
+            </ber:fill>
+            {% if polygonSymbolizer.patternFill %}
+            <ber:patternFill>
+                <se:GraphicFill>
+                    <se:Graphic>
+                        <se:ExternalGraphic>
+                            <se:OnlineResource xlink:href="{{ polygonSymbolizer.patternFill.graphicFill.graphic.externalGraphic.onlineResource.href | default('system.fill#none') }}"/>
+                            <se:Format/>
+                        </se:ExternalGraphic>
+                    </se:Graphic>
+                </se:GraphicFill>
+                <se:SvgParameter name="fill">{{ polygonSymbolizer.patternFill.svgParameter.fill | default('#000000') }}</se:SvgParameter>
+                <se:SvgParameter name="fill-opacity">{{ polygonSymbolizer.patternFill.svgParameter['fill-opacity'] | default('1.0') }}</se:SvgParameter>
+            </ber:patternFill>
+            {% endif %}
+            <se:Stroke>
+                <se:GraphicStroke>
+                    <se:Graphic>
+                        <se:ExternalGraphic>
+                            <se:OnlineResource xlink:href="{{ polygonSymbolizer.stroke.graphicStroke.graphic.externalGraphic.onlineResource.href | default('system.linestyle#solid') }}"/>
+                            <se:Format/>
+                        </se:ExternalGraphic>
+                    </se:Graphic>
+                </se:GraphicStroke>
+                <se:SvgParameter name="stroke">{{ polygonSymbolizer.stroke.svgParameter.stroke | default('#0000FF') }}</se:SvgParameter>
+                <se:SvgParameter name="stroke-opacity">{{ polygonSymbolizer.stroke.svgParameter['stroke-opacity'] | default('1.0') }}</se:SvgParameter>
+                <se:SvgParameter name="stroke-width">{{ polygonSymbolizer.stroke.svgParameter['stroke-width'] | default('1') }}</se:SvgParameter>
+            </se:Stroke>
+        </ber:polygonSymbolizer>
+
+        <ber:pointSymbolizer>
+            <se:Graphic>
+                <se:ExternalGraphic>
+                    <se:OnlineResource xlink:href="{{ pointSymbolizer.graphic.externalGraphic.onlineResource.href | default('resource.xml#ber_LIDSdemo/35/center-center') }}"/>
+                    <se:Format/>
+                </se:ExternalGraphic>
+                <se:Opacity>{{ pointSymbolizer.graphic.opacity | default('1.0') }}</se:Opacity>
+            </se:Graphic>
+            <ber:rgbColor>{{ pointSymbolizer.rgbColor | default('#C80000') }}</ber:rgbColor>
+            <ber:symbolHeight>{{ pointSymbolizer.symbolHeight | default('172') }}</ber:symbolHeight>
+        </ber:pointSymbolizer>
+
+        <ber:textSymbolizer>
+            <se:Font>
+                <se:SvgParameter name="font-family">{{ textSymbolizer.font['font-family'] | default('Arial') }}</se:SvgParameter>
+                <se:SvgParameter name="font-style">{{ textSymbolizer.font['font-style'] | default('normal') }}</se:SvgParameter>
+                <se:SvgParameter name="font-weight">{{ textSymbolizer.font['font-weight'] | default('normal') }}</se:SvgParameter>
+            </se:Font>
+            <se:Fill>
+                <se:SvgParameter name="fill">{{ textSymbolizer.fill.svgParameter.fill | default('#AF00A1') }}</se:SvgParameter>
+                <se:SvgParameter name="fill-opacity">{{ textSymbolizer.fill.svgParameter['fill-opacity'] | default('1') }}</se:SvgParameter>
+            </se:Fill>
+            <ber:fontHeight>{{ textSymbolizer.fontHeight | default('1') }}</ber:fontHeight>
+            <ber:lineSpacing>{{ textSymbolizer.lineSpacing | default('0.25') }}</ber:lineSpacing>
+            <ber:mask>
+                <ber:style>{{ textSymbolizer.mask.style | default('none') }}</ber:style>
+                <ber:shape>{{ textSymbolizer.mask.shape | default('rectangle') }}</ber:shape>
+                <se:Stroke>
+                    <se:GraphicStroke>
+                        <se:Graphic>
+                            <se:ExternalGraphic>
+                                <se:OnlineResource xlink:href="{{ textSymbolizer.mask.stroke.graphicStroke.graphic.externalGraphic.onlineResource.href | default('system.linestyle#solid') }}"/>
+                                <se:Format/>
+                            </se:ExternalGraphic>
+                        </se:Graphic>
+                    </se:GraphicStroke>
+                    <se:SvgParameter name="stroke-width">{{ textSymbolizer.mask.stroke.svgParameter['stroke-width'] | default('1') }}</se:SvgParameter>
+                </se:Stroke>
+            </ber:mask>
+        </ber:textSymbolizer>
+
+        <ber:binaryRasterSymbolizer>
+            <ber:foreground>
+                <ber:rgbColor>{{ binaryRasterSymbolizer.foreground.rgbColor | default('#000000') }}</ber:rgbColor>
+                <se:Opacity>{{ binaryRasterSymbolizer.foreground.opacity | default('1.0') }}</se:Opacity>
+            </ber:foreground>
+            <ber:background>
+                <ber:rgbColor>{{ binaryRasterSymbolizer.background.rgbColor | default('#FFFFFF') }}</ber:rgbColor>
+                <se:Opacity>{{ binaryRasterSymbolizer.background.opacity | default('0') }}</se:Opacity>
+            </ber:background>
+        </ber:binaryRasterSymbolizer>
+
+        <ber:rasterSymbolizer>
+            <se:Opacity>{{ rasterSymbolizer.opacity | default('1.0') }}</se:Opacity>
+        </ber:rasterSymbolizer>
+
+        <ber:simpleVectorSymbolizer>
+            <ber:rgbColor>{{ simpleVectorSymbolizer.rgbColor | default('#FFFFFF') }}</ber:rgbColor>
+            <se:Opacity>{{ simpleVectorSymbolizer.opacity | default('1.0') }}</se:Opacity>
+        </ber:simpleVectorSymbolizer>
+
+    </ber:defaultSymbology>
+
+    <ber:reportArray>
+        {% for report in reports %}
+        <ber:jasperReport id="{{ report.id }}" name="{{ report.name }}" orientation="{{ report.orientation | default('landscape') }}">
+            <ber:outputFormatArray>
+                {% for format in report.outputFormats %}
+                <ber:outputFormat {% if format.default %}default="true"{% endif %}>{{ format.value }}</ber:outputFormat>
+            {% endfor %}
+        </ber:outputFormatArray>
+        {# Optional input parameters can be added here if needed #}
+        <ber:templateName>{{ report.templateName }}</ber:templateName>
+    </ber:jasperReport>
+    {% endfor %}
+</ber:reportArray>
+
+<ber:plotting>
+<ber:defaultNortharrow>
+<ber:pointSymbolizer>
+<se:Graphic>
+    <se:ExternalGraphic>
+        <se:OnlineResource xlink:href="{{ defaultNortharrow.pointSymbolizer.graphic.externalGraphic.onlineResource.href | default('resource.xml#ber_LIDSdemo/52') }}"/>
+        <se:Format/>
+    </se:ExternalGraphic>
+</se:Graphic>
+<ber:rgbColor>{{ defaultNorth
+
+<ber:lineWeights>
+    {% for lineWeight in lineWeights %}
+    <ber:lineWeight display="{{ lineWeight.display }}" print="{{ lineWeight.print }}"/>
+    {% endfor %}
+</ber:lineWeights>
+</ber:plotting>
+        </ber:modelPresentation>

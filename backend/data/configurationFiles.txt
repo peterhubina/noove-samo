@@ -1,0 +1,352 @@
+option.xml:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ber:modelOption xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:se="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc" xmlns:ber="http://www.berit.com/ber">
+ <!-- Zakomentováno pro test, jestli se spustí projekt, projekt bada na db_OSM
+  <ber:externalBackdropTypeArray>
+    <ber:wmsBackdropType version="1.1.1">
+      <ber:backdropType xlink:href="model.xml#bd_osm"/>
+      <ber:url>https://openstreetmap.org/#map</ber:url>
+      <ber:srs>EPSG:5514</ber:srs>
+      <ber:format>image/png</ber:format>
+      <ber:timeout>20000</ber:timeout>
+      <ber:method>GET</ber:method>
+      <ber:additionalParams>
+        <ber:param key="LAYERS" value="OSM-WMS"/>
+        <ber:param key="STYLES" value=""/>
+        <ber:param key="TRANSPARENT" value="TRUE"/>
+      </ber:additionalParams>
+    </ber:wmsBackdropType>
+  </ber:externalBackdropTypeArray>
+  -->
+</ber:modelOption>
+
+presentation.xml:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ber:modelPresentation xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:se="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc" xmlns:ber="http://www.berit.com/ber">
+  <ber:generalProperties>
+    <ber:emptyTextLabel>Empty text</ber:emptyTextLabel>
+    <ber:defaultDisplayOverlap width="10"/>
+  </ber:generalProperties>
+  <ber:defaultSymbology>
+    <ber:lineSymbolizer>
+      <se:Stroke>
+        <se:GraphicStroke>
+          <se:Graphic>
+            <se:ExternalGraphic>
+              <se:OnlineResource xlink:href="system.linestyle#solid"/>
+              <se:Format/>
+            </se:ExternalGraphic>
+          </se:Graphic>
+        </se:GraphicStroke>
+        <se:SvgParameter name="stroke">#FF0000</se:SvgParameter>
+        <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">3</se:SvgParameter>
+      </se:Stroke>
+    </ber:lineSymbolizer>
+    <ber:polygonSymbolizer>
+      <ber:fill>
+        <se:SvgParameter name="fill">#00FF00</se:SvgParameter>
+        <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+        <ber:fillStyle>solid</ber:fillStyle>
+      </ber:fill>
+      <ber:patternFill>
+        <se:GraphicFill>
+          <se:Graphic>
+            <se:ExternalGraphic>
+              <se:OnlineResource xlink:href="system.fill#none"/>
+              <se:Format/>
+            </se:ExternalGraphic>
+          </se:Graphic>
+        </se:GraphicFill>
+        <se:SvgParameter name="fill">#000000</se:SvgParameter>
+        <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+      </ber:patternFill>
+      <se:Stroke>
+        <se:GraphicStroke>
+          <se:Graphic>
+            <se:ExternalGraphic>
+              <se:OnlineResource xlink:href="system.linestyle#solid"/>
+              <se:Format/>
+            </se:ExternalGraphic>
+          </se:Graphic>
+        </se:GraphicStroke>
+        <se:SvgParameter name="stroke">#0000FF</se:SvgParameter>
+        <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">1</se:SvgParameter>
+      </se:Stroke>
+    </ber:polygonSymbolizer>
+    <ber:pointSymbolizer>
+      <se:Graphic>
+        <se:ExternalGraphic>
+          <se:OnlineResource xlink:href="resource.xml#ber_LIDSdemo/35/center-center"/>
+          <se:Format/>
+        </se:ExternalGraphic>
+        <se:Opacity>1.0</se:Opacity>
+      </se:Graphic>
+      <ber:rgbColor>#C80000</ber:rgbColor>
+      <ber:symbolHeight>172</ber:symbolHeight>
+    </ber:pointSymbolizer>
+    <ber:textSymbolizer>
+      <se:Font>
+        <se:SvgParameter name="font-family">Arial</se:SvgParameter>
+        <se:SvgParameter name="font-style">normal</se:SvgParameter>
+        <se:SvgParameter name="font-weight">normal</se:SvgParameter>
+      </se:Font>
+      <se:Fill>
+        <se:SvgParameter name="fill">#AF00A1</se:SvgParameter>
+        <se:SvgParameter name="fill-opacity">1</se:SvgParameter>
+      </se:Fill>
+      <ber:fontHeight>1</ber:fontHeight>
+      <ber:lineSpacing>0.25</ber:lineSpacing>
+      <ber:mask>
+        <ber:style>none</ber:style>
+        <ber:shape>rectangle</ber:shape>
+        <se:Stroke>
+          <se:GraphicStroke>
+            <se:Graphic>
+              <se:ExternalGraphic>
+                <se:OnlineResource xlink:href="system.linestyle#solid"/>
+                <se:Format/>
+              </se:ExternalGraphic>
+            </se:Graphic>
+          </se:GraphicStroke>
+          <se:SvgParameter name="stroke-width">1</se:SvgParameter>
+        </se:Stroke>
+      </ber:mask>
+    </ber:textSymbolizer>
+    <ber:binaryRasterSymbolizer>
+      <ber:foreground>
+        <ber:rgbColor>#000000</ber:rgbColor>
+        <se:Opacity>1.0</se:Opacity>
+      </ber:foreground>
+      <ber:background>
+        <ber:rgbColor>#FFFFFF</ber:rgbColor>
+        <se:Opacity>0</se:Opacity>
+      </ber:background>
+    </ber:binaryRasterSymbolizer>
+    <ber:rasterSymbolizer>
+      <se:Opacity>1.0</se:Opacity>
+    </ber:rasterSymbolizer>
+    <ber:simpleVectorSymbolizer>
+      <ber:rgbColor>#FFFFFF</ber:rgbColor>
+      <se:Opacity>1.0</se:Opacity>
+    </ber:simpleVectorSymbolizer>
+  </ber:defaultSymbology>
+  <ber:reportArray>
+	  <ber:jasperReport id="REP_01_CPA" name="Celkový přehled aplikací" orientation="landscape">
+		<ber:outputFormatArray>
+		  <ber:outputFormat default="true">xls</ber:outputFormat>
+		  <ber:outputFormat>pdf</ber:outputFormat>
+		  <ber:outputFormat>csv</ber:outputFormat>
+		</ber:outputFormatArray>
+		<!--ber:inputParameterArray>
+		  <ber:inputParameter id="DATUM" name="Ke dni">
+			<ber:description>Pokud ponecháte prázdné, tak se vloží dnešní datum</ber:description>
+			  <ber:defaultValue>
+				<ber:currentDate/>
+			  </ber:defaultValue>
+			<ber:dataType>
+			  <ber:date/>
+			</ber:dataType>
+		  </ber:inputParameter>
+		</ber:inputParameterArray-->
+		<ber:templateName>REP_01_CPA.jrxml</ber:templateName>
+	  </ber:jasperReport>
+  </ber:reportArray>
+  <ber:plotting>
+    <ber:defaultNortharrow>
+      <ber:pointSymbolizer>
+        <se:Graphic>
+          <se:ExternalGraphic>
+            <se:OnlineResource xlink:href="resource.xml#ber_LIDSdemo/52"/>
+            <se:Format/>
+          </se:ExternalGraphic>
+        </se:Graphic>
+        <ber:rgbColor>#C80000</ber:rgbColor>
+        <ber:symbolHeight>36</ber:symbolHeight>
+      </ber:pointSymbolizer>
+    </ber:defaultNortharrow>
+    <ber:lineWeights>
+      <ber:lineWeight display="0" print="0.5"/>
+      <ber:lineWeight display="1" print="1"/>
+      <ber:lineWeight display="2" print="1.5"/>
+      <ber:lineWeight display="3" print="2"/>
+      <ber:lineWeight display="4" print="3"/>
+      <ber:lineWeight display="5" print="4"/>
+      <ber:lineWeight display="6" print="5"/>
+    </ber:lineWeights>
+  </ber:plotting>
+</ber:modelPresentation>
+
+resource.xml:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ber:modelResource xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sld="http://www.opengis.net/sld" xmlns:ber="http://www.berit.com/ber">
+  <ber:symbolFontArray>
+    <ber:symbolFont id="ber_LIDSdemo" name="ber_LIDSdemo">
+      <ber:formatArray>
+        <ber:format file="ber_lidsdemo.ttf" name="ttf"/>
+      </ber:formatArray>
+    </ber:symbolFont>
+  </ber:symbolFontArray>
+  <ber:lineStyleArray>
+    <ber:lineStyle id="ls_1" name="1">
+      <ber:formatArray>
+        <ber:format extResId="1" name="rsc"/>
+        <ber:format file="ls_default.xml" name="xml"/>
+      </ber:formatArray>
+    </ber:lineStyle>
+    <ber:lineStyle id="ls_2" name="2">
+      <ber:formatArray>
+        <ber:format extResId="2" name="rsc"/>
+        <ber:format extResId="2" name="lin"/>
+        <ber:format file="ls_default.xml" name="xml"/>
+      </ber:formatArray>
+    </ber:lineStyle>
+    <ber:lineStyle id="ls_3" name="3">
+      <ber:formatArray>
+        <ber:format extResId="3" name="rsc"/>
+        <ber:format extResId="3" name="lin"/>
+        <ber:format file="ls_default.xml" name="xml"/>
+      </ber:formatArray>
+    </ber:lineStyle>
+    <ber:lineStyle id="ls_4" name="4">
+      <ber:formatArray>
+        <ber:format extResId="4" name="rsc"/>
+        <ber:format file="ls_default.xml" name="xml"/>
+      </ber:formatArray>
+    </ber:lineStyle>
+    <ber:lineStyle id="ls_5" name="5">
+      <ber:formatArray>
+        <ber:format extResId="5" name="rsc"/>
+        <ber:format file="ls_default.xml" name="xml"/>
+      </ber:formatArray>
+    </ber:lineStyle>
+    <ber:lineStyle id="ls_6" name="6">
+      <ber:formatArray>
+        <ber:format extResId="6" name="rsc"/>
+        <ber:format file="ls_default.xml" name="xml"/>
+      </ber:formatArray>
+    </ber:lineStyle>
+    <ber:lineStyle id="ls_7" name="7">
+      <ber:formatArray>
+        <ber:format extResId="7" name="rsc"/>
+        <ber:format file="ls_default.xml" name="xml"/>
+      </ber:formatArray>
+    </ber:lineStyle>
+  </ber:lineStyleArray>
+  </ber:modelResource>
+
+thematization.xml:
+
+<?xml version="1.0" encoding="utf-8"?>
+<ber:thematization xmlns:ber="http://www.berit.com/ber" xmlns:se="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink">
+<ber:featureTypeStyleArray>
+  <ber:featureTypeStyle id="fts_ft_boPond_type" name="Ponds by type">
+    <se:FeatureTypeName>ft_boPond</se:FeatureTypeName>
+    <ber:rule id="r_0_0" name="spawning pond">
+      <ogc:Filter><ogc:PropertyIsEqualTo><ogc:PropertyName>ft_boPond/at_boPond_cl_boPondType/ca_boPondType_id</ogc:PropertyName><ogc:Literal>0</ogc:Literal></ogc:PropertyIsEqualTo></ogc:Filter>
+      <ber:polygonSymbolizer>
+        <ber:fill>
+          <se:SvgParameter name="fill">#26a69a</se:SvgParameter>
+        </ber:fill>
+        <se:Stroke>
+          <se:SvgParameter name="stroke">#26a69a</se:SvgParameter>
+        </se:Stroke>
+      </ber:polygonSymbolizer>
+    </ber:rule>
+    <ber:rule id="r_0_1" name="nursery pond">
+      <ogc:Filter><ogc:PropertyIsEqualTo><ogc:PropertyName>ft_boPond/at_boPond_cl_boPondType/ca_boPondType_id</ogc:PropertyName><ogc:Literal>1</ogc:Literal></ogc:PropertyIsEqualTo></ogc:Filter>
+      <ber:polygonSymbolizer>
+        <ber:fill>
+          <se:SvgParameter name="fill">#00bfa5</se:SvgParameter>
+        </ber:fill>
+        <se:Stroke>
+          <se:SvgParameter name="stroke">#00bfa5</se:SvgParameter>
+        </se:Stroke>
+      </ber:polygonSymbolizer>
+    </ber:rule>
+    <ber:rule id="r_0_2" name="brood pond">
+      <ogc:Filter><ogc:PropertyIsEqualTo><ogc:PropertyName>ft_boPond/at_boPond_cl_boPondType/ca_boPondType_id</ogc:PropertyName><ogc:Literal>2</ogc:Literal></ogc:PropertyIsEqualTo></ogc:Filter>
+      <ber:polygonSymbolizer>
+        <ber:fill>
+          <se:SvgParameter name="fill">#00bcd4</se:SvgParameter>
+        </ber:fill>
+        <se:Stroke>
+          <se:SvgParameter name="stroke">#00bcd4</se:SvgParameter>
+        </se:Stroke>
+      </ber:polygonSymbolizer>
+    </ber:rule>
+    <ber:rule id="r_0_3" name="storage pond">
+      <ogc:Filter><ogc:PropertyIsEqualTo><ogc:PropertyName>ft_boPond/at_boPond_cl_boPondType/ca_boPondType_id</ogc:PropertyName><ogc:Literal>3</ogc:Literal></ogc:PropertyIsEqualTo></ogc:Filter>
+      <ber:polygonSymbolizer>
+        <ber:fill>
+          <se:SvgParameter name="fill">#00b8d4</se:SvgParameter>
+        </ber:fill>
+        <se:Stroke>
+          <se:SvgParameter name="stroke">#00b8d4</se:SvgParameter>
+        </se:Stroke>
+      </ber:polygonSymbolizer>
+    </ber:rule>
+    <ber:rule id="r_0_4" name="fattening pond">
+      <ogc:Filter><ogc:PropertyIsEqualTo><ogc:PropertyName>ft_boPond/at_boPond_cl_boPondType/ca_boPondType_id</ogc:PropertyName><ogc:Literal>4</ogc:Literal></ogc:PropertyIsEqualTo></ogc:Filter>
+      <ber:polygonSymbolizer>
+        <ber:fill>
+          <se:SvgParameter name="fill">#0288d1</se:SvgParameter>
+        </ber:fill>
+        <se:Stroke>
+          <se:SvgParameter name="stroke">#0288d1</se:SvgParameter>
+        </se:Stroke>
+      </ber:polygonSymbolizer>
+    </ber:rule>
+    <ber:rule id="r_0_5" name="integrated pond">
+      <ogc:Filter><ogc:PropertyIsEqualTo><ogc:PropertyName>ft_boPond/at_boPond_cl_boPondType/ca_boPondType_id</ogc:PropertyName><ogc:Literal>5</ogc:Literal></ogc:PropertyIsEqualTo></ogc:Filter>
+      <ber:polygonSymbolizer>
+        <ber:fill>
+          <se:SvgParameter name="fill">#0091ea</se:SvgParameter>
+        </ber:fill>
+        <se:Stroke>
+          <se:SvgParameter name="stroke">#0091ea</se:SvgParameter>
+        </se:Stroke>
+      </ber:polygonSymbolizer>
+    </ber:rule>
+    <ber:rule id="r_0_6" name="wintering pond">
+      <ogc:Filter><ogc:PropertyIsEqualTo><ogc:PropertyName>ft_boPond/at_boPond_cl_boPondType/ca_boPondType_id</ogc:PropertyName><ogc:Literal>6</ogc:Literal></ogc:PropertyIsEqualTo></ogc:Filter>
+      <ber:polygonSymbolizer>
+        <ber:fill>
+          <se:SvgParameter name="fill">#0077b3</se:SvgParameter>
+        </ber:fill>
+        <se:Stroke>
+          <se:SvgParameter name="stroke">#0077b3</se:SvgParameter>
+        </se:Stroke>
+      </ber:polygonSymbolizer>
+    </ber:rule>
+    <ber:rule id="r_0_else" name="not defined pond">
+      <se:ElseFilter />
+      <ber:polygonSymbolizer>
+        <ber:fill>
+          <se:SvgParameter name="fill">#b3b3ff</se:SvgParameter>
+        </ber:fill>
+        <se:Stroke>
+          <se:SvgParameter name="stroke">#ffbb99</se:SvgParameter>
+        </se:Stroke>
+      </ber:polygonSymbolizer>
+    </ber:rule>
+  </ber:featureTypeStyle>
+</ber:featureTypeStyleArray>
+<ber:themeArray>
+  <ber:theme id="th_boPond_type" name="Ponds by type" utilizedForWMS="true">
+      <ber:featureTypeStyleArray>
+        <ber:featureTypeStyle refId="fts_ft_boPond_type" />
+      </ber:featureTypeStyleArray>
+    </ber:theme>
+</ber:themeArray>
+</ber:thematization>
+
+tool.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<ber:modelTool xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ber="http://www.berit.com/ber">
+
+</ber:modelTool>

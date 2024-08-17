@@ -132,3 +132,6 @@ dist
 .idea
 /frontend/.quasar
 /frontend/node_modules
+configurations
+output
+text_specification
