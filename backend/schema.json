@@ -1,16 +1,16 @@
 {
   "parts": [
     {
-      "id": "ap_fishAndPondsManagement",
-      "title": "Fish and Ponds Management",
+      "id": "ap_fishManagement",
+      "title": "Fish Management",
       "pages": [
         {
-          "id": "pg_fishOverview",
-          "title": "Fish Overview",
+          "id": "pg_fishDatabase",
+          "title": "Fish Database",
           "closeMenu": false,
           "module": {
             "type": "samo-browse",
-            "allowNearbyFilter": true,
+            "allowNearbyFilter": false,
             "allowAdvancedFilter": true,
             "listDisplayOptions": [
               "auto",
@@ -20,13 +20,103 @@
             ],
             "defaultView": "table",
             "entities": [
-              "ft_boFish"
+              "ft_boFish",
+              "ft_boPond"
             ]
           }
         },
         {
-          "id": "pg_pondsAndMaintenance",
-          "title": "Ponds and Maintenance",
+          "id": "pg_fishOverview",
+          "title": "Fish Overview",
+          "closeMenu": true,
+          "module": {
+            "type": "samo-browse",
+            "allowNearbyFilter": false,
+            "allowAdvancedFilter": true,
+            "listDisplayOptions": [
+              "auto",
+              "list3",
+              "table",
+              "tiles"
+            ],
+            "defaultView": "table",
+            "entities": [
+              "ft_boFish",
+              "ft_boPond"
+            ]
+          }
+        }
+      ],
+      "entities": [
+        {
+          "key": "ft_boFish",
+          "detailDefault": {
+            "title": "Fish Details",
+            "sections": [
+              {
+                "type": "samo-entity-properties-detail"
+              }
+            ]
+          },
+          "editDefault": {
+            "title": "Edit Fish",
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          },
+          "editInsert": {
+            "title": "Add Fish",
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          }
+        },
+        {
+          "key": "ft_boPond",
+          "detailDefault": {
+            "title": "Pond Details",
+            "sections": [
+              {
+                "type": "related-entity-list",
+                "entities": [
+                  "ft_boFish"
+                ]
+              },
+              {
+                "type": "samo-entity-properties-detail"
+              }
+            ]
+          },
+          "editDefault": {
+            "title": "Edit Pond",
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          },
+          "editInsert": {
+            "title": "Add Pond",
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ap_pondManagement",
+      "title": "Pond Management",
+      "pages": [
+        {
+          "id": "pg_pondMap",
+          "title": "Pond Map",
           "closeMenu": false,
           "module": {
             "type": "samo-browse",
@@ -40,66 +130,116 @@
             ],
             "defaultView": "map",
             "entities": [
-              "ft_boPond"
+              "ft_boPond",
+              "ft_boCompany"
             ]
           }
-        },
+        }
+      ],
+      "entities": [
         {
-          "id": "pg_inspectionManagement",
-          "title": "Inspection Management",
-          "closeMenu": true,
-          "module": {
-            "type": "samo-browse",
-            "allowNearbyFilter": true,
-            "allowAdvancedFilter": true,
-            "listDisplayOptions": [
-              "auto",
-              "list3",
-              "table",
-              "tiles"
-            ],
-            "defaultView": "table",
-            "entities": [
-              "ft_boInspection",
-              "ft_boInspectionType"
+          "key": "ft_boPond",
+          "detailDefault": {
+            "title": "Pond Details",
+            "sections": [
+              {
+                "type": "related-entity-list",
+                "entities": [
+                  "ft_boFish"
+                ]
+              },
+              {
+                "type": "samo-entity-properties-detail"
+              }
             ]
-          }
-        },
-        {
-          "id": "pg_planningBoard",
-          "title": "Planning Board",
-          "closeMenu": false,
-          "module": {
-            "type": "samo-planning-board",
-            "resourceEntity": "ft_boFishingGuard",
-            "taskEntity": "ft_boInspection",
-            "allocationEntity": "ft_boAllocation"
+          },
+          "editDefault": {
+            "title": "Edit Pond",
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          },
+          "editInsert": {
+            "title": "Add Pond",
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
           }
         }
       ]
     },
     {
-      "id": "ap_externalWorkforce",
-      "title": "External Workforce",
+      "id": "ap_workforceManagement",
+      "title": "Workforce Management",
       "pages": [
         {
-          "id": "pg_workforceOverview",
-          "title": "Workforce Overview",
+          "id": "pg_taskAllocation",
+          "title": "Task Allocation",
           "closeMenu": false,
           "module": {
-            "type": "samo-browse",
-            "allowNearbyFilter": true,
-            "allowAdvancedFilter": true,
-            "listDisplayOptions": [
-              "auto",
-              "list3",
-              "table",
-              "tiles"
-            ],
-            "defaultView": "table",
-            "entities": [
-              "ft_boCompany",
-              "ft_boPerson"
+            "type": "samo-planning-board",
+            "resourceEntity": "ft_boCompany",
+            "taskEntity": "ft_boInspection",
+            "allocationEntity": "ft_boAllocation"
+          }
+        }
+      ],
+      "entities": [
+        {
+          "key": "ft_boInspection",
+          "detailDefault": {
+            "title": "Inspection Details",
+            "sections": [
+              {
+                "type": "samo-entity-properties-detail"
+              }
+            ]
+          },
+          "editDefault": {
+            "title": "Edit Inspection",
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          },
+          "editInsert": {
+            "title": "Schedule Inspection",
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          }
+        },
+        {
+          "key": "ft_boAllocation",
+          "detailDefault": {
+            "title": "Allocation Details",
+            "sections": [
+              {
+                "type": "samo-entity-properties-detail"
+              }
+            ]
+          },
+          "editDefault": {
+            "title": "Edit Allocation",
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          },
+          "editInsert": {
+            "title": "New Allocation",
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
             ]
           }
         }

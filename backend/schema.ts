@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import Case from 'case';
 
-const module = z.discriminatedUnion('type', [
+export const pageModule = () => z.discriminatedUnion('type', [
   z.object({
     type: z.literal('samo-browse'),
     allowNearbyFilter: z.boolean().optional(),
@@ -18,25 +18,60 @@ const module = z.discriminatedUnion('type', [
   })
 ]);
 
-export const page = z.object({
+export const page = () => z.object({
   title: z.string(),
   closeMenu: z.boolean().optional(),
-  module: module,
+  module: pageModule(),
 }).transform((data) => ({
   id: `pg_${Case.camel(data.title)}`,
   ...data,
 }));
 
-export const part = z.object({
+export const detailModule = () => z.discriminatedUnion('type', [
+  z.object({
+    type: z.literal('samo-entity-properties-detail'),
+
+  }),
+  z.object({
+    type: z.literal('related-entity-list'),
+    entities: z.array(z.string()),
+  }),
+]);
+
+export const editDetailModule = () => z.discriminatedUnion('type', [
+  z.object({
+    type: z.literal('samo-entity-properties-form'),
+  }),
+  z.object({
+    type: z.literal('samo-tai-form'),
+  }),
+]);
+
+export const detail = (section: () => z.ZodType) => z.object({
   title: z.string(),
-  pages: z.array(page),
+  sections: z.array(section()),
+});
+
+
+
+export const entity = () => z.object({
+  key: z.string(),
+  detailDefault: detail(detailModule),
+  editDefault: detail(editDetailModule),
+  editInsert: detail(editDetailModule),
+});
+
+export const part = () => z.object({
+  title: z.string(),
+  pages: z.array(page()),
+  entities: z.array(entity()),
 }).transform((data) => ({
   id: `ap_${Case.camel(data.title)}`,
   ...data,
 }));
 
 export const schema = z.object({
-  parts: z.array(part),
+  parts: z.array(part()),
 });
 
 
@@ -58,6 +93,9 @@ const completion = await client.beta.chat.completions.parse({
       The schema describes application parts their corresponding pages.
       Each page has a specific module type with its own parameters.
       The modules often interact with entites in the database.
+      Each part has a list of entities that are used in the pages.
+      The schema also contains details for each entity.
+      A detail represents a dialog that either shows or edits an entity.
 
       Description of modules:
       
