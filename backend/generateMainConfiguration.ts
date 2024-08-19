@@ -105,7 +105,7 @@ async function renderAndSaveXML(jsonData: any) {
     for (const { templatePath, outputFileName } of templates) {
         const template = fs.readFileSync(path.join(__dirname, templatePath), 'utf-8');
         const output = nunjucks.renderString(template, jsonData);
-        const outputPath = path.join(outputDir, outputFileName);
+        const outputPath = path.join(__dirname, 'configuration', 'lids-as', outputFileName);
         fs.writeFileSync(outputPath, output);
         console.log(`Output saved to ${outputPath}`);
     }

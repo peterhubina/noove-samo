@@ -7,6 +7,7 @@ import {modelSchema} from "./generate/model/modelSchema";
 import generate from "./generateMainConfiguration";
 
 import {rootSchema} from "./generate/globalSchema";
+import copyFolderContentsRecursiveSync from "./copyFolderStructure";
 
 const nunjucks = require('nunjucks');
 
@@ -17,6 +18,8 @@ const client = new OpenAI({
 const projectSpecification = fs.readFileSync('text.txt', 'utf-8');
 const namingConventions = fs.readFileSync('data/conventions.txt', 'utf-8');
 const configurationFiles = fs.readFileSync('data/model.txt', 'utf-8');
+
+const configurationPath = path.join(__dirname, 'configuration');
 
 // Function to encode an image to Base64
 const encodeImage = (imagePath: string): string => {
@@ -98,7 +101,7 @@ async function main() {
     const dateString = now.toISOString().replace(/:/g, '-');
     const outputPath = path.join(__dirname, 'output', `output-${dateString}.json`);
 
-    fs.writeFileSync(path.join(__dirname, 'output', `model-${dateString}.xml`), output);
+    fs.writeFileSync(path.join(configurationPath, 'lids-as', `model.xml`), output);
 
     if (!fs.existsSync(path.join(__dirname, 'output'))) {
       fs.mkdirSync(path.join(__dirname, 'output'));
@@ -106,6 +109,12 @@ async function main() {
 
     fs.writeFileSync(outputPath, JSON.stringify(jsonObject, null, 2));
     console.log(`Output saved to ${outputPath}`);
+
+    const sourceDir = path.resolve(__dirname, 'default-structure');
+
+    copyFolderContentsRecursiveSync(sourceDir, configurationPath);
+
+    console.log('All files and folders from example project copied successfully.');
 
     generate(outputPath);
 

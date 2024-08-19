@@ -1,9 +1,4 @@
 {
-    "files": [
-        ".DS_Store",
-        "README.md",
-        "package.json"
-    ],
     "dynamic-app": {
         "samo-training": {
             "components": {
