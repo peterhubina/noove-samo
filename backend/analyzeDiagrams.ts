@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import {zodResponseFormat} from "openai/helpers/zod";
 import {modelSchema} from "./generate/model/modelSchema";
+import generate from "./generateMainConfiguration";
 
 import {rootSchema} from "./generate/globalSchema";
 
@@ -15,7 +16,7 @@ const client = new OpenAI({
 
 const projectSpecification = fs.readFileSync('text.txt', 'utf-8');
 const namingConventions = fs.readFileSync('data/conventions.txt', 'utf-8');
-const configurationFiles = fs.readFileSync('data/configurationFiles.txt', 'utf-8');
+const configurationFiles = fs.readFileSync('data/model.txt', 'utf-8');
 
 // Function to encode an image to Base64
 const encodeImage = (imagePath: string): string => {
@@ -24,6 +25,9 @@ const encodeImage = (imagePath: string): string => {
 };
 
 const prompt = 'Analyze the images with project specification and output as .json';
+
+const userPrompt = `The .json file should contain all the necessary data to generate these configuration files:
+                    model.xml, option.xml, presentation.xml, resouce.xml, thematization.xml, and tool.xml.`
 
 async function main() {
   try {
@@ -64,8 +68,7 @@ async function main() {
                   Project specification: ${projectSpecification}
                   You should preserve naming conventions that are described here: ${namingConventions}.
                   
-                  The .json file should contain all the necessary data to generate these configuration files:
-                  model.xml, option.xml, presentation.xml, resouce.xml, thematization.xml, and tool.xml.
+                  The .json file should contain all the necessary data to generate model.xml configuration file.
                   
                   Example of project configuration files: ${configurationFiles}`,
       },
@@ -103,6 +106,8 @@ async function main() {
 
     fs.writeFileSync(outputPath, JSON.stringify(jsonObject, null, 2));
     console.log(`Output saved to ${outputPath}`);
+
+    generate(outputPath);
 
     // Log input and output token sizes
     console.log(`Input token size: ${result.usage?.prompt_tokens || 'N/A'}`);

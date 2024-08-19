@@ -1,0 +1,72 @@
+Here is a dynamic Nunjucks XML template for `presentation.xml` based on the project specification and documentation provided:
+
+```xml
+<ber:presentation xmlns:ber="http://www.example.org/ber" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <ber:title>{{ projectTitle }}</ber:title>
+    <ber:description>{{ projectDescription }}</ber:description>
+    
+    <ber:reportArray>
+        {% for report in reports %}
+        <ber:dynamicReport id="{{ report.id }}" name="{{ report.name }}" orientation="{{ report.orientation }}">
+            <ber:description>{{ report.description }}</ber:description>
+            <ber:outputFormatArray>
+                {% for format in report.outputFormats %}
+                <ber:outputFormat{% if format.default %} default="true"{% endif %}>{{ format.name }}</ber:outputFormat>
+                {% endfor %}
+            </ber:outputFormatArray>
+            
+            <ber:inputParameterArray>
+                {% for param in report.inputParameters %}
+                <ber:inputParameter id="{{ param.id }}" name="{{ param.name }}" nillable="{{ param.nillable }}">
+                    <ber:description>{{ param.description }}</ber:description>
+                    <ber:defaultValue>{{ param.defaultValue }}</ber:defaultValue>
+                    <ber:dataType>
+                        <ber:{{ param.dataType }}{% if param.precision %} precision="{{ param.precision }}"{% endif %}{% if param.scale %} scale="{{ param.scale }}"{% endif %} />
+                    </ber:dataType>
+                </ber:inputParameter>
+                {% endfor %}
+            </ber:inputParameterArray> 
+
+            <ber:templateName>{{ report.templateName }}</ber:templateName>
+            <ber:attributeTemplateName>{{ report.attributeTemplateName }}</ber:attributeTemplateName>
+
+            <ber:featureTypeArray>
+                {% for featureType in report.featureTypes %}
+                <ber:featureType xlink:href="model.xml#{{ featureType.id }}" />
+                {% endfor %}
+            </ber:featureTypeArray>
+        </ber:dynamicReport>
+        {% endfor %}
+    </ber:reportArray>
+
+    <ber:lineWeights>
+        {% for weight in lineWeights %}
+        <ber:lineWeight display="{{ weight.display }}" print="{{ weight.print }}" />
+        {% endfor %}
+    </ber:lineWeights>
+
+    <ber:dwgLineWeights>
+        {% for dwgWeight in dwgLineWeights %}
+        <ber:dwgLineWeight display="{{ dwgWeight.display }}" dwg="{{ dwgWeight.dwg }}" />
+        {% endfor %}
+    </ber:dwgLineWeights>
+
+    <ber:plots>
+        <ber:defaultNortharrow>
+            <ber:pointSymbolizer>
+                <se:Graphic>
+                    <se:ExternalGraphic>
+                        <se:OnlineResource xlink:href="{{ northArrow.href }}" />
+                        <se:Format>{{ northArrow.format }}</se:Format>
+                    </se:ExternalGraphic>
+                </se:Graphic>
+                <ber:rgbColor>{{ northArrow.rgbColor }}</ber:rgbColor>
+                <ber:symbolHeight>{{ northArrow.symbolHeight }}</ber:symbolHeight>
+            </ber:pointSymbolizer>
+        </ber:defaultNortharrow>
+    </ber:plots>
+    
+</ber:presentation>
+```
+
+This template can be used dynamically by passing data such as `projectTitle`, `projectDescription`, `reports`, `lineWeights`, `dwgLineWeights`, and `northArrow` as context variables. It allows users to define multiple reports, their metadata, line weights, and settings for the presentation layer in the system.
