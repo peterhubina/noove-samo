@@ -136,19 +136,25 @@
 
 <ber:plotting>
 <ber:defaultNortharrow>
-<ber:pointSymbolizer>
-<se:Graphic>
-    <se:ExternalGraphic>
-        <se:OnlineResource xlink:href="{{ defaultNortharrow.pointSymbolizer.graphic.externalGraphic.onlineResource.href | default('resource.xml#ber_LIDSdemo/52') }}"/>
-        <se:Format/>
-    </se:ExternalGraphic>
-</se:Graphic>
-<ber:rgbColor>{{ defaultNorth
-
+    <ber:pointSymbolizer>
+        <se:Graphic>
+            <se:ExternalGraphic>
+                <se:OnlineResource xlink:href="resource.xml#ber_LIDSdemo/52"/>
+                <se:Format/>
+            </se:ExternalGraphic>
+        </se:Graphic>
+        <ber:rgbColor>#C80000</ber:rgbColor>
+        <ber:symbolHeight>36</ber:symbolHeight>
+    </ber:pointSymbolizer>
+</ber:defaultNortharrow>
 <ber:lineWeights>
-    {% for lineWeight in lineWeights %}
-    <ber:lineWeight display="{{ lineWeight.display }}" print="{{ lineWeight.print }}"/>
-    {% endfor %}
+    <ber:lineWeight display="0" print="0.5"/>
+    <ber:lineWeight display="1" print="1"/>
+    <ber:lineWeight display="2" print="1.5"/>
+    <ber:lineWeight display="3" print="2"/>
+    <ber:lineWeight display="4" print="3"/>
+    <ber:lineWeight display="5" print="4"/>
+    <ber:lineWeight display="6" print="5"/>
 </ber:lineWeights>
 </ber:plotting>
         </ber:modelPresentation>
