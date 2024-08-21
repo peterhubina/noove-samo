@@ -8,6 +8,7 @@ import generate from "./generateMainConfiguration";
 
 import {rootSchema} from "./generate/globalSchema";
 import copyFolderContentsRecursiveSync from "./copyFolderStructure";
+import createProjectConfiguration from "./copyFolderStructure";
 
 const nunjucks = require('nunjucks');
 
@@ -112,7 +113,7 @@ async function main() {
 
     const sourceDir = path.resolve(__dirname, 'default-structure');
 
-    copyFolderContentsRecursiveSync(sourceDir, configurationPath);
+    createProjectConfiguration(sourceDir, configurationPath);
 
     console.log('All files and folders from example project copied successfully.');
 
