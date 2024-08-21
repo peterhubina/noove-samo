@@ -36,7 +36,6 @@ export const page = () => z.object({
 export const detailModule = () => z.discriminatedUnion('type', [
   z.object({
     type: z.literal('samo-entity-properties-detail'),
-
   }),
   z.object({
     type: z.literal('related-entity-list'),
@@ -84,9 +83,11 @@ export type Schema = z.infer<typeof schema>;
 
 
 export async function generateSchema() {
+  const start = performance.now();
   const client = new OpenAI();
 
   const text = fs.readFileSync('text.txt', 'utf-8');
+
   const completion = await client.beta.chat.completions.parse({
     model: 'gpt-4o-2024-08-06',
     messages: [
@@ -137,6 +138,10 @@ export async function generateSchema() {
     console.log('refuse', message.refusal);
   }
 
+  console.log('time', performance.now() - start);
+
 }
 
+
+generateSchema();
 

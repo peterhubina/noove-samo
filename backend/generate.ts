@@ -231,7 +231,55 @@ generate('structure', {
       },
       "map": {},
       "metadata": {
-        "entities": {},
+        "entities": {
+          "features": Object.fromEntries(schema.parts.map((part) => [
+            part.id,
+            {
+              ...Object.fromEntries(part.entities.map((entity) => [
+                `${entity.key}.json`,
+                file({
+                  "extends": "root",
+                  "titleString": `{get:#at_${noprefix(entity.key)}_title}`,
+                  "subTitleString": `{get:#at_${noprefix(entity.key)}_subTitle}}`,
+                  "defaultPropertyGroup": `fmd_${noprefix(entity.key)}`,
+                  "defaultDetailPropertyGroup": `fmd_${noprefix(entity.key)}`,
+                  "fulltextFields": [
+                    "all"
+                  ],
+                  "detail": {
+                    "default": {
+                      "extends": `ft_${noprefix(entity.key)}-detail-default`
+                    }
+                  },
+                  "edit": {
+                    "default": {
+                      "extends": `ft_${noprefix(entity.key)}-editDetail-default`
+                    },
+                    "insert": {
+                      "extends": `ft_${noprefix(entity.key)}-editDetail-insert`
+                    }
+                  }
+                })
+              ])),
+              "details": Object.fromEntries(part.entities.flatMap((entity) => [
+                [
+                  `ft_${noprefix(entity.key)}-detail-default.json`,
+                  file(entity.detailDefault)
+                ],
+                [
+                  `ft_${noprefix(entity.key)}-editDetail-default.json`,
+                  file(entity.editDefault)
+                ],
+                [
+                  `ft_${noprefix(entity.key)}-editDetail-insert.json`,
+                  file(entity.editInsert)
+                ],
+                // `${page.id}.json`,
+                // file(transformPage(page))
+              ])),
+            }
+          ]))
+        },
         "groups": Object.fromEntries(Object.entries(entityGroups).map(([key, group]) => [
           `${key}.json`,
           file(group)
