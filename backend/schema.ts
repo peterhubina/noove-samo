@@ -5,7 +5,11 @@ import OpenAI from 'openai';
 import { zodResponseFormat } from 'openai/helpers/zod';
 import fs from 'fs';
 
-
+export const translatable = () => z.string().transform((text) => ({
+  translatable: true,
+  key: Case.camel(text),
+  value: text,
+}))
 
 export const pageModule = () => z.discriminatedUnion('type', [
   z.object({
@@ -25,11 +29,11 @@ export const pageModule = () => z.discriminatedUnion('type', [
 ]);
 
 export const page = () => z.object({
-  title: z.string(),
+  title: translatable(),
   closeMenu: z.boolean().optional(),
   module: pageModule(),
 }).transform((data) => ({
-  id: `pg_${Case.camel(data.title)}`,
+  id: `pg_${Case.camel(data.title.value)}`,
   ...data,
 }));
 
@@ -38,6 +42,7 @@ export const detailModule = () => z.discriminatedUnion('type', [
     type: z.literal('samo-entity-properties-detail'),
   }),
   z.object({
+    title: translatable(),
     type: z.literal('related-entity-list'),
     entities: z.array(z.string()),
   }),
@@ -48,12 +53,13 @@ export const editDetailModule = () => z.discriminatedUnion('type', [
     type: z.literal('samo-entity-properties-form'),
   }),
   z.object({
+    title: translatable(),
     type: z.literal('samo-tai-form'),
   }),
 ]);
 
 export const detail = (section: () => z.ZodType) => z.object({
-  title: z.string(),
+  title: translatable(),
   sections: z.array(section()),
 });
 
@@ -67,11 +73,11 @@ export const entity = () => z.object({
 });
 
 export const part = () => z.object({
-  title: z.string(),
+  title: translatable(),
   pages: z.array(page()),
   entities: z.array(entity()),
 }).transform((data) => ({
-  id: `ap_${Case.camel(data.title)}`,
+  id: `ap_${Case.camel(data.title.value)}`,
   ...data,
 }));
 
