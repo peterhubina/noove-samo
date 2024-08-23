@@ -5,6 +5,7 @@ import path from 'path';
 import {zodResponseFormat} from "openai/helpers/zod";
 import {modelSchema} from "./generate/model/modelSchema";
 import generate from "./generateMainConfiguration";
+import generateEntities from "./entities";
 
 import {rootSchema} from "./generate/globalSchema";
 import copyFolderContentsRecursiveSync from "./copyFolderStructure";
@@ -98,9 +99,7 @@ async function main() {
 
     const output = nunjucks.renderString(template, jsonObject);
 
-    const now = new Date();
-    const dateString = now.toISOString().replace(/:/g, '-');
-    const outputPath = path.join(__dirname, 'output', `output-${dateString}.json`);
+    const outputPath = path.join(__dirname, 'output', `output.json`);
 
     fs.writeFileSync(path.join(configurationPath, 'lids-as', `model.xml`), output);
 
@@ -118,6 +117,7 @@ async function main() {
     console.log('All files and folders from example project copied successfully.');
 
     generate(outputPath);
+    generateEntities(jsonObject);
 
     // Log input and output token sizes
     console.log(`Input token size: ${result.usage?.prompt_tokens || 'N/A'}`);

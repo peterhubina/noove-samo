@@ -18,7 +18,7 @@ const projectSpecification = fs.readFileSync('text.txt', 'utf-8');
 const namingConventions = fs.readFileSync('data/conventions.txt', 'utf-8');
 const configurationFiles = fs.readFileSync('data/configurationFiles.txt', 'utf-8');
 
-const prompt = 'Analyze the oject specification and output as .json';
+const prompt = 'Analyze the object specification and output as .json';
 
 const userPrompt = `The .json file should contain all the necessary data to generate these configuration files:
                     option.xml, presentation.xml, resouce.xml, thematization.xml, and tool.xml.`

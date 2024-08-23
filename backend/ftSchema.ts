@@ -1,8 +1,11 @@
 import {z} from 'zod';
+import Case from "case";
+
+const defaultActions = z.enum(['entityCreated', 'entityAttributeUpdated', 'entityDeleted']);
 
 export const step = () => z.object({
     type: z.string(),
-    source: z.string(),
+    source: z.string().regex(/^{@packageRoot\(@samo\/samo-training\)\/scripts\/ap_[\w-]+\/[\w-]+\.js}$/),
     arguments: z.record(z.any()).optional(),
 });
 
@@ -15,7 +18,7 @@ export const condition = () => z.object({
     properties: z.array(z.string()),
 });
 
-export const conditions = () => z.record(condition());
+export const conditions = () => z.array(condition());
 
 export const state = () => z.object({
     transitions: z.array(z.string()).optional(),
@@ -25,7 +28,7 @@ export const state = () => z.object({
     }).optional(),
 });
 
-export const states = () => z.record(state());
+export const states = () => z.array(state());
 
 export const workflow = () => z.object({
     entrypoint: z.string(),
@@ -49,18 +52,19 @@ export const action = () => z.object({
     includeStates: z.array(z.string()).optional(),
 });
 
-export const actions = () => z.record(action());
+export const actions = () => z.array(action());
 
 export const trigger = () => z.object({
     type: z.string(),
-    eventType: z.string(),
+    eventType: z.string(defaultActions),
     include: z.array(z.string()),
     actions: z.array(z.string()),
 });
 
-export const triggers = () => z.record(trigger());
+export const triggers = () => z.array(trigger());
 
-export const schema = z.object({
+export const entity = z.object({
+    name: z.string(),
     extends: z.string().describe('abs_ft_5000002'),
     triggers: z.array(triggers()).optional(),
     actions: z.array(actions()).optional(),
@@ -68,4 +72,10 @@ export const schema = z.object({
     workflow: z.array(workflow()).optional(),
     conditions: z.array(conditions()).optional(),
     steps: z.array(steps()).optional(),
-})
+}).transform((data) => ({
+   fileName: `ap_${Case.camel(data.name)}.json`
+}));
+
+export const schema = z.object({
+    entities: z.array(entity),
+});
