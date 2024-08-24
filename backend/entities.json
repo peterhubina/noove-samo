@@ -1,0 +1,226 @@
+{
+  "entities": [
+    {
+      "fileName": "ap_boPond.json",
+      "name": "boPond",
+      "extends": "abs_ft_5000002",
+      "triggers": [
+        {
+          "type": "allocationCreated",
+          "eventType": "creation",
+          "include": [],
+          "actions": [
+            "logCreation",
+            "duplicateLayer"
+          ]
+        },
+        {
+          "type": "allocationDeleted",
+          "eventType": "deletion",
+          "include": [],
+          "actions": [
+            "removeAssociatedFish",
+            "logDeletion"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "title": "Update Status",
+          "access": [
+            "admin",
+            "manager"
+          ],
+          "steps": [
+            "checkStatusValidity",
+            "updateStatusProperty"
+          ],
+          "confirm": true,
+          "confirmMessage": "Are you sure you want to update the status?",
+          "includeConditions": [
+            "isAdmin",
+            "isOwner"
+          ],
+          "conditions": [],
+          "includeStates": [
+            "statusPending"
+          ]
+        },
+        {
+          "title": "Schedule Inspection",
+          "access": [
+            "admin",
+            "inspector"
+          ],
+          "steps": [
+            "selectInspector",
+            "enterInspectionDetails",
+            "scheduleOnCalendar"
+          ],
+          "confirm": true,
+          "confirmMessage": "Confirm scheduling the inspection?",
+          "includeConditions": [
+            "canSchedule"
+          ],
+          "conditions": [],
+          "includeStates": [
+            "statusActive"
+          ]
+        }
+      ],
+      "stateAttributes": [
+        {
+          "stateAttribute": "status",
+          "stateCodeProperty": "status_code",
+          "stateTitleProperty": "status_title"
+        }
+      ],
+      "workflow": [
+        {
+          "entrypoint": "scheduled",
+          "states": [
+            {
+              "transitions": [
+                "inProgress"
+              ],
+              "symbology": {
+                "bgColor": "green",
+                "fgColor": "white"
+              }
+            },
+            {
+              "transitions": [
+                "completed",
+                "cancelled"
+              ],
+              "symbology": {
+                "bgColor": "red",
+                "fgColor": "white"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "accessControlCheck",
+          "operator": "equals",
+          "value": 1,
+          "properties": [
+            "rolePermissions",
+            "currentUserRole"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "type": "updateState",
+          "arguments": [
+            "newStatus",
+            "status_code"
+          ]
+        },
+        {
+          "type": "logChange",
+          "arguments": [
+            "entryId",
+            "ChangeType"
+          ]
+        }
+      ]
+    },
+    {
+      "fileName": "ap_boFish.json",
+      "name": "boFish",
+      "extends": "abs_ft_5000002",
+      "triggers": [
+        {
+          "type": "allocationStateUpdated",
+          "eventType": "stateChange",
+          "include": [
+            "ft_boPond"
+          ],
+          "actions": [
+            "updateAssociationStatus"
+          ]
+        },
+        {
+          "type": "inspectionDeleted",
+          "eventType": "delete",
+          "include": [
+            "ft_boInspection"
+          ],
+          "actions": [
+            "unassociateInspection"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "title": "Assign to Pond",
+          "access": [
+            "admin",
+            "manager"
+          ],
+          "steps": [
+            "selectPond",
+            "validateAssignment",
+            "confirmAssignment"
+          ],
+          "confirm": true,
+          "confirmMessage": "Assign this fish to the selected pond?",
+          "includeConditions": [],
+          "conditions": [
+            "validateFishHealth"
+          ],
+          "includeStates": [
+            "unassigned"
+          ]
+        }
+      ],
+      "stateAttributes": [
+        {
+          "stateAttribute": "status",
+          "stateCodeProperty": "status_code",
+          "stateTitleProperty": "status_title"
+        }
+      ],
+      "workflow": [
+        {
+          "entrypoint": "unassigned",
+          "states": [
+            {
+              "transitions": [
+                "assigned",
+                "quarantined"
+              ],
+              "symbology": {
+                "bgColor": "blue",
+                "fgColor": "white"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "propertyCheck",
+          "operator": "greaterThanOrEqual",
+          "value": 10,
+          "properties": [
+            "age"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "type": "reassociateEntity",
+          "arguments": [
+            "newPond",
+            "fishId"
+          ]
+        }
+      ]
+    }
+  ]
+}

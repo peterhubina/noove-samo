@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import Case from "case";
 
 export default function createProjectConfiguration(source: string, target: string) {
     copyFolderContentsRecursiveSync(source, target);
@@ -73,9 +74,13 @@ function createDirectoriesAndFiles(entitiesBaseDir: string, scriptsBaseDir: stri
 
         // Create empty .json files for each action in the script folder
         entity.actions.forEach(action => {
-            const filePath = path.join(scriptDir, `${action}.json`);
+            const filePath = path.join(scriptDir, `${Case.camel(action)}.js`);
             if (!fs.existsSync(filePath)) {
-                fs.writeFileSync(filePath, '{}');
+                fs.writeFileSync(filePath, `
+                function action(context) {
+                    // Add your action code here
+                }
+                `);
                 console.log(`File created: ${filePath}`);
             }
         });

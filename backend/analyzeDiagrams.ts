@@ -5,7 +5,7 @@ import path from 'path';
 import {zodResponseFormat} from "openai/helpers/zod";
 import {modelSchema} from "./generate/model/modelSchema";
 import generate from "./generateMainConfiguration";
-import generateEntities from "./entities";
+//import generateEntities from "./entities";
 
 import {rootSchema} from "./generate/globalSchema";
 import copyFolderContentsRecursiveSync from "./copyFolderStructure";

@@ -1,23 +1,17 @@
 import OpenAI from "openai";
 import fs from "fs";
 import {zodResponseFormat} from "openai/helpers/zod";
-import {schema} from "./ftSchema";
+import {schema, entity as entitySchema} from "./ftSchema";
 import path from "path";
 
 import "dotenv/config";
 
-const client = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
-
-const text = fs.readFileSync('text.txt', 'utf-8');
-/*
-const modelFile = fs.readFileSync(path.join(__dirname, 'output', 'output-2024-08-21T19-14-27.287Z.json'), 'utf-8');
-const model = JSON.parse(modelFile);
-
-const entities = model.featureTypeArray.map((feature: { id: string; }) => feature.id);
-*/
 export async function generateEntities() {
+    const client = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY,
+    });
+
+    const text = fs.readFileSync('text.txt', 'utf-8');
 
     const modelFile = fs.readFileSync(path.join(__dirname, 'output', 'output.json'), 'utf-8');
     const model = JSON.parse(modelFile);
@@ -56,4 +50,28 @@ export async function generateEntities() {
     } else {
         console.log('refuse', message.refusal);
     }
+
+    //createFiles();
 }
+/*
+function createFiles() {
+    const basePath = path.join(__dirname, 'configuration', 'lids-as', 'business-service', 'entities');
+
+    const data = fs.readFileSync('entities.json', 'utf-8');
+    const parsedData = JSON.parse(data);
+
+    parsedData.entities.forEach(entity => {
+
+        //const parsedEntity = entitySchema().parse(entity);
+        const { fileName, name, ...entityData } = entity;  // Destructure and exclude fileName and name
+        const filePath = path.join(basePath, fileName);
+
+        // Write the JSON file
+        fs.writeFileSync(filePath, JSON.stringify(entityData, null, 2));
+        console.log(`Created ${fileName}`);
+    });
+
+    console.log('All entities have been created.');
+}
+*/
+generateEntities();
