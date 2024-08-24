@@ -112,12 +112,12 @@ async function main() {
 
     const sourceDir = path.resolve(__dirname, 'default-structure');
 
+    //generateEntities();
     createProjectConfiguration(sourceDir, configurationPath);
 
     console.log('All files and folders from example project copied successfully.');
 
     generate(outputPath);
-    generateEntities(jsonObject);
 
     // Log input and output token sizes
     console.log(`Input token size: ${result.usage?.prompt_tokens || 'N/A'}`);

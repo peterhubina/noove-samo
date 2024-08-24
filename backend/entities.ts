@@ -11,13 +11,18 @@ const client = new OpenAI({
 });
 
 const text = fs.readFileSync('text.txt', 'utf-8');
-
+/*
 const modelFile = fs.readFileSync(path.join(__dirname, 'output', 'output-2024-08-21T19-14-27.287Z.json'), 'utf-8');
 const model = JSON.parse(modelFile);
 
 const entities = model.featureTypeArray.map((feature: { id: string; }) => feature.id);
+*/
+export async function generateEntities() {
 
-async function generateEntities() {
+    const modelFile = fs.readFileSync(path.join(__dirname, 'output', 'output.json'), 'utf-8');
+    const model = JSON.parse(modelFile);
+    const entities = model.featureTypeArray.map((feature: { id: string; }) => feature.id);
+
     const completion = await client.beta.chat.completions.parse({
         model: 'gpt-4o-2024-08-06',
         messages: [
@@ -31,7 +36,7 @@ async function generateEntities() {
                     The triggers describe what happens when an event occurs.
                     Default actions are: allocationCreated, allocationDeleted, allocationStateUpdated, allocationUpdated,
                     assignEstimation, inspectionDeleted, inspectionStateUpdated.
-              
+                    
                     Entities available:
                     ${entities.join("\n")}
                     
@@ -44,7 +49,6 @@ async function generateEntities() {
     });
 
     const message = completion.choices[0]?.message;
-    console.log(message);
 
     if (message?.parsed) {
         fs.writeFileSync('entities.json', JSON.stringify(message.parsed, null, 2));
@@ -53,7 +57,3 @@ async function generateEntities() {
         console.log('refuse', message.refusal);
     }
 }
-
-generateEntities();
-
-//export default generateEntities;

@@ -4,18 +4,21 @@ import * as path from 'path';
 export default function createProjectConfiguration(source: string, target: string) {
     copyFolderContentsRecursiveSync(source, target);
 
-    const schemaPath = path.join(__dirname, 'schema.json');
+    const schemaPath = path.join(__dirname, 'entities.json');
     const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf-8'));
-    // Extract parts.id values
-    const partIds = schema.parts.map((part: { id: string }) => part.id);
+
+    // Extract part ids and actions
+    const entities = schema.entities.map((entity: { name: string, actions: { title: string }[] }) => ({
+        name: entity.name,
+        actions: entity.actions.map(action => action.title)
+    }));
 
     // Define the base directories
     const entitiesBaseDir = path.join(target, 'lids-as', 'business-service', 'entities');
     const scriptsBaseDir = path.join(target, 'lids-as', 'business-service', 'scripts');
 
-    // Create directories in entities and scripts folders
-    createDirectories(entitiesBaseDir, partIds);
-    createDirectories(scriptsBaseDir, partIds);
+    // Create directories and files in entities and scripts folders
+    createDirectoriesAndFiles(entitiesBaseDir, scriptsBaseDir, entities);
 }
 
 function copyFileSync(source: string, target: string) {
@@ -52,16 +55,29 @@ function copyFolderContentsRecursiveSync(source: string, target: string) {
     }
 }
 
-function createDirectories(baseDir: string, ids: string[]) {
-    if (!fs.existsSync(baseDir)) {
-        fs.mkdirSync(baseDir, { recursive: true });
-    }
+function createDirectoriesAndFiles(entitiesBaseDir: string, scriptsBaseDir: string, entities: { name: string, actions: string[] }[]) {
+    entities.forEach(entity => {
+        const entityDir = path.join(entitiesBaseDir, `ap_${entity.name}`);
+        const scriptDir = path.join(scriptsBaseDir, `ap_${entity.name}`);
 
-    ids.forEach(id => {
-        const dirPath = path.join(baseDir, id);
-        if (!fs.existsSync(dirPath)) {
-            fs.mkdirSync(dirPath);
-            console.log(`Directory created: ${dirPath}`);
+        // Create entity directories if they don't exist
+        if (!fs.existsSync(entityDir)) {
+            fs.mkdirSync(entityDir, { recursive: true });
+            console.log(`Directory created: ${entityDir}`);
         }
+
+        if (!fs.existsSync(scriptDir)) {
+            fs.mkdirSync(scriptDir, { recursive: true });
+            console.log(`Directory created: ${scriptDir}`);
+        }
+
+        // Create empty .json files for each action in the script folder
+        entity.actions.forEach(action => {
+            const filePath = path.join(scriptDir, `${action}.json`);
+            if (!fs.existsSync(filePath)) {
+                fs.writeFileSync(filePath, '{}');
+                console.log(`File created: ${filePath}`);
+            }
+        });
     });
 }
