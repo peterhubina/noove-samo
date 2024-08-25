@@ -1,0 +1,122 @@
+{
+  "adminModules": {
+    "cascade": "Kaskáda"
+  },
+  "assecoNews": "Asseco zprávy",
+  "assignments": {
+    "assign_from_entity_cart": "přiřadit z košíku",
+    "remove_from_cart": "odebrat z košíku"
+  },
+  "cart": {
+    "add": "přidat do košíku"
+  },
+  "cockpit": "Cockpit",
+  "cockpit_description": "Implicitní výchozí stránka aplikace",
+  "code": "kód",
+  "common": {
+    "changeHistory": "Historie změn",
+    "comments": "Komentáře",
+    "attachments": "Přílohy",
+    "and": "a",
+    "auto": "auto",
+    "errors": {
+      "unknown": "Děje se tady něco hodně podivného",
+      "unsuccessfulOperation": "Operace se nezdařila"
+    },
+    "list": "seznam",
+    "list3": "seznam",
+    "login": "Přihlásit",
+    "optional": "volitelné",
+    "table": "tabulka",
+    "tiles": "dlaždice"
+  },
+  "created": "vytvořeno",
+  "dashboard": {
+    "colors": "Barvy",
+    "entitiesGroup": "Entitní skupina",
+    "image": "Cesta k obrázku",
+    "messages": "Zprávy",
+    "messagesCount": "Počet zpráv",
+    "other": "Ostatní",
+    "query": "Dotaz",
+    "title": "Název",
+    "type": "Typ",
+    "url": "URL odkazu",
+    "viewAllPage": "Stránka pro zobrazení všech zpráv",
+    "width": "Šířka"
+  },
+  "documents": "dokumenty",
+  "editGroup": "Upravit skupinu",
+  "editLink": "Upravit odkaz",
+  "favouriteLinks": "Oblíbené odkazy",
+  "help": {
+    "about": {
+      "title": "O aplikaci"
+    },
+    "userGuide": {
+      "title": "Uživatelská příručka"
+    }
+  },
+  "info": "Info",
+  "overview": "Přehled",
+  "lastmodified": "naposledy změněno",
+  "maintenance": {
+    "maintenance": "Správa",
+    "workOrders": "Pracovní příkazy",
+    "workOrders_description": "Správa a řízení práce na poruchách."
+  },
+  "messages": {
+    "acknowledged_messages": "Potvrzené zprávy",
+    "add_label": "Přidat štítek",
+    "body": "Tělo zprávy",
+    "email": "e-mail",
+    "filter_messages": "Filtrovat zprávy",
+    "message": "zpráva",
+    "recentMessagesDescription": "Modul aktuální zprávy",
+    "show_messages_marked_with_labels": "Zobrazit zprávy označené štítky",
+    "sms": "SMS",
+    "to": "Komu"
+  },
+  "moveLink": "Přesunout odkaz",
+  "multipleEntities": "Násobné entity",
+  "newEmail": "Nový email",
+  "noItems": "Žádné položky",
+  "orgunit": "org. jednotka",
+  "pendingtasks": "nesplněné úkoly",
+  "position": "Pozice",
+  "process": {
+    "process_not_found": "Proces nenalazen"
+  },
+  "rememberMe": "zapamatovat přihlášení",
+  "removeAllSelectedItems": "Odstranit vybrané položky",
+  "removeGroup": "Smazat skupinu",
+  "removeLink": "Smazat odkaz",
+  "reports": {
+    "generateReport": "Vygeneruj report",
+    "YEAR": "Rok"
+  },
+  "searchInput": {
+    "advancedfilter": "Rozšířený filtr",
+    "mapselect": "Výběr v mapě"
+  },
+  "sendEmail": "Odeslat email",
+  "sessionExpired": "Vaše relace vypršela. <br /> Klepnutím sem znovu načtete stránku.",
+  "sessionWarning": "Platnost vaší relace vyprší za {0}. <br /> Klepnutím sem obnovíte relaci.",
+  "set": "nastavit",
+  "state": "stav",
+  "task": {
+    "updated": "aktualizováno",
+    "updatedBy": "aktualizoval"
+  },
+  "totalCount": "Celkový počet",
+  "userProfile": {
+    "userRoles": "Uživatelské role"
+  },
+  "violatedValidationRules": "Formulář nesplňuje některá validační pravidla. Klikněte zde pro více informací.",
+  "weather": "Počasí",
+  "workflow": {
+    "runningProcesses": "běžící procesy",
+    "tasks": "úlohy",
+    "workflow": "Workflow"
+  }
+}

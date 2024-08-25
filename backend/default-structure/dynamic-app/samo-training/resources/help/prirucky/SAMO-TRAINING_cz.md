@@ -1,0 +1,4 @@
+﻿# Uživatelská příručka - ŽÁDOSTI
+
+Žádosti.
+

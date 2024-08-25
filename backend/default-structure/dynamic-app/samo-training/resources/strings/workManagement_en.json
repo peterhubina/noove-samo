@@ -1,0 +1,31 @@
+{
+  "workManagement": {
+    "workManagement": "Work management",
+    "planningBoard": "Planning board",
+    "planningBoardDescript": "Planning board for inspections ready for scheduling",
+    "inspections": "Inspections",
+    "inspectionsNew": "New Inspections",
+    "inspectionDescript": "Overview of inspections",
+    "showInspection": "Show inspection",
+    "completeInspection": "Complete inspection",
+    "inspectionEnd": "Inspection date",
+    "description": "Description",
+    "inspectionsTypes": "Types of inspections",
+    "inspectionsTypesDescript": "Overview of inspections types"
+  },
+  "time": {
+    "day": "Day",
+    "twoDays": "Two days",
+    "workWeek": "Work week",
+    "week": "Week"
+  },
+  "resources": {
+    "title": "Resources"
+  },
+  "workflow": {
+    "readyForScheduling": "Ready for scheduling",
+    "scheduled": "Scheduled",
+    "inProgress": "In progress",
+    "done": "Done"
+  }
+}

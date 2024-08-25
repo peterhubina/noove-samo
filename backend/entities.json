@@ -6,193 +6,48 @@
       "extends": "abs_ft_5000002",
       "triggers": [
         {
-          "type": "allocationCreated",
-          "eventType": "creation",
-          "include": [],
-          "actions": [
-            "logCreation",
-            "duplicateLayer"
-          ]
-        },
-        {
-          "type": "allocationDeleted",
-          "eventType": "deletion",
-          "include": [],
-          "actions": [
-            "removeAssociatedFish",
-            "logDeletion"
-          ]
-        }
-      ],
-      "actions": [
-        {
-          "title": "Update Status",
-          "access": [
-            "admin",
-            "manager"
-          ],
-          "steps": [
-            "checkStatusValidity",
-            "updateStatusProperty"
-          ],
-          "confirm": true,
-          "confirmMessage": "Are you sure you want to update the status?",
-          "includeConditions": [
-            "isAdmin",
-            "isOwner"
-          ],
-          "conditions": [],
-          "includeStates": [
-            "statusPending"
-          ]
-        },
-        {
-          "title": "Schedule Inspection",
-          "access": [
-            "admin",
-            "inspector"
-          ],
-          "steps": [
-            "selectInspector",
-            "enterInspectionDetails",
-            "scheduleOnCalendar"
-          ],
-          "confirm": true,
-          "confirmMessage": "Confirm scheduling the inspection?",
-          "includeConditions": [
-            "canSchedule"
-          ],
-          "conditions": [],
-          "includeStates": [
-            "statusActive"
-          ]
-        }
-      ],
-      "stateAttributes": [
-        {
-          "stateAttribute": "status",
-          "stateCodeProperty": "status_code",
-          "stateTitleProperty": "status_title"
-        }
-      ],
-      "workflow": [
-        {
-          "entrypoint": "scheduled",
-          "states": [
-            {
-              "transitions": [
-                "inProgress"
-              ],
-              "symbology": {
-                "bgColor": "green",
-                "fgColor": "white"
-              }
-            },
-            {
-              "transitions": [
-                "completed",
-                "cancelled"
-              ],
-              "symbology": {
-                "bgColor": "red",
-                "fgColor": "white"
-              }
-            }
-          ]
-        }
-      ],
-      "conditions": [
-        {
-          "type": "accessControlCheck",
-          "operator": "equals",
-          "value": 1,
-          "properties": [
-            "rolePermissions",
-            "currentUserRole"
-          ]
-        }
-      ],
-      "steps": [
-        {
-          "type": "updateState",
-          "arguments": [
-            "newStatus",
-            "status_code"
-          ]
-        },
-        {
-          "type": "logChange",
-          "arguments": [
-            "entryId",
-            "ChangeType"
-          ]
-        }
-      ]
-    },
-    {
-      "fileName": "ap_boFish.json",
-      "name": "boFish",
-      "extends": "abs_ft_5000002",
-      "triggers": [
-        {
-          "type": "allocationStateUpdated",
-          "eventType": "stateChange",
+          "type": "event",
+          "eventType": "allocationCreated",
           "include": [
             "ft_boPond"
           ],
           "actions": [
-            "updateAssociationStatus"
-          ]
-        },
-        {
-          "type": "inspectionDeleted",
-          "eventType": "delete",
-          "include": [
-            "ft_boInspection"
-          ],
-          "actions": [
-            "unassociateInspection"
+            "Capture allocation data for pond"
           ]
         }
       ],
       "actions": [
         {
-          "title": "Assign to Pond",
+          "title": "Create Pond Allocation",
           "access": [
-            "admin",
-            "manager"
+            "Pond Manager"
           ],
           "steps": [
-            "selectPond",
-            "validateAssignment",
-            "confirmAssignment"
+            "Select pond",
+            "Create allocation record",
+            "Save allocation"
           ],
           "confirm": true,
-          "confirmMessage": "Assign this fish to the selected pond?",
+          "confirmMessage": "Do you want to create this allocation?",
           "includeConditions": [],
-          "conditions": [
-            "validateFishHealth"
-          ],
-          "includeStates": [
-            "unassigned"
-          ]
+          "conditions": [],
+          "includeStates": []
         }
       ],
       "stateAttributes": [
         {
-          "stateAttribute": "status",
-          "stateCodeProperty": "status_code",
-          "stateTitleProperty": "status_title"
+          "stateAttribute": "pondStatus",
+          "stateCodeProperty": "stateCode",
+          "stateTitleProperty": "stateTitle"
         }
       ],
       "workflow": [
         {
-          "entrypoint": "unassigned",
+          "entrypoint": "Create Pond Allocation",
           "states": [
             {
               "transitions": [
-                "assigned",
-                "quarantined"
+                "In Progress"
               ],
               "symbology": {
                 "bgColor": "blue",
@@ -204,20 +59,247 @@
       ],
       "conditions": [
         {
-          "type": "propertyCheck",
-          "operator": "greaterThanOrEqual",
-          "value": 10,
+          "type": "boolean",
+          "operator": "equals",
+          "value": 1,
           "properties": [
-            "age"
+            "isActive"
           ]
         }
       ],
       "steps": [
         {
-          "type": "reassociateEntity",
+          "type": "action",
           "arguments": [
-            "newPond",
-            "fishId"
+            "Create Allocation"
+          ]
+        }
+      ]
+    },
+    {
+      "fileName": "ap_boFish.json",
+      "name": "boFish",
+      "extends": "abs_ft_5000002",
+      "triggers": [
+        {
+          "type": "event",
+          "eventType": "allocationStateUpdated",
+          "include": [
+            "ft_boFish"
+          ],
+          "actions": [
+            "Update fish data regarding allocation"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "title": "Assign Fish Allocation",
+          "access": [
+            "Fish Manager"
+          ],
+          "steps": [
+            "Select fish",
+            "Link to pond",
+            "Save allocation"
+          ],
+          "confirm": true,
+          "confirmMessage": "Confirm fish allocation?",
+          "includeConditions": [],
+          "conditions": [],
+          "includeStates": []
+        }
+      ],
+      "stateAttributes": [
+        {
+          "stateAttribute": "fishGrowthStage",
+          "stateCodeProperty": "growthCode",
+          "stateTitleProperty": "growthStage"
+        }
+      ],
+      "workflow": [
+        {
+          "entrypoint": "Assign Fish Allocation",
+          "states": [
+            {
+              "transitions": [
+                "Allocated"
+              ],
+              "symbology": {
+                "bgColor": "green",
+                "fgColor": "white"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "boolean",
+          "operator": "equals",
+          "value": 1,
+          "properties": [
+            "isActive"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "type": "action",
+          "arguments": [
+            "Save Fish Data"
+          ]
+        }
+      ]
+    },
+    {
+      "fileName": "ap_boSponsor.json",
+      "name": "boSponsor",
+      "extends": "abs_ft_5000002",
+      "triggers": [
+        {
+          "type": "event",
+          "eventType": "allocationDeleted",
+          "include": [
+            "ft_boSponsor"
+          ],
+          "actions": [
+            "Revoke sponsorship allocation"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "title": "Manage Sponsor Allocation",
+          "access": [
+            "Sponsor Manager"
+          ],
+          "steps": [
+            "Select sponsor",
+            "Review allocations",
+            "Save changes"
+          ],
+          "confirm": true,
+          "confirmMessage": "Save sponsor allocation changes?",
+          "includeConditions": [],
+          "conditions": [],
+          "includeStates": []
+        }
+      ],
+      "stateAttributes": [
+        {
+          "stateAttribute": "sponsorStatus",
+          "stateCodeProperty": "statusCode",
+          "stateTitleProperty": "statusTitle"
+        }
+      ],
+      "workflow": [
+        {
+          "entrypoint": "Allocate Sponsor",
+          "states": [
+            {
+              "transitions": [
+                "Reviewed"
+              ],
+              "symbology": {
+                "bgColor": "yellow",
+                "fgColor": "black"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "boolean",
+          "operator": "equals",
+          "value": 1,
+          "properties": [
+            "isActive"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "type": "action",
+          "arguments": [
+            "Manage Allocations"
+          ]
+        }
+      ]
+    },
+    {
+      "fileName": "ap_boInspection.json",
+      "name": "boInspection",
+      "extends": "abs_ft_5000002",
+      "triggers": [
+        {
+          "type": "event",
+          "eventType": "inspectionStateUpdated",
+          "include": [
+            "ft_boInspection"
+          ],
+          "actions": [
+            "Update inspection status"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "title": "Schedule Inspection",
+          "access": [
+            "Inspector"
+          ],
+          "steps": [
+            "Select inspection type",
+            "Set date",
+            "Notify responsible parties"
+          ],
+          "confirm": true,
+          "confirmMessage": "Schedule this inspection?",
+          "includeConditions": [],
+          "conditions": [],
+          "includeStates": []
+        }
+      ],
+      "stateAttributes": [
+        {
+          "stateAttribute": "inspectionPhase",
+          "stateCodeProperty": "phaseCode",
+          "stateTitleProperty": "phaseName"
+        }
+      ],
+      "workflow": [
+        {
+          "entrypoint": "Initiate Inspection",
+          "states": [
+            {
+              "transitions": [
+                "Under Review"
+              ],
+              "symbology": {
+                "bgColor": "orange",
+                "fgColor": "white"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "boolean",
+          "operator": "equals",
+          "value": 1,
+          "properties": [
+            "isScheduled"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "type": "action",
+          "arguments": [
+            "Schedule"
           ]
         }
       ]

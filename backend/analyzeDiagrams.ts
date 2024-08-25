@@ -4,8 +4,8 @@ import fs from 'fs';
 import path from 'path';
 import {zodResponseFormat} from "openai/helpers/zod";
 import {modelSchema} from "./generate/model/modelSchema";
-import generate from "./generateMainConfiguration";
-//import generateEntities from "./entities";
+import generateMetadata from "./generateMainConfiguration";
+import {generateEntities} from "./generateEntities";
 
 import {rootSchema} from "./generate/globalSchema";
 import copyFolderContentsRecursiveSync from "./copyFolderStructure";
@@ -35,6 +35,8 @@ const userPrompt = `The .json file should contain all the necessary data to gene
                     model.xml, option.xml, presentation.xml, resouce.xml, thematization.xml, and tool.xml.`
 
 async function main() {
+  const start = performance.now();
+
   try {
     const imagesDir = path.join(__dirname, 'images');
     const imageFiles = fs.readdirSync(imagesDir);
@@ -101,6 +103,9 @@ async function main() {
 
     const outputPath = path.join(__dirname, 'output', `output.json`);
 
+    const sourceDir = path.resolve(__dirname, 'default-structure');
+    createProjectConfiguration(sourceDir, configurationPath);
+
     fs.writeFileSync(path.join(configurationPath, 'lids-as', `model.xml`), output);
 
     if (!fs.existsSync(path.join(__dirname, 'output'))) {
@@ -110,14 +115,11 @@ async function main() {
     fs.writeFileSync(outputPath, JSON.stringify(jsonObject, null, 2));
     console.log(`Output saved to ${outputPath}`);
 
-    const sourceDir = path.resolve(__dirname, 'default-structure');
-
-    //generateEntities();
-    createProjectConfiguration(sourceDir, configurationPath);
+    generateEntities();
 
     console.log('All files and folders from example project copied successfully.');
 
-    generate(outputPath);
+    generateMetadata(outputPath);
 
     // Log input and output token sizes
     console.log(`Input token size: ${result.usage?.prompt_tokens || 'N/A'}`);
@@ -125,6 +127,10 @@ async function main() {
   } catch (error) {
     console.error('Error generating or saving output:', error);
   }
+
+  const end = performance.now();
+
+  console.log('time: ', end - start);
 }
 
 main();

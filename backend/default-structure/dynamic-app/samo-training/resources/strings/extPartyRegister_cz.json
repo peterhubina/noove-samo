@@ -1,0 +1,22 @@
+{
+  "extPartyRegister": {
+    "extPartyRegister": "Rejstřík externích stran",
+    "extParties": "Externí strany",
+    "personRegister": "Registr osob",
+    "companyRegister": "Registr společností",
+    "people": "Lidé",
+    "person": "Člověk",
+    "companies": "Společnosti",
+    "company": "Společnost",
+    "personOverview": "Obsahuje přehled všech osob.",
+    "companyOverview": "Obsahuje přehled všech společností.",
+    "extPartiesOverview": "Obsahuje přehled všech společností a všech osob.",
+    "addCompany": "Nová spoločnosť",
+    "addPerson": "Nová osoba",
+    "address": "Adresa",
+    "addGuard": "Nový strážca rybníku",
+    "guards": "Strážci ryb",
+    "guard": "Strážca ryb",
+    "guardOverview": "Obsahuje přehled všech rybích ochranách."
+  }
+}

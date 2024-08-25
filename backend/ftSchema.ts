@@ -66,7 +66,7 @@ export const entity = () => z.object({
     const cleanedName = data.name.replace(/^ft_/, '');
 
     return {
-        fileName: `ap_${Case.camel(cleanedName)}.json`,
+        fileName: `ft_${Case.camel(cleanedName)}.json`,
         ...data,
         name: cleanedName,
     }

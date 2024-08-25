@@ -76,11 +76,10 @@ function createDirectoriesAndFiles(entitiesBaseDir: string, scriptsBaseDir: stri
         entity.actions.forEach(action => {
             const filePath = path.join(scriptDir, `${Case.camel(action)}.js`);
             if (!fs.existsSync(filePath)) {
-                fs.writeFileSync(filePath, `
-                function action(context) {
-                    // Add your action code here
-                }
-                `);
+                fs.writeFileSync(filePath,
+                `function action(context) {
+                        // Add your action code here
+                      }`);
                 console.log(`File created: ${filePath}`);
             }
         });

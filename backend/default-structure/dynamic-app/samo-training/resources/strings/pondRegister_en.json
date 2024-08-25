@@ -1,0 +1,29 @@
+{
+    "pondRegister": {
+        "pondsRegister": "Ponds register",
+        "pond": "Pond",
+        "ponds": "Ponds",
+        "fish": "Fish",
+        "fishes": "Fishes",
+        "amount": "Amount of fishes:",
+        "managedPonds": "Managed ponds",
+        "listFish": "Fishes in pond",
+        "fishOverview": "Contains overview of all fishes.",
+        "pondOverview": "Contains overview of all ponds.",
+        "drainPond": "Drain the pond",
+        "fillPond": "Fill the pond",
+        "note": "Note",
+        "basicInfo": "Basic information about pond",
+        "detailInfo": "Detailed information about pond",
+        "positionInfo": "Position information about pond",
+        "dateInfo": "Date information about pond",
+        "sum": "Summary",
+        "optional": "Optional",
+        "addFish": "New fish species in pond",
+        "addPond": "New pond",
+        "sponsors": "Sponsors"
+    },
+    "messageLabels": {
+      "pond": "Pond"
+    }
+}

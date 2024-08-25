@@ -132,5 +132,4 @@ output/
 backend/text_specification/questions/*
 
 configurations/
-default-structure/
 configuration/

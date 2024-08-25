@@ -1,0 +1,22 @@
+{
+  "extPartyRegister": {
+    "extPartyRegister": "External party register",
+    "extParties": "External parties",
+    "personRegister": "Person register",
+    "companyRegister": "Company register",
+    "people": "People",
+    "person": "Person",
+    "companies": "Companies",
+    "company": "Company",
+    "personOverview": "Contains overview of all people.",
+    "companyOverview": "Contains overview of all companies.",
+    "extPartiesOverview": "Contains overview of all companies and people",
+    "addCompany": "New company",
+    "addPerson": "New person",
+    "address": "Address",
+    "addGuard": "New fishing guard",
+    "guards": "Fishing guards",
+    "guard": "Fishing guard",
+    "guardOverview": "Contains overview of all fishing guards"
+  }
+}

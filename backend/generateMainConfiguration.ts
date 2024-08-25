@@ -23,7 +23,7 @@ const prompt = 'Analyze the object specification and output as .json';
 const userPrompt = `The .json file should contain all the necessary data to generate these configuration files:
                     option.xml, presentation.xml, resouce.xml, thematization.xml, and tool.xml.`
 
-async function generate(modelPath: string) {
+async function generateMetadata(modelPath: string) {
     try {
         const model = fs.readFileSync(modelPath, 'utf-8');
 
@@ -121,4 +121,4 @@ async function main(outputPath: string) {
     }
 }
 
-export default generate;
+export default generateMetadata;
