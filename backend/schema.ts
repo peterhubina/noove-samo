@@ -9,7 +9,9 @@ export const translatable = () => z.string().transform((text) => ({
   translatable: true,
   key: Case.camel(text),
   value: text,
-}))
+}));
+
+const icons = JSON.parse(fs.readFileSync('icons50.json', 'utf-8'));
 
 export const pageModule = () => z.discriminatedUnion('type', [
   z.object({
@@ -30,6 +32,8 @@ export const pageModule = () => z.discriminatedUnion('type', [
 
 export const page = () => z.object({
   title: translatable(),
+  thumbnailImageSearchQuery: z.string().optional(),
+  icon: z.enum(icons),
   closeMenu: z.boolean().optional(),
   module: pageModule(),
 }).transform((data) => ({
@@ -107,6 +111,9 @@ export async function generateSchema() {
         Each part has a list of entities that are used in the pages.
         The schema also contains details for each entity.
         A detail represents a dialog that either shows or edits an entity.
+        Page can have a thumbnail, a title and an icon.
+        The thumbnail is obtained by searching the Pexels image database using a search query. 
+        The query should contain keywords that describe a generic image applicable to the page.
   
         Description of modules:
         
@@ -149,5 +156,5 @@ export async function generateSchema() {
 }
 
 
-generateSchema();
+// generateSchema();
 

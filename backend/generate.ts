@@ -250,105 +250,133 @@ function translate(object: any, category = 'common') {
   return object;
 }
 
-
-generate('structure', {
-  "dynamic-app/samo-training": {
-    "components": {},
-    "configuration": {
-      "application": {
-        "parts": Object.fromEntries(schema.parts.map((part) => [
-          part.id,
-          {
-            "part.json": file(translate({
-              "title": part.title,
-              "defaultPage": "dashboard",
-              "defaultGuestPage": "login",
-              "shared": {
-                "pages": [
-                  "login",
-                  "logout",
-                  "messages-config",
-                  "messages",
-                  "profile"
-                ],
-                "applicationModules": [
-                  "recent-entities",
-                  "user-messages",
-                  "user"
-                ]
-              }
-            }, noprefix(part.id))),
-            "pages": Object.fromEntries(part.pages.map((page) => [
-              `${page.id}.json`,
-              file(translate(transformPage(page), noprefix(part.id)))
-            ])),
-          }
-        ]))
-      },
-      "map": {},
-      "metadata": {
-        "entities": {
-          "features": Object.fromEntries(schema.parts.map((part) => [
-            part.id,
-            {
-              ...Object.fromEntries(part.entities.map((entity) => [
-                `${entity.key}.json`,
-                file(translate({
-                  "extends": "root",
-                  "titleString": `{get:#at_${noprefix(entity.key)}_title}`,
-                  "subTitleString": `{get:#at_${noprefix(entity.key)}_subTitle}}`,
-                  "defaultPropertyGroup": `fmd_${noprefix(entity.key)}`,
-                  "defaultDetailPropertyGroup": `fmd_${noprefix(entity.key)}`,
-                  "fulltextFields": [
-                    "all"
-                  ],
-                  "detail": {
-                    "default": {
-                      "extends": `ft_${noprefix(entity.key)}-detail-default`
-                    }
-                  },
-                  "edit": {
-                    "default": {
-                      "extends": `ft_${noprefix(entity.key)}-editDetail-default`
-                    },
-                    "insert": {
-                      "extends": `ft_${noprefix(entity.key)}-editDetail-insert`
-                    }
+export function generateDynamicApp() {
+  generate('structure', {
+    "dynamic-app/samo-training": {
+      "components": {},
+      "configuration": {
+        "application": {
+          "parts": {
+            ...Object.fromEntries(schema.parts.map((part) => [
+              part.id,
+              {
+                "part.json": file(translate({
+                  "title": part.title,
+                  "defaultPage": "dashboard",
+                  "defaultGuestPage": "login",
+                  "shared": {
+                    "pages": [
+                      "login",
+                      "logout",
+                      "messages-config",
+                      "messages",
+                      "profile"
+                    ],
+                    "applicationModules": [
+                      "recent-entities",
+                      "user-messages",
+                      "user"
+                    ]
                   }
-                }, noprefix(part.id)))
-              ])),
-              "details": Object.fromEntries(part.entities.flatMap((entity) => [
-                [
-                  `ft_${noprefix(entity.key)}-detail-default.json`,
-                  file(translate(transformDetail(entity.key, entity.detailDefault), noprefix(part.id)))
-                ],
-                [
-                  `ft_${noprefix(entity.key)}-editDetail-default.json`,
-                  file(translate(entity.editDefault, noprefix(part.id)))
-                ],
-                [
-                  `ft_${noprefix(entity.key)}-editDetail-insert.json`,
-                  file(translate(entity.editInsert, noprefix(part.id)))
-                ],
-              ])),
+                }, noprefix(part.id))),
+                "pages": Object.fromEntries(part.pages.map((page) => [
+                  `${page.id}.json`,
+                  file(translate(transformPage(page), noprefix(part.id)))
+                ])),
+              }
+            ])),
+            "cockpit": {
+              "part.json": file({
+                "defaultPage": "dashboard",
+                "defaultGuestPage": "login",
+                "shared": {
+                  "pages": [
+                    "login",
+                    "logout",
+                    "messages",
+                    "messages-config",
+                    "profile"
+                  ],
+                  "applicationModules": [
+                    "user-messages",
+                    "user"
+                  ]
+                }
+              }),
+              "pages": {
+                "dashboard.json": file({
+
+                }),
+              }
             }
-          ]))
+          },
         },
-        "groups": Object.fromEntries(Object.entries(entityGroups).map(([key, group]) => [
-          `${key}.json`,
-          file(group)
-        ])),
-        "intents": {},
-        "propertyGroups": {},
+        "map": {},
+        "metadata": {
+          "entities": {
+            "features": Object.fromEntries(schema.parts.map((part) => [
+              part.id,
+              {
+                ...Object.fromEntries(part.entities.map((entity) => [
+                  `${entity.key}.json`,
+                  file(translate({
+                    "extends": "root",
+                    "titleString": `{get:#at_${noprefix(entity.key)}_title}`,
+                    "subTitleString": `{get:#at_${noprefix(entity.key)}_subTitle}}`,
+                    "defaultPropertyGroup": `fmd_${noprefix(entity.key)}`,
+                    "defaultDetailPropertyGroup": `fmd_${noprefix(entity.key)}`,
+                    "fulltextFields": [
+                      "all"
+                    ],
+                    "detail": {
+                      "default": {
+                        "extends": `ft_${noprefix(entity.key)}-detail-default`
+                      }
+                    },
+                    "edit": {
+                      "default": {
+                        "extends": `ft_${noprefix(entity.key)}-editDetail-default`
+                      },
+                      "insert": {
+                        "extends": `ft_${noprefix(entity.key)}-editDetail-insert`
+                      }
+                    }
+                  }, noprefix(part.id)))
+                ])),
+                "details": Object.fromEntries(part.entities.flatMap((entity) => [
+                  [
+                    `ft_${noprefix(entity.key)}-detail-default.json`,
+                    file(translate(transformDetail(entity.key, entity.detailDefault), noprefix(part.id)))
+                  ],
+                  [
+                    `ft_${noprefix(entity.key)}-editDetail-default.json`,
+                    file(translate(entity.editDefault, noprefix(part.id)))
+                  ],
+                  [
+                    `ft_${noprefix(entity.key)}-editDetail-insert.json`,
+                    file(translate(entity.editInsert, noprefix(part.id)))
+                  ],
+                ])),
+              }
+            ]))
+          },
+          "groups": Object.fromEntries(Object.entries(entityGroups).map(([key, group]) => [
+            `${key}.json`,
+            file(group)
+          ])),
+          "intents": {},
+          "propertyGroups": {},
+        }
+      },
+      "resources": {
+        "strings": Object.fromEntries(Object.entries(translations).map(([category, translations]) => [
+          `${category}_en.json`,
+          file({
+            [category]: translations
+          })
+        ]))
       }
-    },
-    "resources": {
-      "strings": Object.fromEntries(Object.entries(translations).map(([category, translations]) => [
-        `${category}_en.json`,
-        file({
-          [category]: translations
-        })
-      ]))
     }
-  }
-})
+  })
+}
+

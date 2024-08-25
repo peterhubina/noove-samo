@@ -2,14 +2,14 @@ import OpenAI from 'openai';
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
-import {zodResponseFormat} from "openai/helpers/zod";
-import {modelSchema} from "./generate/model/modelSchema";
-import generateMetadata from "./generateMainConfiguration";
-import {generateEntities} from "./generateEntities";
+import { zodResponseFormat } from "openai/helpers/zod";
 
-import {rootSchema} from "./generate/globalSchema";
-import copyFolderContentsRecursiveSync from "./copyFolderStructure";
+import { rootSchema } from "./generate/globalSchema";
 import createProjectConfiguration from "./copyFolderStructure";
+import { generateSchema } from './schema';
+import { generateEntities } from './generateEntities';
+import generateMetadata from "./generateMainConfiguration";
+import { generateDynamicApp } from './generate';
 
 const nunjucks = require('nunjucks');
 
@@ -94,7 +94,7 @@ async function main() {
       response_format: zodResponseFormat(rootSchema, 'schema'),
     });
 
-    const content : string = result.choices[0].message?.content || '';
+    const content: string = result.choices[0].message?.content || '';
     let jsonObject = JSON.parse(content);
 
     const template = fs.readFileSync('generate/model/template.xml', 'utf-8');
@@ -115,11 +115,14 @@ async function main() {
     fs.writeFileSync(outputPath, JSON.stringify(jsonObject, null, 2));
     console.log(`Output saved to ${outputPath}`);
 
-    generateEntities();
+    await generateEntities();
 
     console.log('All files and folders from example project copied successfully.');
 
-    generateMetadata(outputPath);
+    await generateMetadata(outputPath);
+
+    await generateSchema();
+    await generateDynamicApp();
 
     // Log input and output token sizes
     console.log(`Input token size: ${result.usage?.prompt_tokens || 'N/A'}`);
