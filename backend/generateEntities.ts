@@ -86,4 +86,5 @@ function createFiles() {
     console.log('All entities have been created.');
 }
 
-createFiles();
+generateEntities();
+//createFiles();

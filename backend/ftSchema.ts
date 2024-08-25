@@ -1,44 +1,24 @@
-import {z} from 'zod';
+import { z } from 'zod';
 import Case from "case";
 
 const defaultActions = z.enum(['entityCreated', 'entityAttributeUpdated', 'entityDeleted']);
 
-export const step = () => z.object({
+// Step schema
+export const step = (entityName: string) => z.object({
     type: z.string(),
-    //source: z.string().regex(/^{@packageRoot\(@samo\/samo-training\)\/scripts\/ap_[\w-]+\/[\w-]+\.js}$/),
     arguments: z.array(z.string()).optional(),
+}).transform((data) => {
+    return {
+        ...data,
+        source: `{@packageRoot(@samo/samo-training)}/scripts/ap_${Case.camel(entityName)}/${data.type}.js`
+    };
 });
 
-export const condition = () => z.object({
-    type: z.string(),
-    operator: z.string(),
-    value: z.number().optional(),
-    properties: z.array(z.string()),
-});
-
-export const state = () => z.object({
-    transitions: z.array(z.string()).optional(),
-    symbology: z.object({
-        bgColor: z.string().optional(),
-        fgColor: z.string().optional()
-    }).optional(),
-});
-
-export const workflow = () => z.object({
-    entrypoint: z.string(),
-    states: z.array(state()),
-});
-
-export const stateAttributes = () => z.object({
-    stateAttribute: z.string(),
-    stateCodeProperty: z.string(),
-    stateTitleProperty: z.string(),
-});
-
-export const action = () => z.object({
+// Action schema
+export const action = (entityName: string) => z.object({
     title: z.string().optional(),
     access: z.array(z.string()),
-    steps: z.array(z.string()),
+    steps: z.array(step(entityName)),  // Inject entity name into step schema
     confirm: z.boolean().optional(),
     confirmMessage: z.string().optional(),
     includeConditions: z.array(z.string()).optional(),
@@ -46,30 +26,56 @@ export const action = () => z.object({
     includeStates: z.array(z.string()).optional(),
 });
 
-export const trigger = () => z.object({
-    type: z.string(),
-    eventType: z.string(defaultActions),
-    include: z.array(z.string()),
-    actions: z.array(z.string()),
-});
-
+// Entity schema
 export const entity = () => z.object({
     name: z.string(),
     extends: z.string(),
-    triggers: z.array(trigger()).optional(),
-    actions: z.array(action()).optional(),
-    stateAttributes: z.array(stateAttributes()).optional(),
-    workflow: z.array(workflow()).optional(),
-    conditions: z.array(condition()).optional(),
-    steps: z.array(step()).optional(),
+    triggers: z.array(z.object({
+        type: z.string(),
+        eventType: z.string(defaultActions),
+        include: z.array(z.string()),
+        actions: z.array(z.string()),
+    })).optional(),
+    actions: z.array(action('')).optional(),  // Placeholder, will be overridden in transform
+    stateAttributes: z.array(z.object({
+        stateAttribute: z.string(),
+        stateCodeProperty: z.string(),
+        stateTitleProperty: z.string(),
+    })).optional(),
+    workflow: z.array(z.object({
+        entrypoint: z.string(),
+        states: z.array(z.object({
+            transitions: z.array(z.string()).optional(),
+            symbology: z.object({
+                bgColor: z.string().optional(),
+                fgColor: z.string().optional()
+            }).optional(),
+        })),
+    })).optional(),
+    conditions: z.array(z.object({
+        type: z.string(),
+        operator: z.string(),
+        value: z.number().optional(),
+        properties: z.array(z.string()),
+    })).optional(),
+    steps: z.array(step('')).optional(),  // Placeholder, will be overridden in transform
 }).transform((data) => {
     const cleanedName = data.name.replace(/^ft_/, '');
+
+    // Transform actions and steps
+    const transformedActions = data.actions?.map(actionData => {
+        return {
+            ...actionData,
+            steps: actionData.steps.map(stepData => step(cleanedName).parse(stepData))
+        };
+    });
 
     return {
         fileName: `ft_${Case.camel(cleanedName)}.json`,
         ...data,
         name: cleanedName,
-    }
+        actions: transformedActions,
+    };
 });
 
 export const schema = z.object({
