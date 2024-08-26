@@ -1,0 +1,16 @@
+{
+  "resources": {
+    "/**": {
+      "authorization": {
+        "type": "public"
+      }
+    }
+  },
+  "configuration": {
+    "/application/**": {
+      "authorization": {
+        "type": "public"
+      }
+    }
+  }
+}

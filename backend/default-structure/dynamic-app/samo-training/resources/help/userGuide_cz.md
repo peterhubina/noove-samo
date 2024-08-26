@@ -1,0 +1,1 @@
+User Guide is only available in English language. Please switch the language of the application in User profile Settings.

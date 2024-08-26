@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ber:collaboration xmlns:ber="http://www.berit.com/ber" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <ber:version>
+        <ber:metadata>1</ber:metadata>
+        <ber:minClient>5140</ber:minClient>
+        <ber:minAS>12601</ber:minAS>
+    </ber:version>
+    <ber:subscription>
+        <ber:notification>
+            <ber:email>
+                <ber:smtpHostName>smtp.intranet.local</ber:smtpHostName>
+                <ber:smtpPort>25</ber:smtpPort>
+                <ber:senderEmailAddress>SAMO@asseco-ce.com</ber:senderEmailAddress>
+            </ber:email>
+        </ber:notification>
+        <ber:subscriptionConfigurations>
+            <ber:subscriptionConfiguration>
+                <ber:featureTypes>
+                    <ber:featureTypeRef id="ft_boPond" />
+                </ber:featureTypes>
+                <ber:defaultEvents>
+                    <ber:event>commentCreated</ber:event>
+                </ber:defaultEvents>
+                <ber:autoSubscriptions>
+                    <ber:autoSubscription>
+                        <ber:onEvents>
+                            <ber:event>featureCreated</ber:event>
+                        </ber:onEvents>
+                        <ber:subscribeToEvents>
+                            <ber:event>featureUpdated</ber:event>
+                            <ber:event>commentCreated</ber:event>
+                            <ber:event>commentUpdated</ber:event>
+                        </ber:subscribeToEvents>
+                    </ber:autoSubscription>
+                    <ber:autoSubscription>
+                        <ber:onEvents>
+                            <ber:event>commentCreated</ber:event>
+                        </ber:onEvents>
+                        <ber:subscribeToEvents>
+                            <ber:event>commentCreated</ber:event>
+                            <ber:event>commentUpdated</ber:event>
+                        </ber:subscribeToEvents>
+                    </ber:autoSubscription>
+                </ber:autoSubscriptions>
+            </ber:subscriptionConfiguration>
+        </ber:subscriptionConfigurations>
+    </ber:subscription>
+    <ber:commentConfigurations>
+        <ber:commentConfiguration>
+            <ber:featureTypes>
+                <ber:featureTypeRef id="ft_boPond" />
+            </ber:featureTypes>
+        </ber:commentConfiguration>
+    </ber:commentConfigurations>
+</ber:collaboration>

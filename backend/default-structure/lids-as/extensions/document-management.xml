@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ber:documentManagement xmlns:ber="http://www.berit.com/ber" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ber:version>
+        <ber:metadata>1</ber:metadata>
+        <ber:minClient>8888</ber:minClient>
+        <ber:minAS>155001</ber:minAS>
+    </ber:version>
+    <ber:featureTypeArray>
+        <ber:featureType xlink:href="model.xml#ft_boPond"/>
+    </ber:featureTypeArray>
+    <ber:relationAssocArray>
+        <ber:featureRefRelationAssoc xlink:href="model.xml#as_boPond_boInspection">
+            <ber:description>Pond --&gt; Inspection</ber:description>
+        </ber:featureRefRelationAssoc>
+    </ber:relationAssocArray>
+</ber:documentManagement>

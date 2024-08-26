@@ -1,0 +1,31 @@
+<ber:modelExplorer xmlns:ber="http://www.berit.com/ber"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <ber:version>
+    <ber:metadata>1</ber:metadata>
+    <ber:minClient>8888</ber:minClient>
+    <ber:minAS>137011</ber:minAS>
+  </ber:version>
+  <unavailableFunctions>
+    <module name="Module1">
+      <function name="Function1" />
+      <function name="Function2" />
+    </module>
+    <module name="Module2">
+      <function name="Function3" />
+    </module>
+  </unavailableFunctions>
+  <ber:parameterArray>
+    <parameter name="toms_encoding" value="win-1250" />
+    <parameter name="as_timeout" value="666666" />
+    <parameter name="automatic_download_relations" value="true" />
+    <parameter name="long_transactions" value="false" />
+    <parameter name="explorer_max_scale" value="1" />
+    <parameter name="uStn_respect_backdrop_GO" value="true" />
+    <parameter name="uStn_master_units" value="m" />
+    <parameter name="uStn_sub_units" value="mm" />
+    <parameter name="uStn_working_per_master" value="1000" />
+    <parameter name="uStn_3d_seed_file" value="false" />
+    <parameter name="project_info" value="https://ce.asseco.com/cz/reseni/statni-sprava/geograficke-informacni-systemy/samo-lids-457/"/>
+    <parameter name="project_info_time" value="2021-01-01 00:00:00"/>
+  </ber:parameterArray>
+</ber:modelExplorer>

@@ -1,0 +1,11 @@
+{
+  "configurationComponent": "dynamic-app",
+  "configurationParts": [
+    "samo-training"
+  ],
+  "components": {
+    "dependencies": {
+      "@samo/dynamic-app": "${dynamic_app_version}"
+    }
+  }
+}

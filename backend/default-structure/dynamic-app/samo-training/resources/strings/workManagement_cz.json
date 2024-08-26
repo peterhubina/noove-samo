@@ -1,0 +1,31 @@
+{
+  "workManagement": {
+    "workManagement": "Řízení prací",
+    "inspectionsNew": "Nové kontroly",
+    "planningBoard": "Plánovací tabule",
+    "planningBoardDescript": "Plánovací tabule pro kontroly připravené k plánování",
+    "inspections": "Kontroly",
+    "inspectionDescript": "Přehled kontrol",
+    "showInspection": "Ukázat kontroly",
+    "completeInspection": "Dokončit kontrolu",
+    "inspectionEnd": "Datum kontroly",
+    "description": "Popis",
+    "inspectionsTypes": "Typy kontrol",
+    "inspectionsTypesDescript": "Přehled typů kontrol"
+  },
+  "time": {
+    "day": "Den",
+    "twoDays": "Dva dny",
+    "workWeek": "Pracovní týden",
+    "week": "Týden"
+  },
+  "resources": {
+    "title": "Zdroje"
+  },
+  "workflow": {
+    "readyForScheduling": "Připraveno k plánování",
+    "scheduled": "Naplánováno",
+    "inProgress": "V procesu",
+    "done": "Dokončeno"
+  }
+}

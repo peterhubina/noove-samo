@@ -1,0 +1,13 @@
+{
+  "mapApplication": {
+    "mapApplication": "Map application",
+    "browser": "Map Viewer",
+    "by": "by",
+    "type": "type",
+    "externalLayers": "External layers",
+    "cadastreMap": "Cadastral map",
+    "dmrWithHillshade": "DMR with hillshade",
+    "hillshade": "Hillshade",
+    "ortophoto": "Ortophotomap"
+  }
+}

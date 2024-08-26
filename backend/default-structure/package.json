@@ -1,0 +1,8 @@
+{
+  "name": "@samo/configuration",
+  "version": "1.0.0",
+  "configurationPackage": true,
+  "dependencies": {
+    "@samo/samo-base": "^11.0.0"
+  }
+}

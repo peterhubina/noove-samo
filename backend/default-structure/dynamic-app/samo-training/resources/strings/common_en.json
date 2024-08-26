@@ -1,0 +1,122 @@
+{
+  "adminModules": {
+    "cascade": "Cascade"
+  },
+  "assecoNews": "Asseco news",
+  "assignments": {
+    "assign_from_entity_cart": "assign from entity cart",
+    "remove_from_cart": "remove from cart"
+  },
+  "cart": {
+    "add": "Add to cart"
+  },
+  "cockpit": "Cockpit",
+  "cockpit_description": "Everyday starting point",
+  "code": "code",
+  "common": {
+    "changeHistory": "History of changes",
+    "comments": "Comments",
+    "attachments": "Attachments",
+    "and": "and",
+    "auto": "auto",
+    "errors": {
+      "unknown": "Something weird is going on in here",
+      "unsuccessfulOperation": "Operation failed"
+    },
+    "list": "list",
+    "list3": "list",
+    "login": "Login",
+    "optional": "optional",
+    "table": "table",
+    "tiles": "tiles"
+  },
+  "created": "created",
+  "dashboard": {
+    "colors": "Colors",
+    "entitiesGroup": "Entities group",
+    "image": "Path to image",
+    "messages": "Messages",
+    "messagesCount": "Number of messages",
+    "other": "Other",
+    "query": "Query",
+    "title": "Title",
+    "type": "Type",
+    "url": "URL of link",
+    "viewAllPage": "Page for display all messages",
+    "width": "Width"
+  },
+  "documents": "documents",
+  "editGroup": "Edit group",
+  "editLink": "Edit link",
+  "favouriteLinks": "Favourite links",
+  "help": {
+    "about": {
+      "title": "About"
+    },
+    "userGuide": {
+      "title": "User Guide"
+    }
+  },
+  "info": "Info",
+  "overview": "Overview",
+  "lastmodified": "last modified",
+  "maintenance": {
+    "maintenance": "Maintenance",
+    "workOrders": "Work orders",
+    "workOrders_description": "Entering and managing work on defects."
+  },
+  "messages": {
+    "acknowledged_messages": "Acknowledged messages",
+    "add_label": "Add label",
+    "body": "Body",
+    "email": "e-mail",
+    "filter_messages": "Filter messages",
+    "message": "message",
+    "recentMessagesDescription": "Recent messages module",
+    "show_messages_marked_with_labels": "Show messages marked with labels",
+    "sms": "SMS",
+    "to": "To"
+  },
+  "moveLink": "Move link",
+  "multipleEntities": "Multiple entities",
+  "newEmail": "New email",
+  "noItems": "There are no items",
+  "orgunit": "org. unit",
+  "pendingtasks": "pending tasks",
+  "position": "Position",
+  "process": {
+    "process_not_found": "Process not found"
+  },
+  "rememberMe": "Remember my login",
+  "removeAllSelectedItems": "Remove the selected items",
+  "removeGroup": "Remove group",
+  "removeLink": "Remove link",
+  "reports": {
+    "generateReport": "Generate report",
+    "YEAR": "Report year"
+  },
+  "searchInput": {
+    "advancedfilter": "Advanced filter",
+    "mapselect": "Select in Map"
+  },
+  "sendEmail": "Send email",
+  "sessionExpired": "Your session has expired. <br /> Click here to reload the page.",
+  "sessionWarning": "Your session will expire in {0}. <br /> Click here to refresh the session.",
+  "set": "set",
+  "state": "state",
+  "task": {
+    "updated": "updated",
+    "updatedBy": "updated by"
+  },
+  "totalCount": "Total count",
+  "userProfile": {
+    "userRoles": "User roles"
+  },
+  "violatedValidationRules": "The form does not meet some validation rules. Click here for more information.",
+  "weather": "Weather",
+  "workflow": {
+    "runningProcesses": "running processes",
+    "tasks": "tasks",
+    "workflow": "Workflow"
+  }
+}

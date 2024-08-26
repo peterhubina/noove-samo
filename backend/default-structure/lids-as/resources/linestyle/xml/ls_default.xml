@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ber:lineStyleDefinition xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:se="http://www.opengis.net/se" xmlns:ber="http://www.berit.com/ber" version="2.0.0">
+  <ber:componentArray>
+    <ber:component id="style_0" uom="http://www.opengeospatial.org/se/units/pixel">
+      <ber:stroke-dasharray>1000</ber:stroke-dasharray>
+      <ber:segmentMode>continue</ber:segmentMode>
+      <ber:requiredLength>1000</ber:requiredLength>
+      <ber:outOfStrokeGlue>solid</ber:outOfStrokeGlue>
+    </ber:component>
+    <ber:component id="style_1" uom="http://www.opengeospatial.org/se/units/pixel">
+      <ber:stroke-dasharray>6 -4</ber:stroke-dasharray>
+      <ber:segmentMode>continue</ber:segmentMode>
+      <ber:requiredLength>6</ber:requiredLength>
+      <ber:outOfStrokeGlue>solid</ber:outOfStrokeGlue>
+    </ber:component>
+    <ber:component id="style_2" uom="http://www.opengeospatial.org/se/units/pixel">
+      <ber:stroke-dasharray>10 -7</ber:stroke-dasharray>
+      <ber:segmentMode>continue</ber:segmentMode>
+      <ber:requiredLength>12</ber:requiredLength>
+      <ber:outOfStrokeGlue>solid</ber:outOfStrokeGlue>
+    </ber:component>
+    <ber:component id="style_3" uom="http://www.opengeospatial.org/se/units/pixel">
+      <ber:stroke-dasharray>18 -13</ber:stroke-dasharray>
+      <ber:segmentMode>continue</ber:segmentMode>
+      <ber:requiredLength>18</ber:requiredLength>
+      <ber:outOfStrokeGlue>solid</ber:outOfStrokeGlue>
+    </ber:component>
+    <ber:component id="style_4" uom="http://www.opengeospatial.org/se/units/pixel">
+      <ber:stroke-dasharray>14 -5 2 -5</ber:stroke-dasharray>
+      <ber:segmentMode>continue</ber:segmentMode>
+      <ber:requiredLength>10</ber:requiredLength>
+      <ber:outOfStrokeGlue>solid</ber:outOfStrokeGlue>
+    </ber:component>
+    <ber:component id="style_5" uom="http://www.opengeospatial.org/se/units/pixel">
+      <ber:stroke-dasharray>10 -10</ber:stroke-dasharray>
+      <ber:segmentMode>continue</ber:segmentMode>
+      <ber:requiredLength>10</ber:requiredLength>
+      <ber:outOfStrokeGlue>solid</ber:outOfStrokeGlue>
+    </ber:component>
+    <ber:component id="style_6" uom="http://www.opengeospatial.org/se/units/pixel">
+      <ber:stroke-dasharray>10 -5 2 -5 2 -5</ber:stroke-dasharray>
+      <ber:segmentMode>continue</ber:segmentMode>
+      <ber:requiredLength>8</ber:requiredLength>
+      <ber:outOfStrokeGlue>solid</ber:outOfStrokeGlue>
+    </ber:component>
+    <ber:component id="style_7" uom="http://www.opengeospatial.org/se/units/pixel">
+      <ber:stroke-dasharray>10 -5 4 -5</ber:stroke-dasharray>
+      <ber:segmentMode>continue</ber:segmentMode>
+      <ber:requiredLength>10</ber:requiredLength>
+      <ber:outOfStrokeGlue>solid</ber:outOfStrokeGlue>
+    </ber:component>
+  </ber:componentArray>
+  <ber:lineStyleArray>
+    <!-- ber:lineStyle id="ls_0">
+      <ber:components>
+        <ber:component refId="style_0">
+          <ber:perpendicularOffset>0</ber:perpendicularOffset>
+        </ber:component>
+      </ber:components>
+    </ber:lineStyle-->
+    <ber:lineStyle id="ls_1">
+      <ber:components>
+        <ber:component refId="style_1">
+          <ber:perpendicularOffset>0</ber:perpendicularOffset>
+        </ber:component>
+      </ber:components>
+    </ber:lineStyle>
+    <ber:lineStyle id="ls_2">
+      <ber:components>
+        <ber:component refId="style_2">
+          <ber:perpendicularOffset>0</ber:perpendicularOffset>
+        </ber:component>
+      </ber:components>
+    </ber:lineStyle>
+    <ber:lineStyle id="ls_3">
+      <ber:components>
+        <ber:component refId="style_3">
+          <ber:perpendicularOffset>0</ber:perpendicularOffset>
+        </ber:component>
+      </ber:components>
+    </ber:lineStyle>
+    <ber:lineStyle id="ls_4">
+      <ber:components>
+        <ber:component refId="style_4">
+          <ber:perpendicularOffset>0</ber:perpendicularOffset>
+        </ber:component>
+      </ber:components>
+    </ber:lineStyle>
+    <ber:lineStyle id="ls_5">
+      <ber:components>
+        <ber:component refId="style_5">
+          <ber:perpendicularOffset>0</ber:perpendicularOffset>
+        </ber:component>
+      </ber:components>
+    </ber:lineStyle>
+    <ber:lineStyle id="ls_6">
+      <ber:components>
+        <ber:component refId="style_6">
+          <ber:perpendicularOffset>0</ber:perpendicularOffset>
+        </ber:component>
+      </ber:components>
+    </ber:lineStyle>
+    <ber:lineStyle id="ls_7">
+      <ber:components>
+        <ber:component refId="style_7">
+          <ber:perpendicularOffset>0</ber:perpendicularOffset>
+        </ber:component>
+      </ber:components>
+    </ber:lineStyle>
+  </ber:lineStyleArray>
+</ber:lineStyleDefinition>

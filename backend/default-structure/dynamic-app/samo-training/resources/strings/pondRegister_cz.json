@@ -1,0 +1,29 @@
+{
+    "pondRegister": {
+        "pondsRegister": "Registr rybníků",
+        "pond": "Rybník",
+        "ponds": "Rybníky",
+        "fish": "Ryba",
+        "fishes": "Ryby",
+        "amount": "Množstvo rýb:",
+        "managedPonds": "Spravované rybníky",
+        "listFish": "Ryby v rybníku",
+        "fishOverview": "Obsahuje přehled všech ryb.",
+        "pondOverview": "Obsahuje přehled všech rybníků.",
+        "drainPond": "Vypustit rybník",
+        "fillPond": "Napustit rybník",
+        "note": "Poznámka",
+        "basicInfo": "Základné informácie o rybníku",
+        "detailInfo": "Detailné informácie o rybníku",
+        "positionInfo": "Informácie o pozícii rybníku",
+        "dateInfo": "Informácie o dátumoch",
+        "sum": "Sumár",
+        "optional": "Voliteľné",
+        "addFish": "Nový druh ryby v rybníku",
+        "addPond": "Nový rybník",
+        "sponsors": "Sponzoři"
+    },
+    "messageLabels": {
+      "pond": "Rybník"
+    }
+}

@@ -2,10 +2,14 @@ import OpenAI from 'openai';
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
-import {zodResponseFormat} from "openai/helpers/zod";
-import {modelSchema} from "./generate/model/modelSchema";
+import { zodResponseFormat } from "openai/helpers/zod";
 
-import {rootSchema} from "./generate/globalSchema";
+import { rootSchema } from "./generate/globalSchema";
+import createProjectConfiguration from "./copyFolderStructure";
+import { generateSchema } from './schema';
+import { generateEntities } from './generateEntities';
+import generateMetadata from "./generateMainConfiguration";
+import { generateDynamicApp } from './generate';
 
 const nunjucks = require('nunjucks');
 
@@ -15,7 +19,9 @@ const client = new OpenAI({
 
 const projectSpecification = fs.readFileSync('text.txt', 'utf-8');
 const namingConventions = fs.readFileSync('data/conventions.txt', 'utf-8');
-const configurationFiles = fs.readFileSync('data/configurationFiles.txt', 'utf-8');
+const modelExample = fs.readFileSync('data/model.txt', 'utf-8');
+
+const configurationPath = path.join(__dirname, 'configuration');
 
 // Function to encode an image to Base64
 const encodeImage = (imagePath: string): string => {
@@ -26,6 +32,8 @@ const encodeImage = (imagePath: string): string => {
 const prompt = 'Analyze the images with project specification and output as .json';
 
 async function main() {
+  const start = performance.now();
+
   try {
     const imagesDir = path.join(__dirname, 'images');
     const imageFiles = fs.readdirSync(imagesDir);
@@ -64,10 +72,9 @@ async function main() {
                   Project specification: ${projectSpecification}
                   You should preserve naming conventions that are described here: ${namingConventions}.
                   
-                  The .json file should contain all the necessary data to generate these configuration files:
-                  model.xml, option.xml, presentation.xml, resouce.xml, thematization.xml, and tool.xml.
+                  The .json file should contain all the necessary data to generate model.xml configuration file.
                   
-                  Example of project configuration files: ${configurationFiles}`,
+                  Example of model.xml configuration file: ${modelExample}`,
       },
       {
         role: 'user',
@@ -84,32 +91,48 @@ async function main() {
       response_format: zodResponseFormat(rootSchema, 'schema'),
     });
 
-    const content : string = result.choices[0].message?.content || '';
-    let jsonObject = JSON.parse(content);
+    const content: string = result.choices[0].message?.content || '';
+    let jsonOutput = JSON.parse(content);
 
-    const template = fs.readFileSync('generate/model/template.xml', 'utf-8');
+    const modelTemplate = fs.readFileSync('generate/model/template.xml', 'utf-8');
 
-    const output = nunjucks.renderString(template, jsonObject);
+    const model = nunjucks.renderString(modelTemplate, jsonOutput);
 
-    const now = new Date();
-    const dateString = now.toISOString().replace(/:/g, '-');
-    const outputPath = path.join(__dirname, 'output', `output-${dateString}.json`);
+    const outputPath = path.join(__dirname, 'output', `output.json`);
+    const sourceDir = path.resolve(__dirname, 'default-structure');
 
-    fs.writeFileSync(path.join(__dirname, 'output', `model-${dateString}.xml`), output);
+    // create project configuration folder with default structure
+    createProjectConfiguration(sourceDir, configurationPath);
+    console.log('Project structure created successfully.');
+
+    // save model.xml
+    fs.writeFileSync(path.join(configurationPath, 'lids-as', `model.xml`), model);
 
     if (!fs.existsSync(path.join(__dirname, 'output'))) {
       fs.mkdirSync(path.join(__dirname, 'output'));
     }
 
-    fs.writeFileSync(outputPath, JSON.stringify(jsonObject, null, 2));
-    console.log(`Output saved to ${outputPath}`);
+    fs.writeFileSync(outputPath, JSON.stringify(jsonOutput, null, 2));
+    console.log(`model.json saved to ${outputPath}`);
+
+    // generate entity .json files
+    await generateEntities();
+
+    await generateMetadata(outputPath);
+
+    await generateSchema();
+    await generateDynamicApp();
 
     // Log input and output token sizes
-    console.log(`Input token size: ${result.usage?.prompt_tokens || 'N/A'}`);
-    console.log(`Output token size: ${result.usage?.completion_tokens || 'N/A'}`);
+    // console.log(`Input token size: ${result.usage?.prompt_tokens || 'N/A'}`);
+    // console.log(`Output token size: ${result.usage?.completion_tokens || 'N/A'}`);
   } catch (error) {
     console.error('Error generating or saving output:', error);
   }
+
+  const end = performance.now();
+
+  console.log('Project configuration created. Time to complete: ', end - start, ' seconds');
 }
 
 main();

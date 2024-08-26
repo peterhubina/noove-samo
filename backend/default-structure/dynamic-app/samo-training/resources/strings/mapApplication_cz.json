@@ -1,0 +1,15 @@
+{
+    "mapApplication": {
+      "mapApplication": "Mapová aplikace",
+      "browser": "Mapový prohlížeč",
+      "by": "podle",
+      "type": "typu",
+      "externalLayers": "Externí vrstvy",
+      "cadastreMap": "Katastrální mapa",
+      "dmrWithHillshade": "DMR se stínovaným reliefem",
+      "hillshade": "Stínovaný relief",
+      "ortophoto": "Ortofotomozaika"
+
+    }
+  }
+

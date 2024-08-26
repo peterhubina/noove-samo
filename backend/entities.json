@@ -1,0 +1,116 @@
+{
+  "entities": [
+    {
+      "fileName": "ft_boPond.json",
+      "name": "boPond",
+      "extends": "abs_ft_5000002",
+      "triggers": [
+        {
+          "type": "event",
+          "eventType": "pondCreated",
+          "include": [],
+          "actions": [
+            "allocationCreated"
+          ]
+        },
+        {
+          "type": "event",
+          "eventType": "pondUpdated",
+          "include": [],
+          "actions": [
+            "allocationStateUpdated"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "title": "Maintain Pond",
+          "access": [
+            "admin",
+            "manager"
+          ],
+          "steps": [
+            {
+              "type": "updateStatus",
+              "arguments": [
+                "maintainanceStarted"
+              ],
+              "source": "{@packageRoot(@samo/samo-training)}/scripts/ap_boPond/updateStatus.js"
+            },
+            {
+              "type": "notify",
+              "arguments": [
+                "maintenanceTeam"
+              ],
+              "source": "{@packageRoot(@samo/samo-training)}/scripts/ap_boPond/notify.js"
+            }
+          ],
+          "confirm": true,
+          "confirmMessage": "Do you want to start maintenance?",
+          "includeConditions": [],
+          "conditions": [],
+          "includeStates": []
+        }
+      ],
+      "stateAttributes": [
+        {
+          "stateAttribute": "status",
+          "stateCodeProperty": "code",
+          "stateTitleProperty": "title"
+        }
+      ],
+      "workflow": [
+        {
+          "entrypoint": "notStarted",
+          "states": [
+            {
+              "transitions": [
+                "inProgress",
+                "completed"
+              ],
+              "symbology": {
+                "bgColor": "#009688",
+                "fgColor": "#FFFFFF"
+              }
+            },
+            {
+              "transitions": [
+                "completed"
+              ],
+              "symbology": {
+                "bgColor": "#FF5722",
+                "fgColor": "#FFFFFF"
+              }
+            },
+            {
+              "transitions": [],
+              "symbology": {
+                "bgColor": "#4CAF50",
+                "fgColor": "#FFFFFF"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "statusCheck",
+          "operator": "equals",
+          "value": 1,
+          "properties": [
+            "status"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "type": "update",
+          "arguments": [
+            "status"
+          ],
+          "source": "{@packageRoot(@samo/samo-training)}/scripts/ap_/update.js"
+        }
+      ]
+    }
+  ]
+}
