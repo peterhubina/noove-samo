@@ -31,9 +31,17 @@
       <div class="bg-white p-4 flex flex-col gap-6 h-min rounded">
         <h3 class="text-lg font-medium">Company Details</h3>
         <q-form @submit="onSubmit" class="flex flex-col gap-2">
-          <q-input outlined v-model="companyName" label="Company Name" type="text" name="name" class="mb-4"/>
-          <q-input outlined v-model="email" label="Email Address" type="email" name="email" class="mb-4"/>
-          <q-input outlined v-model="password" label="Password" :type="showPassword ? 'text' : 'password'">
+          <p>Company Name</p>
+          <q-input outlined :disable="changeInformation" aria-label="Company Name" v-model="companyName" type="text"
+                   name="name"
+                   class="mb-4 text-base"/>
+          <p>Email</p>
+          <q-input aria-label="email" outlined :disable="changeInformation" v-model="email" type="email" name="email"
+                   class="mb-4 text-base"/>
+          <p>Password</p>
+          <q-input aria-label="password" outlined :disable="changeInformation" v-model="password"
+                   :type="showPassword ? 'text' : 'password'"
+                   class="text-base">
             <template v-slot:append>
               <q-icon :name="showPassword ? 'visibility_off' : 'visibility'" @click="togglePasswordVisibility"
                       class="cursor-pointer"/>
@@ -42,7 +50,10 @@
           <div class="flex items-center justify-end mb-4">
             <router-link to="/reset-password" class="text-primary">Reset Password</router-link>
           </div>
-          <q-btn unelevated no-caps color="primary" label="Update Company Information" type="submit"
+          <q-btn unelevated no-caps :outline="!!changeInformation" color="primary"
+                 @click="enableChange"
+                 :label="changeInformation? 'Change Information':'Update Company Information'"
+                 :type="changeInformation? '' : 'submit'"
                  class="p-4 px-8 text-base font-medium rounded self-end"/>
         </q-form>
       </div>
@@ -59,18 +70,27 @@ defineOptions({
   name: 'ProfilePage',
 })
 
-const companyName = ref('')
-const email = ref('')
+const authStore = useAuthStore();
+
+const companyName = ref(authStore.user.companyName);
+const email = ref(authStore.user.email);
 const password = ref('')
 const showPassword = ref(false)
+const changeInformation = ref(true);
 
 function togglePasswordVisibility() {
   showPassword.value = !showPassword.value;
 }
 
+const enableChange = () => {
+  changeInformation.value = !changeInformation.value;
+}
+
 async function onSubmit() {
   const emailError = validateEmail(email.value);
   const passwordError = validatePassword(false, password.value);
+
+  // TODO: handle profile info logic
 
   if (emailError || passwordError) {
     this.$q.notify({
@@ -87,17 +107,15 @@ async function onSubmit() {
       password: this.password
     });
 
-    const authStore = useAuthStore();
-
     authStore.login({
       token: response.data.token,
       user: response.data.user,
     });
 
-    this.$q.notify({ type: 'positive', message: response.data.message, position: 'top' });
+    this.$q.notify({type: 'positive', message: response.data.message, position: 'top'});
     this.$router.push('/')
   } catch (error) {
-    this.$q.notify({ type: 'negative', message: error.response.data.message, position: 'top' });
+    this.$q.notify({type: 'negative', message: error.response.data.message, position: 'top'});
   }
 }
 

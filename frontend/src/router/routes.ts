@@ -9,7 +9,6 @@ import CreatePage from 'pages/CreatePage.vue';
 import ConfigurationsPage from 'pages/ConfigurationsPage.vue';
 import HowToUsePage from 'pages/HowToUsePage.vue';
 import ProfilePage from 'pages/ProfilePage.vue';
-import ConfigurationPage from 'pages/ConfigurationPage.vue';
 import { useAuthStore } from 'stores/auth';
 import UploadSpecification from 'components/UploadSpecification.vue';
 
@@ -27,6 +26,7 @@ const routes: RouteRecordRaw[] = [
     component: DashboardLayout,
     beforeEnter: (to, from, next) => {
       const authStore = useAuthStore();
+      authStore.checkAuth()
       if (!authStore.isAuthenticated) {
         next('/login'); // Redirect to login if not authenticated
       } else {
@@ -35,7 +35,6 @@ const routes: RouteRecordRaw[] = [
     },
     children: [
       { path: '', redirect: '/dashboard/create' },
-      { path: 'configuration', component: ConfigurationPage },
       { path: 'create', component: CreatePage },
       { path: 'upload', component: UploadSpecification },
       { path: 'configurations', component: ConfigurationsPage },

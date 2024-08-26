@@ -28,9 +28,3 @@ withDefaults(defineProps<EssentialLinkProps>(), {
   icon: ''
 });
 </script>
-
-<style scoped>
-.active-link img svg {
-  fill: #1D1D1D;
-}
-</style>

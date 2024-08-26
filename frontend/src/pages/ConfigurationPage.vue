@@ -5,7 +5,7 @@
       <!-- Main Content -->
       <div class="col-10">
         <div class="q-pa-md">
-          <ConfigurationStepper />
+          <ConfigurationStepper/>
         </div>
       </div>
     </div>
@@ -14,7 +14,6 @@
 
 <script>
 import ConfigurationStepper from 'src/components/ConfigurationStepper.vue';
-//import TinkeringComponent from 'components/TinkeringComponent.vue';
 
 export default {
   name: 'ConfigurationPage',
@@ -23,10 +22,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.q-page {
-  min-height: 100vh;
-  background-color: #f5f5f5;
-}
-</style>
