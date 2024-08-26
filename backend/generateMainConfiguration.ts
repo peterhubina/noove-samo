@@ -3,9 +3,6 @@ import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 import {zodResponseFormat} from "openai/helpers/zod";
-import {modelSchema} from "./generate/model/modelSchema";
-
-//import {rootSchema} from "./generate/globalSchema";
 import {rootSchema} from "./generate/secondSchema";
 
 const nunjucks = require('nunjucks');
@@ -18,10 +15,7 @@ const projectSpecification = fs.readFileSync('text.txt', 'utf-8');
 const namingConventions = fs.readFileSync('data/conventions.txt', 'utf-8');
 const configurationFiles = fs.readFileSync('data/configurationFiles.txt', 'utf-8');
 
-const prompt = 'Analyze the object specification and output as .json';
-
-const userPrompt = `The .json file should contain all the necessary data to generate these configuration files:
-                    option.xml, presentation.xml, resouce.xml, thematization.xml, and tool.xml.`
+const prompt = 'Analyze the project specification and output as .json';
 
 async function generateMetadata(modelPath: string) {
     try {
@@ -30,8 +24,8 @@ async function generateMetadata(modelPath: string) {
         const messages: any = [
             {
                 role: "system",
-                content: `You are a helpful assistant designed to analyze Project Specification to produce a JSON schema
-                          with other properties for the project.
+                content: `You are a helpful assistant designed to analyze Project Specification to create a .json
+                          with necessary properties for the project.
                   
                   Project specification: ${projectSpecification}
                   You should preserve naming conventions that are described here: ${namingConventions}.
@@ -60,28 +54,20 @@ async function generateMetadata(modelPath: string) {
         const content : string = result.choices[0].message?.content || '';
         let jsonObject = JSON.parse(content);
 
-        //const template = fs.readFileSync('generate/model/template.xml', 'utf-8');
-
-        //const output = nunjucks.renderString(template, jsonObject);
-
-        const now = new Date();
-        const dateString = now.toISOString().replace(/:/g, '-');
-        const outputPath = path.join(__dirname, 'output', `output-${dateString}.json`);
-
-        //fs.writeFileSync(path.join(__dirname, 'output', `model-${dateString}.xml`), output);
+        const outputPath = path.join(__dirname, 'output', `metadata.json`);
 
         if (!fs.existsSync(path.join(__dirname, 'output'))) {
             fs.mkdirSync(path.join(__dirname, 'output'));
         }
 
         fs.writeFileSync(outputPath, JSON.stringify(jsonObject, null, 2));
-        console.log(`Output saved to ${outputPath}`);
+        console.log(`metadata.json saved to ${outputPath}`);
 
         // Log input and output token sizes
         console.log(`Input token size: ${result.usage?.prompt_tokens || 'N/A'}`);
         console.log(`Output token size: ${result.usage?.completion_tokens || 'N/A'}`);
 
-        main(outputPath);
+        await renderAndSaveXML(jsonObject);
     } catch (error) {
         console.error('Error generating or saving output:', error);
     }
@@ -108,16 +94,6 @@ async function renderAndSaveXML(jsonData: any) {
         const outputPath = path.join(__dirname, 'configuration', 'lids-as', outputFileName);
         fs.writeFileSync(outputPath, output);
         console.log(`Output saved to ${outputPath}`);
-    }
-}
-
-// Read JSON data and render XML files
-async function main(outputPath: string) {
-    try {
-        const jsonData = JSON.parse(fs.readFileSync(outputPath, 'utf-8'));
-        await renderAndSaveXML(jsonData);
-    } catch (error) {
-        console.error('Error rendering or saving XML files:', error);
     }
 }
 

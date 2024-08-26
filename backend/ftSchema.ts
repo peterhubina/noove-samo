@@ -3,22 +3,20 @@ import Case from "case";
 
 const defaultActions = z.enum(['entityCreated', 'entityAttributeUpdated', 'entityDeleted']);
 
-// Step schema
 export const step = (entityName: string) => z.object({
     type: z.string(),
     arguments: z.array(z.string()).optional(),
 }).transform((data) => {
     return {
         ...data,
-        source: `{@packageRoot(@samo/samo-training)}/scripts/ap_${Case.camel(entityName)}/${data.type}.js`
+        source: `{@packageRoot(@samo/configuration)}/scripts/ap_${Case.camel(entityName)}/${data.type}.js`
     };
 });
 
-// Action schema
 export const action = (entityName: string) => z.object({
     title: z.string().optional(),
     access: z.array(z.string()),
-    steps: z.array(step(entityName)),  // Inject entity name into step schema
+    steps: z.array(step(entityName)),
     confirm: z.boolean().optional(),
     confirmMessage: z.string().optional(),
     includeConditions: z.array(z.string()).optional(),
@@ -26,7 +24,6 @@ export const action = (entityName: string) => z.object({
     includeStates: z.array(z.string()).optional(),
 });
 
-// Entity schema
 export const entity = () => z.object({
     name: z.string(),
     extends: z.string(),
@@ -36,7 +33,7 @@ export const entity = () => z.object({
         include: z.array(z.string()),
         actions: z.array(z.string()),
     })).optional(),
-    actions: z.array(action('')).optional(),  // Placeholder, will be overridden in transform
+    actions: z.array(action('')).optional(),
     stateAttributes: z.array(z.object({
         stateAttribute: z.string(),
         stateCodeProperty: z.string(),
@@ -58,7 +55,7 @@ export const entity = () => z.object({
         value: z.number().optional(),
         properties: z.array(z.string()),
     })).optional(),
-    steps: z.array(step('')).optional(),  // Placeholder, will be overridden in transform
+    steps: z.array(step('')).optional(),
 }).transform((data) => {
     const cleanedName = data.name.replace(/^ft_/, '');
 

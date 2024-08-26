@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import fs from "fs";
-import {zodResponseFormat} from "openai/helpers/zod";
-import {schema, entity as entitySchema} from "./ftSchema";
+import { zodResponseFormat } from "openai/helpers/zod";
+import { schema } from "./ftSchema";
 import path from "path";
 
 import "dotenv/config";
@@ -74,17 +74,12 @@ function createFiles() {
 
     parsedData.entities.forEach((entity: Entity) => {
 
-        //const parsedEntity = entitySchema().parse(entity);
-        const { fileName, name, ...entityData } = entity;  // Destructure and exclude fileName and name
+        const { fileName, name, ...entityData } = entity;
         const filePath = path.join(basePath, `ap_${name}`, fileName);
 
-        // Write the JSON file
         fs.writeFileSync(filePath, JSON.stringify(entityData, null, 2));
         console.log(`Created ${fileName}`);
     });
 
     console.log('All entities have been created.');
 }
-
-generateEntities();
-//createFiles();
