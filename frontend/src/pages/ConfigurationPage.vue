@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-none">
+  <div class="q-pa-none">
     <div class="row no-wrap">
 
       <!-- Main Content -->
@@ -9,7 +9,7 @@
         </div>
       </div>
     </div>
-  </q-page>
+  </div>
 </template>
 
 <script>

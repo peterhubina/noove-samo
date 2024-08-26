@@ -1,20 +1,11 @@
 <template>
-  <q-item
-    clickable
-    tag="a"
-    target="_blank"
-    :href="link"
-  >
-    <q-item-section
-      v-if="icon"
-      avatar
-    >
-      <q-icon :name="icon" />
+  <q-item clickable :to="link" active-class="bg-dashboard-active font-medium active-link" class="rounded">
+    <q-item-section v-if="icon" avatar>
+      <img :src="icon" alt="icon">
     </q-item-section>
 
     <q-item-section>
-      <q-item-label>{{ title }}</q-item-label>
-      <q-item-label caption>{{ caption }}</q-item-label>
+      <q-item-label class="text-base">{{ title }}</q-item-label>
     </q-item-section>
   </q-item>
 </template>
@@ -25,15 +16,21 @@ defineOptions({
 });
 
 export interface EssentialLinkProps {
+  id: number;
   title: string;
-  caption?: string;
-  link?: string;
+  link: string;
+  active: boolean;
   icon?: string;
-};
+}
 
 withDefaults(defineProps<EssentialLinkProps>(), {
-  caption: '',
   link: '#',
-  icon: '',
+  icon: ''
 });
 </script>
+
+<style scoped>
+.active-link img svg {
+  fill: #1D1D1D;
+}
+</style>

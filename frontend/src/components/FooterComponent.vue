@@ -1,7 +1,7 @@
 <template>
   <footer class="flex flex-col gap-8 lg:gap-0 py-8 lg:py-0 lg:flex-row justify-between items-center px-20 lg:h-20 bg-footer">
     <a href="https://ce.asseco.com/">
-      <img src="src/assets/asseco.svg" alt="Logo">
+      <img src="../assets/logo/asseco.svg" alt="Logo">
     </a>
     <p class="text-white font-light sm:text-base text-center">© All rights reserved to Asseco Central Europe 2024</p>
     <div class="flex gap-2 items-center justify-center">

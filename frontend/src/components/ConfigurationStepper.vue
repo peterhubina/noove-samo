@@ -1,16 +1,16 @@
 <template>
-  <q-page class="q-pa-none">
+  <div class="q-pa-none">
     <div class="row no-wrap">
       <!-- Sidebar -->
 
       <div class="col-2 bg-grey-2 q-pa-sm">
         <div class="q-mb-md text-center">
-          <img src="https://via.placeholder.com/150" alt="WebbyFrames Logo" />
+          <img src="https://via.placeholder.com/150" alt="WebbyFrames Logo"/>
         </div>
         <q-list bordered separator>
           <q-item clickable v-ripple>
             <q-item-section avatar>
-              <q-icon name="person" />
+              <q-icon name="person"/>
             </q-item-section>
             <q-item-section>
               <q-item-label>Create</q-item-label>
@@ -18,7 +18,7 @@
           </q-item>
           <q-item clickable v-ripple>
             <q-item-section avatar>
-              <q-icon name="tune" />
+              <q-icon name="tune"/>
             </q-item-section>
             <q-item-section>
               <q-item-label>Configurations</q-item-label>
@@ -26,7 +26,7 @@
           </q-item>
           <q-item clickable v-ripple>
             <q-item-section avatar>
-              <q-icon name="info" />
+              <q-icon name="info"/>
             </q-item-section>
             <q-item-section>
               <q-item-label>About</q-item-label>
@@ -46,11 +46,11 @@
               <div class="bg-white q-pa-lg q-mt-md q-mb-lg" style="border-radius: 8px;">
                 <p class="text-center text-blue text-caption">UPLOAD</p>
                 <h4 class="q-mb-md">Upload your specification</h4>
-                <q-btn label="Upload" flat color="primary" />
+                <q-btn label="Upload" flat color="primary"/>
                 <div class="q-my-md">
-                  <q-img src="https://via.placeholder.com/600x200" ratio="4/3" />
+                  <q-img src="https://via.placeholder.com/600x200" ratio="4/3"/>
                 </div>
-                <q-btn color="primary" label="Analyze" @click="nextStep" />
+                <q-btn color="primary" label="Analyze" @click="nextStep"/>
               </div>
             </q-step>
 
@@ -77,8 +77,8 @@
                   </q-expansion-item>
                 </q-list>
                 <div class="flex pt-6 justify-between">
-                  <q-btn label="Back" color="secondary" @click="prevStep" />
-                  <q-btn color="primary" label="Generate Configuration" @click="nextStep" />
+                  <q-btn label="Back" color="secondary" @click="prevStep"/>
+                  <q-btn color="primary" label="Generate Configuration" @click="nextStep"/>
                 </div>
               </div>
             </q-step>
@@ -94,11 +94,11 @@
                 </div>
                 <div class="row justify-around q-mb-lg">
                   <div v-for="i in 4" :key="i" class="col-3">
-                    <q-img src="https://via.placeholder.com/150" ratio="4/3" />
+                    <q-img src="https://via.placeholder.com/150" ratio="4/3"/>
                   </div>
                 </div>
                 <div class="flex flex-center">
-                  <q-btn color="primary" label="Download Configuration" @click="downloadConfiguration" />
+                  <q-btn color="primary" label="Download Configuration" @click="downloadConfiguration"/>
                 </div>
               </div>
             </q-step>
@@ -106,7 +106,7 @@
         </div>
       </div>
     </div>
-  </q-page>
+  </div>
 </template>
 
 <script>
@@ -131,10 +131,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.q-page {
-  min-height: 100vh;
-  background-color: #f5f5f5;
-}
-</style>
