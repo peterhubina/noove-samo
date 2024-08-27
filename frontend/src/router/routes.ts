@@ -10,7 +10,6 @@ import ConfigurationsPage from 'pages/ConfigurationsPage.vue';
 import HowToUsePage from 'pages/HowToUsePage.vue';
 import ProfilePage from 'pages/ProfilePage.vue';
 import { useAuthStore } from 'stores/auth';
-import UploadSpecification from 'components/UploadSpecification.vue';
 
 const routes: RouteRecordRaw[] = [
   { path: '/', component: HomePage },
@@ -36,7 +35,6 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: '', redirect: '/dashboard/create' },
       { path: 'create', component: CreatePage },
-      { path: 'upload', component: UploadSpecification },
       { path: 'configurations', component: ConfigurationsPage },
       { path: 'how-to-use', component: HowToUsePage },
       { path: 'profile', component: ProfilePage }
