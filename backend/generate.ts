@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { Schema } from './schema';
-import { generate, file } from './structure';
+import { generate, file, rawFile, overwrite } from './structure';
 
 const schema = JSON.parse(fs.readFileSync('schema.json', 'utf-8')) as Schema;
 
@@ -231,7 +231,11 @@ function transformDetail(entity: string, detail: Schema['parts'][0]['entities'][
   }
 }
 
-const translations = {};
+function randomColor() {
+  return `rgba(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},1)`;
+}
+
+const translations: Record<string, Record<string, string>> = {};
 
 function translate(object: any, category = 'common') {
   if (typeof object === 'object' && object.translatable) {
@@ -250,133 +254,187 @@ function translate(object: any, category = 'common') {
   return object;
 }
 
-export function generateDynamicApp() {
+const images: Record<string, Buffer> = {};
+
+async function image(key: string, query: string) {
+  if (images[query]) return images[query];
+  const response = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=1`, {
+    headers: {
+      Authorization: process.env.PEXELS_API_KEY as string
+    }
+  });
+
+  const data = await response.json();
+  const image = data.photos[0].src.original;
+  const imageResponse = await fetch(image);
+
+  const buffer = Buffer.from(await imageResponse.arrayBuffer());
+
+  const path = `${key}.${image.split('.').pop()}`;
+  images[path] = buffer;
+  return `images/${path}`;
+}
+
+
+export async function generateDynamicApp() {
   generate('structure', {
-    "dynamic-app/samo-training": {
-      "components": {},
-      "configuration": {
-        "application": {
-          "parts": {
-            ...Object.fromEntries(schema.parts.map((part) => [
-              part.id,
-              {
-                "part.json": file(translate({
-                  "title": part.title,
+    'dynamic-app': overwrite({
+      [schema.appId]: {
+        "components": {},
+        "configuration": {
+          "application": {
+            "parts": {
+              ...Object.fromEntries(schema.parts.map((part) => [
+                part.id,
+                {
+                  "part.json": file(translate({
+                    "title": part.title,
+                    "defaultPage": "dashboard",
+                    "defaultGuestPage": "login",
+                    "shared": {
+                      "pages": [
+                        "login",
+                        "logout",
+                        "messages-config",
+                        "messages",
+                        "profile"
+                      ],
+                      "applicationModules": [
+                        "recent-entities",
+                        "user-messages",
+                        "user"
+                      ]
+                    }
+                  }, noprefix(part.id))),
+                  "pages": Object.fromEntries(part.pages.map((page) => [
+                    `${page.id}.json`,
+                    file(translate(transformPage(page), noprefix(part.id)))
+                  ])),
+                }
+              ])),
+              "cockpit": {
+                "part.json": file({
                   "defaultPage": "dashboard",
                   "defaultGuestPage": "login",
                   "shared": {
                     "pages": [
                       "login",
                       "logout",
-                      "messages-config",
                       "messages",
+                      "messages-config",
                       "profile"
                     ],
                     "applicationModules": [
-                      "recent-entities",
                       "user-messages",
                       "user"
                     ]
                   }
-                }, noprefix(part.id))),
-                "pages": Object.fromEntries(part.pages.map((page) => [
-                  `${page.id}.json`,
-                  file(translate(transformPage(page), noprefix(part.id)))
-                ])),
-              }
-            ])),
-            "cockpit": {
-              "part.json": file({
-                "defaultPage": "dashboard",
-                "defaultGuestPage": "login",
-                "shared": {
-                  "pages": [
-                    "login",
-                    "logout",
-                    "messages",
-                    "messages-config",
-                    "profile"
-                  ],
-                  "applicationModules": [
-                    "user-messages",
-                    "user"
-                  ]
-                }
-              }),
-              "pages": {
-                "dashboard.json": file({
-
                 }),
-              }
-            }
-          },
-        },
-        "map": {},
-        "metadata": {
-          "entities": {
-            "features": Object.fromEntries(schema.parts.map((part) => [
-              part.id,
-              {
-                ...Object.fromEntries(part.entities.map((entity) => [
-                  `${entity.key}.json`,
-                  file(translate({
-                    "extends": "root",
-                    "titleString": `{get:#at_${noprefix(entity.key)}_title}`,
-                    "subTitleString": `{get:#at_${noprefix(entity.key)}_subTitle}}`,
-                    "defaultPropertyGroup": `fmd_${noprefix(entity.key)}`,
-                    "defaultDetailPropertyGroup": `fmd_${noprefix(entity.key)}`,
-                    "fulltextFields": [
-                      "all"
-                    ],
-                    "detail": {
-                      "default": {
-                        "extends": `ft_${noprefix(entity.key)}-detail-default`
-                      }
-                    },
-                    "edit": {
-                      "default": {
-                        "extends": `ft_${noprefix(entity.key)}-editDetail-default`
-                      },
-                      "insert": {
-                        "extends": `ft_${noprefix(entity.key)}-editDetail-insert`
-                      }
+                "pages": {
+                  "dashboard.json": file(translate({
+                    "id": "cockpit-dashboard",
+                    "title": schema.appName,
+                    "module": {
+                      "type": "component:dashboard-modules/samo-category-dashboard",
+                      "categories": await Promise.all(schema.parts.map(async part => ({
+                        "title": part.title,
+                        "widgets": await Promise.all(part.pages.map(async page => ({
+                          "module": {
+                            "type": "component:entity-modules/dashboard/samo-entity-count-shortcut-big",
+                            "title": page.title,
+                            "titleSize": "normal",
+                            "description": page.description,
+                            "image": page.thumbnailImageSearchQuery ?
+                              await image(`dashboard/${page.id}`, page.thumbnailImageSearchQuery) : null,
+                            "icon": page.icon,
+                            "color": randomColor(),
+                            "part": part.id,
+                            "page": page.id,
+                            // "entitiesGroup": "fish-group",
+                            "security": {
+                              "loggedIn": true
+                            }
+                          }
+                        })))
+                      })))
                     }
-                  }, noprefix(part.id)))
-                ])),
-                "details": Object.fromEntries(part.entities.flatMap((entity) => [
-                  [
-                    `ft_${noprefix(entity.key)}-detail-default.json`,
-                    file(translate(transformDetail(entity.key, entity.detailDefault), noprefix(part.id)))
-                  ],
-                  [
-                    `ft_${noprefix(entity.key)}-editDetail-default.json`,
-                    file(translate(entity.editDefault, noprefix(part.id)))
-                  ],
-                  [
-                    `ft_${noprefix(entity.key)}-editDetail-insert.json`,
-                    file(translate(entity.editInsert, noprefix(part.id)))
-                  ],
-                ])),
+                  })),
+                }
               }
-            ]))
+            },
           },
-          "groups": Object.fromEntries(Object.entries(entityGroups).map(([key, group]) => [
-            `${key}.json`,
-            file(group)
+          "map": {},
+          "metadata": {
+            "entities": {
+              "features": Object.fromEntries(schema.parts.map((part) => [
+                part.id,
+                {
+                  ...Object.fromEntries(part.entities.map((entity) => [
+                    `${entity.key}.json`,
+                    file(translate({
+                      "extends": "root",
+                      "titleString": `{get: #at_${noprefix(entity.key)}_title}`,
+                      "subTitleString": `{get: #at_${noprefix(entity.key)}_subTitle}`,
+                      "defaultPropertyGroup": `fmd_${noprefix(entity.key)}`,
+                      "defaultDetailPropertyGroup": `fmd_${noprefix(entity.key)}`,
+                      "fulltextFields": [
+                        "all"
+                      ],
+                      "detail": {
+                        "default": {
+                          "extends": `ft_${noprefix(entity.key)}-detail-default`
+                        }
+                      },
+                      "edit": {
+                        "default": {
+                          "extends": `ft_${noprefix(entity.key)}-editDetail-default`
+                        },
+                        "insert": {
+                          "extends": `ft_${noprefix(entity.key)}-editDetail-insert`
+                        }
+                      }
+                    }, noprefix(part.id)))
+                  ])),
+                  "details": Object.fromEntries(part.entities.flatMap((entity) => [
+                    [
+                      `ft_${noprefix(entity.key)}-detail-default.json`,
+                      file(translate(transformDetail(entity.key, entity.detailDefault), noprefix(part.id)))
+                    ],
+                    [
+                      `ft_${noprefix(entity.key)}-editDetail-default.json`,
+                      file(translate(entity.editDefault, noprefix(part.id)))
+                    ],
+                    [
+                      `ft_${noprefix(entity.key)}-editDetail-insert.json`,
+                      file(translate(entity.editInsert, noprefix(part.id)))
+                    ],
+                  ])),
+                }
+              ]))
+            },
+            "groups": Object.fromEntries(Object.entries(entityGroups).map(([key, group]) => [
+              `${key}.json`,
+              file(group)
+            ])),
+            "intents": {},
+            "propertyGroups": {},
+          }
+        },
+        "resources": {
+          "strings": Object.fromEntries(Object.entries(translations).map(([category, translations]) => [
+            `${category}_en.json`,
+            file({
+              [category]: translations
+            })
           ])),
-          "intents": {},
-          "propertyGroups": {},
+          "images": Object.fromEntries(Object.entries(images).map(([key, image]) => [
+            key,
+            rawFile(image)
+          ]))
         }
-      },
-      "resources": {
-        "strings": Object.fromEntries(Object.entries(translations).map(([category, translations]) => [
-          `${category}_en.json`,
-          file({
-            [category]: translations
-          })
-        ]))
       }
-    }
+    })
   })
 }
 
+generateDynamicApp();

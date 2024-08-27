@@ -32,6 +32,7 @@ export const pageModule = () => z.discriminatedUnion('type', [
 
 export const page = () => z.object({
   title: translatable(),
+  description: translatable(),
   thumbnailImageSearchQuery: z.string().optional(),
   icon: z.enum(icons),
   closeMenu: z.boolean().optional(),
@@ -86,8 +87,12 @@ export const part = () => z.object({
 }));
 
 export const schema = z.object({
+  appName: translatable(),
   parts: z.array(part()),
-});
+}).transform((data) => ({
+  appId: Case.kebab(data.appName.value),
+  ...data,
+}));
 
 export type Schema = z.infer<typeof schema>;
 
@@ -156,5 +161,5 @@ export async function generateSchema() {
 }
 
 
-// generateSchema();
+generateSchema();
 

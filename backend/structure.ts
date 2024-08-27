@@ -11,6 +11,14 @@ export function file(contents: any, overwrite = false) {
   };
 }
 
+export function rawFile(contents: Buffer, overwrite = false) {
+  return (path: string) => {
+    fs.mkdirSync(dirname(path), { recursive: true });
+    if (!overwrite && fs.existsSync(path)) return;
+    fs.writeFileSync(path, contents as any);
+  };
+}
+
 export function overwrite(contents: any = {}) {
   return (path: string) => generate(path, contents, true);
 }

@@ -1,4 +1,10 @@
 {
+  "appId": "fish-and-ponds-management-system",
+  "appName": {
+    "translatable": true,
+    "key": "fishAndPondsManagementSystem",
+    "value": "Fish and Ponds Management System"
+  },
   "parts": [
     {
       "id": "ap_fishManagement",
@@ -9,21 +15,25 @@
       },
       "pages": [
         {
-          "id": "pg_fishOverview",
+          "id": "pg_browseFish",
           "title": {
             "translatable": true,
-            "key": "fishOverview",
-            "value": "Fish Overview"
+            "key": "browseFish",
+            "value": "Browse Fish"
           },
-          "thumbnailImageSearchQuery": "fish aquatic life overview",
-          "icon": "photo",
+          "description": {
+            "translatable": true,
+            "key": "displayAListOfFishEntities",
+            "value": "Display a list of fish entities"
+          },
+          "thumbnailImageSearchQuery": "fish swimming aquarium",
+          "icon": "search",
           "closeMenu": true,
           "module": {
             "type": "samo-browse",
             "allowNearbyFilter": true,
             "allowAdvancedFilter": true,
             "listDisplayOptions": [
-              "auto",
               "list3",
               "table",
               "tiles"
@@ -35,46 +45,31 @@
           }
         },
         {
-          "id": "pg_pondManagement",
+          "id": "pg_fishDetail",
           "title": {
             "translatable": true,
-            "key": "pondManagement",
-            "value": "Pond Management"
+            "key": "fishDetail",
+            "value": "Fish Detail"
           },
-          "thumbnailImageSearchQuery": "outdoor pond nature",
-          "icon": "home",
+          "description": {
+            "translatable": true,
+            "key": "detailViewOfFishEntity",
+            "value": "Detail view of fish entity"
+          },
+          "thumbnailImageSearchQuery": "fish closeup",
+          "icon": "info",
           "closeMenu": false,
           "module": {
             "type": "samo-browse",
-            "allowNearbyFilter": true,
-            "allowAdvancedFilter": true,
+            "allowNearbyFilter": false,
+            "allowAdvancedFilter": false,
             "listDisplayOptions": [
-              "auto",
-              "list3",
-              "table",
-              "tiles"
+              "auto"
             ],
-            "defaultView": "map",
+            "defaultView": "table",
             "entities": [
-              "ft_boPond"
+              "ft_boFish"
             ]
-          }
-        },
-        {
-          "id": "pg_resourceAllocationBoard",
-          "title": {
-            "translatable": true,
-            "key": "resourceAllocationBoard",
-            "value": "Resource Allocation Board"
-          },
-          "thumbnailImageSearchQuery": "planning scheduling resource allocation",
-          "icon": "settings",
-          "closeMenu": false,
-          "module": {
-            "type": "samo-planning-board",
-            "resourceEntity": "ft_boFish",
-            "taskEntity": "ft_boInspection",
-            "allocationEntity": "ft_boAllocation"
           }
         }
       ],
@@ -84,23 +79,12 @@
           "detailDefault": {
             "title": {
               "translatable": true,
-              "key": "fishDetail",
-              "value": "Fish Detail"
+              "key": "fishDetails",
+              "value": "Fish Details"
             },
             "sections": [
               {
                 "type": "samo-entity-properties-detail"
-              },
-              {
-                "title": {
-                  "translatable": true,
-                  "key": "relatedPonds",
-                  "value": "Related Ponds"
-                },
-                "type": "related-entity-list",
-                "entities": [
-                  "ft_boPond"
-                ]
               }
             ]
           },
@@ -128,29 +112,87 @@
               }
             ]
           }
+        }
+      ]
+    },
+    {
+      "id": "ap_pondManagement",
+      "title": {
+        "translatable": true,
+        "key": "pondManagement",
+        "value": "Pond Management"
+      },
+      "pages": [
+        {
+          "id": "pg_browsePonds",
+          "title": {
+            "translatable": true,
+            "key": "browsePonds",
+            "value": "Browse Ponds"
+          },
+          "description": {
+            "translatable": true,
+            "key": "displayAListOfPondEntities",
+            "value": "Display a list of pond entities"
+          },
+          "thumbnailImageSearchQuery": "pond landscape nature",
+          "icon": "search",
+          "closeMenu": true,
+          "module": {
+            "type": "samo-browse",
+            "allowNearbyFilter": true,
+            "allowAdvancedFilter": true,
+            "listDisplayOptions": [
+              "table",
+              "tiles"
+            ],
+            "defaultView": "table",
+            "entities": [
+              "ft_boPond"
+            ]
+          }
         },
+        {
+          "id": "pg_pondDetail",
+          "title": {
+            "translatable": true,
+            "key": "pondDetail",
+            "value": "Pond Detail"
+          },
+          "description": {
+            "translatable": true,
+            "key": "detailViewOfPondEntity",
+            "value": "Detail view of pond entity"
+          },
+          "thumbnailImageSearchQuery": "pond details",
+          "icon": "info",
+          "closeMenu": false,
+          "module": {
+            "type": "samo-browse",
+            "allowNearbyFilter": false,
+            "allowAdvancedFilter": false,
+            "listDisplayOptions": [
+              "auto"
+            ],
+            "defaultView": "map",
+            "entities": [
+              "ft_boPond"
+            ]
+          }
+        }
+      ],
+      "entities": [
         {
           "key": "ft_boPond",
           "detailDefault": {
             "title": {
               "translatable": true,
-              "key": "pondDetail",
-              "value": "Pond Detail"
+              "key": "pondDetails",
+              "value": "Pond Details"
             },
             "sections": [
               {
                 "type": "samo-entity-properties-detail"
-              },
-              {
-                "title": {
-                  "translatable": true,
-                  "key": "relatedFish",
-                  "value": "Related Fish"
-                },
-                "type": "related-entity-list",
-                "entities": [
-                  "ft_boFish"
-                ]
               }
             ]
           },
@@ -171,6 +213,79 @@
               "translatable": true,
               "key": "insertPond",
               "value": "Insert Pond"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ap_workforceManagement",
+      "title": {
+        "translatable": true,
+        "key": "workforceManagement",
+        "value": "Workforce Management"
+      },
+      "pages": [
+        {
+          "id": "pg_resourcePlanning",
+          "title": {
+            "translatable": true,
+            "key": "resourcePlanning",
+            "value": "Resource Planning"
+          },
+          "description": {
+            "translatable": true,
+            "key": "allocateResourcesOnThePlanningBoard",
+            "value": "Allocate resources on the planning board"
+          },
+          "thumbnailImageSearchQuery": "planning calendar",
+          "icon": "edit",
+          "closeMenu": true,
+          "module": {
+            "type": "samo-planning-board",
+            "resourceEntity": "ft_boPerson",
+            "taskEntity": "ft_boPond",
+            "allocationEntity": "ft_boAllocation"
+          }
+        }
+      ],
+      "entities": [
+        {
+          "key": "ft_boAllocation",
+          "detailDefault": {
+            "title": {
+              "translatable": true,
+              "key": "allocationDetails",
+              "value": "Allocation Details"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-detail"
+              }
+            ]
+          },
+          "editDefault": {
+            "title": {
+              "translatable": true,
+              "key": "editAllocation",
+              "value": "Edit Allocation"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          },
+          "editInsert": {
+            "title": {
+              "translatable": true,
+              "key": "insertAllocation",
+              "value": "Insert Allocation"
             },
             "sections": [
               {
