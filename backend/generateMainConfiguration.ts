@@ -49,6 +49,7 @@ async function generateMetadata(modelPath: string) {
             model: 'gpt-4o-2024-08-06',
             messages: messages,
             response_format: zodResponseFormat(rootSchema, 'schema'),
+            max_tokens: 4000
         });
 
         const content : string = result.choices[0].message?.content || '';

@@ -26,7 +26,7 @@ type Group = EntityGroup | GroupGroup;
 const entityGroups: Record<string, Group> = {};
 
 function group(entities: string[]) {
-  const key = `${entities.toSorted().join('-')}-group`;
+  const key = `${[...entities].sort().join('-')}-group`;
   if (entityGroups[key]) return key;
 
 

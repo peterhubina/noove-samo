@@ -5,9 +5,9 @@
       <p class="font-light text-lg text-neutral-500">Upload files in pdf. format</p>
     </div>
     <div class="flex flex-col justify-center items-center gap-8 w-2/4">
-      <q-uploader flat @added="handleFile" label="Upload files in pdf format" accept=".pdf"
+      <q-uploader flat @added="onFileAdded" label="Upload files in pdf format" accept=".pdf"
                   class="h-80 w-full drop-shadow"/>
-      <q-btn @click="analyzeFile" unelevated no-caps color="primary" label="Analyze"
+      <q-btn @click="onAnalyze" unelevated no-caps color="primary" label="Analyze"
              class="font-medium text-xl px-8 h-14"/>
 
     </div>

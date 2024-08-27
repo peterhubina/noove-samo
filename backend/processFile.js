@@ -3,7 +3,7 @@ const { encode } = require('fast-png');
 import * as pdfjs from 'pdfjs-dist';
 //pdfjs.GlobalWorkerOptions.workerSrc = require('pdfjs-dist/build/pdf.worker.js');
 
-//import {main} from './analyzeDiagrams';
+import { main } from './analyzeDiagrams';
 
 const processFile = async (filePath) => {
     if (!fs.existsSync('images')) {
@@ -52,7 +52,7 @@ const processFile = async (filePath) => {
     fs.writeFileSync(`text.txt`, pageTexts.join('\n\n\n'));
 
     // analyzeDiagrams.ts
-    //main();
+    main();
 }
 
 module.exports = processFile;
