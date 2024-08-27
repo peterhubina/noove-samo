@@ -437,4 +437,4 @@ export async function generateDynamicApp() {
   })
 }
 
-generateDynamicApp();
+// generateDynamicApp();

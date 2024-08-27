@@ -161,5 +161,5 @@ export async function generateSchema() {
 }
 
 
-generateSchema();
+// generateSchema();
 
