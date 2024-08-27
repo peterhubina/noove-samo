@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 
 import authRoutes from "./endpoints/auth";
 import authMiddleware from "./middleware/auth";
+import analyzeRouter from "./endpoints/analyze.js";
 
 const morgan = require("morgan");
 const cors = require("cors");
@@ -20,6 +21,8 @@ app.use(morgan("dev"));
 app.get("/", async (req, res) => {
     res.json({ response: "Hello World!" });
 });
+
+app.use("/upload", analyzeRouter);
 
 app.use("/auth", authRoutes);
 

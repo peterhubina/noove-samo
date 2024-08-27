@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node backend/src/index.ts",
+    "start": "ts-node src/index.ts",
     "dev": "nodemon --watch backend/src -e ts --exec ts-node src/index.ts",
     "build": "tsc"
   },
@@ -21,11 +21,12 @@
     "fast-png": "^6.2.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
     "nunjucks": "^3.2.4",
     "openai": "^4.55.4",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
-    "pdfjs-dist": "^4.5.136",
+    "pdfjs-dist": "^3.11.174",
     "pg": "^8.12.0",
     "xmlbuilder2": "^3.1.1",
     "zod": "^3.23.8"
