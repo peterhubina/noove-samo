@@ -9,7 +9,8 @@ import createProjectConfiguration from "./copyFolderStructure";
 import { generateSchema } from './schema';
 import { generateEntities } from './generateEntities';
 import generateMetadata from "./generateMainConfiguration";
-import { generateDynamicApp } from './generate';
+import { generateJsonConfiguration } from './generate';
+import { zip } from 'zip-a-folder';
 
 const nunjucks = require('nunjucks');
 
@@ -121,7 +122,12 @@ export async function main() {
     await generateMetadata(outputPath);
 
     await generateSchema();
-    await generateDynamicApp('structure');
+    await generateJsonConfiguration('structure');
+
+
+    await zip('structure', 'structure.zip');
+
+
 
   } catch (error) {
     console.error('Error generating or saving output:', error);

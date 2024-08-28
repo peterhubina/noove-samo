@@ -3,16 +3,25 @@ import { dirname, resolve } from 'path';
 
 
 
-export function file(contents: any, overwrite = false) {
-  return (path: string) => {
+export function jsonFile(contents: any) {
+  return (path: string, overwrite = false) => {
     fs.mkdirSync(dirname(path), { recursive: true });
     if (!overwrite && fs.existsSync(path)) return;
     fs.writeFileSync(path, JSON.stringify(contents, null, 2));
   };
 }
 
-export function rawFile(contents: Buffer, overwrite = false) {
-  return (path: string) => {
+export function stringFile(contents: string) {
+  return (path: string, overwrite = false) => {
+    fs.mkdirSync(dirname(path), { recursive: true });
+    if (!overwrite && fs.existsSync(path)) return;
+    fs.writeFileSync(path, contents);
+  };
+}
+
+
+export function bufferFile(contents: Buffer) {
+  return (path: string, overwrite = false) => {
     fs.mkdirSync(dirname(path), { recursive: true });
     if (!overwrite && fs.existsSync(path)) return;
     fs.writeFileSync(path, contents as any);

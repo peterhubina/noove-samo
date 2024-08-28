@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { Schema } from './schema';
-import { generate, file, rawFile, overwrite } from './structure';
+import { generate, jsonFile, bufferFile, overwrite, stringFile } from './structure';
 
 const schema = JSON.parse(fs.readFileSync('schema.json', 'utf-8')) as Schema;
 
@@ -47,6 +47,8 @@ function group(entities: string[]) {
 
   return key;
 }
+
+const actionEvents = ["entityCreatedComposite", "entityUpdatedComposite", "entityAssociationDeleted", "entityStateUpdated"];
 
 
 function transformPage(page: Schema['parts'][0]['pages'][0]) {
@@ -276,7 +278,7 @@ async function image(key: string, query: string) {
 }
 
 
-export async function generateDynamicApp(directory: string) {
+export async function generateJsonConfiguration(directory: string) {
   generate(directory, {
     'dynamic-app': overwrite({
       [schema.appId]: {
@@ -287,7 +289,7 @@ export async function generateDynamicApp(directory: string) {
               ...Object.fromEntries(schema.parts.map((part) => [
                 part.id,
                 {
-                  "part.json": file(translate({
+                  "part.json": jsonFile(translate({
                     "title": part.title,
                     "defaultPage": "dashboard",
                     "defaultGuestPage": "login",
@@ -308,12 +310,12 @@ export async function generateDynamicApp(directory: string) {
                   }, noprefix(part.id))),
                   "pages": Object.fromEntries(part.pages.map((page) => [
                     `${page.id}.json`,
-                    file(translate(transformPage(page), noprefix(part.id)))
+                    jsonFile(translate(transformPage(page), noprefix(part.id)))
                   ])),
                 }
               ])),
               "cockpit": {
-                "part.json": file({
+                "part.json": jsonFile({
                   "defaultPage": "dashboard",
                   "defaultGuestPage": "login",
                   "shared": {
@@ -331,7 +333,7 @@ export async function generateDynamicApp(directory: string) {
                   }
                 }),
                 "pages": {
-                  "dashboard.json": file(translate({
+                  "dashboard.json": jsonFile(translate({
                     "id": "cockpit-dashboard",
                     "title": schema.appName,
                     "module": {
@@ -371,7 +373,7 @@ export async function generateDynamicApp(directory: string) {
                 {
                   ...Object.fromEntries(part.entities.map((entity) => [
                     `${entity.key}.json`,
-                    file(translate({
+                    jsonFile(translate({
                       "extends": "root",
                       "titleString": `{get: #at_${noprefix(entity.key)}_title}`,
                       "subTitleString": `{get: #at_${noprefix(entity.key)}_subTitle}`,
@@ -398,15 +400,15 @@ export async function generateDynamicApp(directory: string) {
                   "details": Object.fromEntries(part.entities.flatMap((entity) => [
                     [
                       `ft_${noprefix(entity.key)}-detail-default.json`,
-                      file(translate(transformDetail(entity.key, entity.detailDefault), noprefix(part.id)))
+                      jsonFile(translate(transformDetail(entity.key, entity.detailDefault), noprefix(part.id)))
                     ],
                     [
                       `ft_${noprefix(entity.key)}-editDetail-default.json`,
-                      file(translate(entity.editDefault, noprefix(part.id)))
+                      jsonFile(translate(entity.editDefault, noprefix(part.id)))
                     ],
                     [
                       `ft_${noprefix(entity.key)}-editDetail-insert.json`,
-                      file(translate(entity.editInsert, noprefix(part.id)))
+                      jsonFile(translate(entity.editInsert, noprefix(part.id)))
                     ],
                   ])),
                 }
@@ -414,7 +416,7 @@ export async function generateDynamicApp(directory: string) {
             },
             "groups": Object.fromEntries(Object.entries(entityGroups).map(([key, group]) => [
               `${key}.json`,
-              file(group)
+              jsonFile(group)
             ])),
             "intents": {},
             "propertyGroups": {},
@@ -423,18 +425,95 @@ export async function generateDynamicApp(directory: string) {
         "resources": {
           "strings": Object.fromEntries(Object.entries(translations).map(([category, translations]) => [
             `${category}_en.json`,
-            file({
+            jsonFile({
               [category]: translations
             })
           ])),
           "images": Object.fromEntries(Object.entries(images).map(([key, image]) => [
             key,
-            rawFile(image)
+            bufferFile(image)
           ]))
         }
       }
-    })
+    }),
+    "lids-as": {
+      "business-service": {
+        "entities": overwrite({
+          "abs_ft_5000002.json": jsonFile({
+            "securityMethodOwner": `application:${schema.appId.toUpperCase()}`,
+            "abstract": true,
+            "configurationPresets": [
+              "workflowSteps",
+              "workflowConditions"
+            ]
+          }),
+          ...Object.fromEntries(schema.parts.map((part) => [
+            part.id,
+            {
+              ...Object.fromEntries(part.entities.map((entity) => [
+                `${entity.key}.json`,
+                jsonFile(translate({
+                  "extends": "abs_ft_5000002",
+                  "triggers": {
+                    ...Object.fromEntries(actionEvents.map((event) => {
+                      const actionName = event.startsWith('entity') ? `${noprefix(entity.key)}${event}` : event;
+
+                      return [
+                        actionName,
+                        {
+                          "type": "event",
+                          "eventType": event,
+                          "actions": [actionName]
+                        }
+                      ]
+                    })
+                    )
+                  },
+                  "actions": {
+                    ...Object.fromEntries(actionEvents.map((event) => {
+                      const actionName = event.startsWith('entity') ? `${noprefix(entity.key)}${event}` : event;
+
+                      return [
+                        actionName,
+                        {
+                          "access": [
+                            "static",
+                            "trigger"
+                          ],
+                          "steps": [
+                            {
+                              "type": "script",
+                              "source": `{@packageRoot(@samo/${schema.appId})}/scripts/${part.id}/${actionName}.js`
+                            }
+                          ]
+                        }
+                      ]
+                    })
+                    )
+                  }
+                }, noprefix(part.id)))
+              ])),
+            }
+          ]))
+        }),
+        "scripts": overwrite({
+          ...Object.fromEntries(schema.parts.map((part) => [
+            part.id,
+            {
+              ...Object.fromEntries(part.entities.map((entity) => actionEvents.map((event) => {
+                const actionName = event.startsWith('entity') ? `${noprefix(entity.key)}${event.slice('entity'.length)}` : event;
+
+                return [
+                  `${actionName}.js`,
+                  stringFile(`function action(context) {\n\t// Implement here\n}`)
+                ]
+              })).flat())
+            }
+          ]))
+        })
+      }
+    }
   })
 }
 
-// generateDynamicApp('structure');
+// await generateJsonConfiguration('structure');
