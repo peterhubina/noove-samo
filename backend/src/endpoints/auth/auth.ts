@@ -2,9 +2,9 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { PrismaClient } from "@prisma/client";
-import { ThrowBadRequest } from "../errorResponses/badRequest400";
-import { ThrowConflict } from "../errorResponses/conflict409";
-import { ThrowUnauthorized } from "../errorResponses/unauthorized401";
+import { ThrowBadRequest } from "../../errorResponses/badRequest400";
+import { ThrowConflict } from "../../errorResponses/conflict409";
+import { ThrowUnauthorized } from "../../errorResponses/unauthorized401";
 
 const prisma = new PrismaClient();
 const router = express.Router();
@@ -106,5 +106,8 @@ router.post("/login", async (req, res) => {
         },
     });
 });
+
+// Password Reset Route
+router.put("/passwordReset", async (req, res) => {});
 
 export default router;

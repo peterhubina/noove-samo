@@ -26,7 +26,6 @@ const routes: RouteRecordRaw[] = [
     component: DashboardLayout,
     beforeEnter: (to, from, next) => {
       const authStore = useAuthStore();
-      authStore.checkAuth()
       if (!authStore.isAuthenticated) {
         next('/login'); // Redirect to login if not authenticated
       } else {

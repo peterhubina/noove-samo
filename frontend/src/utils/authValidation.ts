@@ -9,7 +9,7 @@ export function validateEmail(email: string): string | null {
   return null;
 }
 
-export function validatePassword(signup: boolean, password: string, passwordRepeated: string | undefined = undefined): string | null {
+export function validatePassword(comparePasswords: boolean, password: string, passwordRepeated: string | undefined = undefined): string | null {
   const minLength = 8;
   const hasNumber = /[0-9]/;
   const hasLetter = /[a-zA-Z]/;
@@ -30,7 +30,7 @@ export function validatePassword(signup: boolean, password: string, passwordRepe
   if (!hasSymbol.test(password)) {
     return 'Password must contain at least one symbol';
   }
-  if (signup && password != passwordRepeated) {
+  if (comparePasswords && password != passwordRepeated) {
     return 'Passwords did not match';
   }
   return null;

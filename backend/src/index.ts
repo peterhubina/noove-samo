@@ -2,9 +2,10 @@ import express from "express";
 import { PrismaClient } from "@prisma/client";
 import dotenv from "dotenv";
 
-import authRoutes from "./endpoints/auth";
+import authRoutes from "./endpoints/auth/auth";
 import authMiddleware from "./middleware/auth";
 import analyzeRouter from "./endpoints/analyze.js";
+import { editAccount } from "./endpoints/user/editAccount";
 
 const morgan = require("morgan");
 const cors = require("cors");
@@ -12,7 +13,6 @@ const cors = require("cors");
 dotenv.config();
 const app = express();
 const prisma = new PrismaClient();
-const router = express.Router();
 
 app.use(cors());
 app.use(express.json());
@@ -25,6 +25,9 @@ app.get("/", async (req, res) => {
 app.use("/upload", analyzeRouter);
 
 app.use("/auth", authRoutes);
+
+app.use("/user", authMiddleware);
+app.put("/user/editAccount", editAccount);
 
 app.get("/companies", authMiddleware, async (req, res) => {
     const users = await prisma.company.findMany();

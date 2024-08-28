@@ -1,6 +1,16 @@
 <template>
   <div class="grid grid-rows-[auto_1fr] pt-10 px-11 gap-8">
-    <h2 class="text-3xl font-medium">Company Profile</h2>
+    <div class="flex justify-between items-center">
+      <h2 class="text-3xl font-medium">Company Profile</h2>
+      <q-btn
+        label="Log Out"
+        unelevated
+        outline
+        color="primary"
+        class="w-max sm:px-8 rounded"
+        @click="handleLogout"
+      />
+    </div>
     <div class="grid grid-cols-[auto_1fr] gap-4">
       <!--   Company Logo   -->
       <div class="bg-white p-4 flex flex-col gap-6 h-min rounded">
@@ -50,10 +60,13 @@
           <div class="flex items-center justify-end mb-4">
             <router-link to="/reset-password" class="text-primary">Reset Password</router-link>
           </div>
-          <q-btn unelevated no-caps :outline="!!changeInformation" color="primary"
+          <q-btn v-if="changeInformation" unelevated no-caps outline color="primary"
                  @click="enableChange"
-                 :label="changeInformation? 'Change Information':'Update Company Information'"
-                 :type="changeInformation? '' : 'submit'"
+                 label="Change Information"
+                 class="p-4 px-8 text-base font-medium rounded self-end"/>
+          <q-btn v-if="!changeInformation" unelevated no-caps color="primary"
+                 label="Update Company Information"
+                 type="submit"
                  class="p-4 px-8 text-base font-medium rounded self-end"/>
         </q-form>
       </div>
@@ -64,13 +77,20 @@
 <script setup>
 import { validateEmail, validatePassword } from 'src/utils/authValidation';
 import { useAuthStore } from 'stores/auth';
-import { ref } from 'vue';
+import { getCurrentInstance, ref } from 'vue';
+import { useQuasar } from 'quasar';
+import { useRouter } from 'vue-router';
 
 defineOptions({
   name: 'ProfilePage',
 })
 
 const authStore = useAuthStore();
+const router = useRouter()
+
+const {proxy} = getCurrentInstance();
+const $q = useQuasar();
+const axios = proxy.$axios;
 
 const companyName = ref(authStore.user.companyName);
 const email = ref(authStore.user.email);
@@ -78,22 +98,25 @@ const password = ref('')
 const showPassword = ref(false)
 const changeInformation = ref(true);
 
-function togglePasswordVisibility() {
-  showPassword.value = !showPassword.value;
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value
 }
 
 const enableChange = () => {
   changeInformation.value = !changeInformation.value;
 }
 
+const handleLogout = () => {
+  authStore.logout();
+  router.push('/');
+};
+
 async function onSubmit() {
   const emailError = validateEmail(email.value);
   const passwordError = validatePassword(false, password.value);
 
-  // TODO: handle profile info logic
-
   if (emailError || passwordError) {
-    this.$q.notify({
+    $q.notify({
       type: 'negative',
       message: emailError || passwordError,
       position: 'top'
@@ -102,21 +125,18 @@ async function onSubmit() {
   }
 
   try {
-    const response = await this.$axios.post('http://localhost:3000/auth/login', {
-      email: this.email,
-      password: this.password
+    const response = await axios.put('http://localhost:3000/user/editAccount', {
+      name: companyName.value,
+      email: email.value,
+      password: password.value
     });
 
-    authStore.login({
-      token: response.data.token,
-      user: response.data.user,
-    });
+    localStorage.setItem('user', JSON.stringify(response.data.user));
+    authStore.checkAuth()
 
-    this.$q.notify({type: 'positive', message: response.data.message, position: 'top'});
-    this.$router.push('/')
+    $q.notify({type: 'positive', message: response.data.message, position: 'top'});
   } catch (error) {
-    this.$q.notify({type: 'negative', message: error.response.data.message, position: 'top'});
+    $q.notify({type: 'negative', message: error.response?.data?.message || 'An error occurred', position: 'top'});
   }
 }
-
 </script>

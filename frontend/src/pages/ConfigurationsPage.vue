@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-rows-[auto_1fr] pt-10 px-11 gap-8">
     <h1 class="text-3xl font-medium">Created Configurations</h1>
-    <div class="w-full h-full">
+    <div class="flex flex-col justify-between w-full h-full">
       <table class="w-full bg-white rounded overflow-hidden">
         <thead>
         <tr class="bg-dashboard-active">
@@ -336,155 +336,10 @@ const configurations = ref<ConfigurationItem[]>([
     datetime: '31.8. 2024 17:56',
     selected: false,
     thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 57',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 58',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 59',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 60',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 61',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 62',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 63',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 64',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 65',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 66',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 67',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 68',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 69',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 70',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 71',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 72',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 73',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 74',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 75',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 76',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 77',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 78',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 79',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 80',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 81',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 82',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 83',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 84',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  }, {
-    title: 'Configuration 85',
-    datetime: '31.8. 2024 17:56',
-    selected: false,
-    thumbnail: 'https://picsum.photos/40',
-  },
+  }
 ]);
 
-const configsPerPage = ref<number>(10);
+const configsPerPage = ref<number>(6);
 const currentPage = ref<number>(1);
 const selectAll = ref(false);
 

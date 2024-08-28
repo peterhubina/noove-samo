@@ -34,57 +34,55 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import FooterComponent from 'components/FooterComponent.vue';
 import HeaderComponent from 'components/HeaderComponent.vue';
 import { useAuthStore } from 'stores/auth';
 import { validatePassword } from 'src/utils/authValidation';
+import { getCurrentInstance, ref } from 'vue';
+import { useQuasar } from 'quasar';
+import { useRouter } from 'vue-router';
 
-export default {
-  components: {HeaderComponent, FooterComponent},
-  data() {
-    return {
-      password: '',
-      passwordRepeated: '',
-      showPassword: false,
-    };
-  },
-  methods: {
-    togglePasswordVisibility() {
-      this.showPassword = !this.showPassword;
-    },
-    async onSubmit() {
-      const passwordError = validatePassword(true, this.password, this.passwordRepeated);
+const router = useRouter()
+const {proxy} = getCurrentInstance();
+const $q = useQuasar();
+const axios = proxy.$axios;
 
-      if (emailError || passwordError) {
-        this.$q.notify({
-          type: 'negative',
-          message: emailError || passwordError,
-          position: 'top'
-        });
-        return;
-      }
+const password = ref('')
+const passwordRepeated = ref('')
+const showPassword = ref(false)
 
-      try {
-        const response = await this.$axios.post('http://localhost:3000/auth/signup', {
-          name: this.companyName,
-          email: this.email,
-          password: this.password
-        });
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value
+}
 
-        const authStore = useAuthStore();
+async function onSubmit() {
+  const passwordError = validatePassword(true, password.value, passwordRepeated.value);
 
-        authStore.login({
-          token: response.data.token,
-          user: response.data.user,
-        });
+  // TODO: make password reset using email
 
-        this.$q.notify({type: 'positive', message: response.data.message, position: 'top'});
-        this.$router.push('/')
-      } catch (error) {
-        this.$q.notify({type: 'negative', message: error.response.data.message, position: 'top'});
-      }
-    }
+  if (passwordError) {
+    $q.notify({
+      type: 'negative',
+      message: passwordError,
+      position: 'top'
+    });
+    return;
   }
-};
+
+  try {
+    const response = await axios.put('http://localhost:3000/auth/passwordReset', {
+      password: password.value,
+      passwordRepeated: passwordRepeated.value
+    });
+
+    const authStore = useAuthStore();
+    authStore.logout()
+
+    $q.notify({type: 'positive', message: response.data.message, position: 'top'});
+    await router.push('/login')
+  } catch (error) {
+    $q.notify({type: 'negative', message: error.response.data.message, position: 'top'});
+  }
+}
 </script>
