@@ -5,28 +5,50 @@
       <p class="font-light text-lg text-neutral-500">Upload files in pdf. format</p>
     </div>
     <div class="flex flex-col justify-center items-center gap-8 w-2/4">
-      <q-uploader flat :on-uploaded="handleFile" label="Upload files in pdf format" accept=".pdf"
+      <q-uploader flat @added="onFileAdded" label="Upload files in pdf format" accept=".pdf"
                   class="h-56 w-full drop-shadow"/>
-      <q-btn @click="analyzeFile" unelevated no-caps :disable="!file" color="primary" label="Analyze"
+      <q-btn @click="onAnalyze" unelevated no-caps color="primary" label="Analyze"
              class="font-medium text-xl px-8 h-14"/>
     </div>
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
+<script>
+export default {
+  name: 'UploadSpecification',
+  data() {
+    return {
+      step: '1' // default starting step
+    };
+  },
+  methods: {
+    onFileAdded(file) {
+      this.file = file[0]; // get the first file from the uploader
+      console.log('File added:', this.file);
+    },
+    async onAnalyze() {
+      if (!this.file) {
+        alert('Please upload a PDF file.');
+        return;
+      }
 
-const file = ref(null);
-const emit = defineEmits(['next']);
+      console.log('Analyzing....')
 
-function handleFile(event) {
-  file.value = event.target.files[0];
-}
+      try {
+        const formData = new FormData();
+        formData.append('file', this.file);
 
-function analyzeFile() {
-  // TODO: Handle analyse logic
-  if (file.value) {
-    emit('next');
+        const response = await this.$axios.post('http://localhost:3000/upload/analyze', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+
+        console.log('Analysis complete:', response.data);
+      } catch (error) {
+        console.error('Error during analysis:', error);
+      }
+    }
   }
-}
+};
 </script>

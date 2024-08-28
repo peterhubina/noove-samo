@@ -31,7 +31,7 @@ const encodeImage = (imagePath: string): string => {
 
 const prompt = 'Analyze the images with project specification and output as .json';
 
-async function main() {
+export async function main() {
   const start = performance.now();
 
   try {
@@ -121,11 +121,8 @@ async function main() {
     await generateMetadata(outputPath);
 
     await generateSchema();
-    await generateDynamicApp();
+    await generateDynamicApp('structure');
 
-    // Log input and output token sizes
-    // console.log(`Input token size: ${result.usage?.prompt_tokens || 'N/A'}`);
-    // console.log(`Output token size: ${result.usage?.completion_tokens || 'N/A'}`);
   } catch (error) {
     console.error('Error generating or saving output:', error);
   }
@@ -134,5 +131,3 @@ async function main() {
 
   console.log('Project configuration created. Time to complete: ', end - start, ' seconds');
 }
-
-main();

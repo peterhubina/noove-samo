@@ -26,7 +26,7 @@ type Group = EntityGroup | GroupGroup;
 const entityGroups: Record<string, Group> = {};
 
 function group(entities: string[]) {
-  const key = `${entities.toSorted().join('-')}-group`;
+  const key = `${[...entities].sort().join('-')}-group`;
   if (entityGroups[key]) return key;
 
 
@@ -258,7 +258,7 @@ const images: Record<string, Buffer> = {};
 
 async function image(key: string, query: string) {
   if (images[query]) return images[query];
-  const response = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=1`, {
+  const response = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=&orientation=landscape`, {
     headers: {
       Authorization: process.env.PEXELS_API_KEY as string
     }
@@ -276,8 +276,8 @@ async function image(key: string, query: string) {
 }
 
 
-export async function generateDynamicApp() {
-  generate('structure', {
+export async function generateDynamicApp(directory: string) {
+  generate(directory, {
     'dynamic-app': overwrite({
       [schema.appId]: {
         "components": {},
@@ -437,4 +437,4 @@ export async function generateDynamicApp() {
   })
 }
 
-generateDynamicApp();
+// generateDynamicApp('structure');

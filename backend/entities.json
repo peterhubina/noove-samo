@@ -6,47 +6,66 @@
       "extends": "abs_ft_5000002",
       "triggers": [
         {
-          "type": "event",
-          "eventType": "pondCreated",
+          "type": "default",
+          "eventType": "allocationCreated",
           "include": [],
-          "actions": [
-            "allocationCreated"
-          ]
+          "actions": []
         },
         {
-          "type": "event",
-          "eventType": "pondUpdated",
+          "type": "default",
+          "eventType": "allocationDeleted",
           "include": [],
-          "actions": [
-            "allocationStateUpdated"
-          ]
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "allocationStateUpdated",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "allocationUpdated",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "assignEstimation",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "inspectionDeleted",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "inspectionStateUpdated",
+          "include": [],
+          "actions": []
         }
       ],
       "actions": [
         {
-          "title": "Maintain Pond",
+          "title": "Update Pond Status",
           "access": [
-            "admin",
-            "manager"
+            "owner",
+            "admin"
           ],
           "steps": [
             {
-              "type": "updateStatus",
+              "type": "stateChange",
               "arguments": [
-                "maintainanceStarted"
+                "status"
               ],
-              "source": "{@packageRoot(@samo/samo-training)}/scripts/ap_boPond/updateStatus.js"
-            },
-            {
-              "type": "notify",
-              "arguments": [
-                "maintenanceTeam"
-              ],
-              "source": "{@packageRoot(@samo/samo-training)}/scripts/ap_boPond/notify.js"
+              "source": "{@packageRoot(@samo/configuration)}/scripts/ap_boPond/stateChange.js"
             }
           ],
           "confirm": true,
-          "confirmMessage": "Do you want to start maintenance?",
+          "confirmMessage": "Are you sure you want to update the pond status?",
           "includeConditions": [],
           "conditions": [],
           "includeStates": []
@@ -55,38 +74,23 @@
       "stateAttributes": [
         {
           "stateAttribute": "status",
-          "stateCodeProperty": "code",
-          "stateTitleProperty": "title"
+          "stateCodeProperty": "statusCode",
+          "stateTitleProperty": "statusDescription"
         }
       ],
       "workflow": [
         {
-          "entrypoint": "notStarted",
+          "entrypoint": "initial",
           "states": [
             {
               "transitions": [
-                "inProgress",
-                "completed"
+                "maintenanceScheduled",
+                "underMaintenance",
+                "maintenanceCompleted"
               ],
               "symbology": {
-                "bgColor": "#009688",
-                "fgColor": "#FFFFFF"
-              }
-            },
-            {
-              "transitions": [
-                "completed"
-              ],
-              "symbology": {
-                "bgColor": "#FF5722",
-                "fgColor": "#FFFFFF"
-              }
-            },
-            {
-              "transitions": [],
-              "symbology": {
-                "bgColor": "#4CAF50",
-                "fgColor": "#FFFFFF"
+                "bgColor": "blue",
+                "fgColor": "white"
               }
             }
           ]
@@ -94,7 +98,7 @@
       ],
       "conditions": [
         {
-          "type": "statusCheck",
+          "type": "status",
           "operator": "equals",
           "value": 1,
           "properties": [
@@ -104,11 +108,361 @@
       ],
       "steps": [
         {
-          "type": "update",
+          "type": "maintenanceUpdate",
           "arguments": [
-            "status"
+            "schedule"
           ],
-          "source": "{@packageRoot(@samo/samo-training)}/scripts/ap_/update.js"
+          "source": "{@packageRoot(@samo/configuration)}/scripts/ap_/maintenanceUpdate.js"
+        }
+      ]
+    },
+    {
+      "fileName": "ft_boFish.json",
+      "name": "boFish",
+      "extends": "abs_ft_5000002",
+      "triggers": [
+        {
+          "type": "default",
+          "eventType": "allocationCreated",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "allocationDeleted",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "allocationStateUpdated",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "allocationUpdated",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "assignEstimation",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "inspectionDeleted",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "inspectionStateUpdated",
+          "include": [],
+          "actions": []
+        }
+      ],
+      "actions": [
+        {
+          "title": "Link to Pond",
+          "access": [
+            "user",
+            "admin"
+          ],
+          "steps": [
+            {
+              "type": "link",
+              "arguments": [
+                "pondId"
+              ],
+              "source": "{@packageRoot(@samo/configuration)}/scripts/ap_boFish/link.js"
+            }
+          ],
+          "confirm": false,
+          "confirmMessage": "",
+          "includeConditions": [],
+          "conditions": [],
+          "includeStates": []
+        }
+      ],
+      "stateAttributes": [
+        {
+          "stateAttribute": "availability",
+          "stateCodeProperty": "availCode",
+          "stateTitleProperty": "availDescription"
+        }
+      ],
+      "workflow": [
+        {
+          "entrypoint": "new",
+          "states": [
+            {
+              "transitions": [
+                "inPond",
+                "removed"
+              ],
+              "symbology": {
+                "bgColor": "green",
+                "fgColor": "white"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "availability",
+          "operator": "equals",
+          "value": 1,
+          "properties": [
+            "availability"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "type": "linkageUpdate",
+          "arguments": [
+            "pond"
+          ],
+          "source": "{@packageRoot(@samo/configuration)}/scripts/ap_/linkageUpdate.js"
+        }
+      ]
+    },
+    {
+      "fileName": "ft_boSponsor.json",
+      "name": "boSponsor",
+      "extends": "abs_ft_5000002",
+      "triggers": [
+        {
+          "type": "default",
+          "eventType": "allocationCreated",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "allocationDeleted",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "allocationStateUpdated",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "allocationUpdated",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "assignEstimation",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "inspectionDeleted",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "inspectionStateUpdated",
+          "include": [],
+          "actions": []
+        }
+      ],
+      "actions": [
+        {
+          "title": "Assign Funding to Pond",
+          "access": [
+            "manager",
+            "finance"
+          ],
+          "steps": [
+            {
+              "type": "assign",
+              "arguments": [
+                "fundingAmount",
+                "pond"
+              ],
+              "source": "{@packageRoot(@samo/configuration)}/scripts/ap_boSponsor/assign.js"
+            }
+          ],
+          "confirm": true,
+          "confirmMessage": "Confirm the funding assignment?",
+          "includeConditions": [],
+          "conditions": [],
+          "includeStates": []
+        }
+      ],
+      "stateAttributes": [
+        {
+          "stateAttribute": "fundingStatus",
+          "stateCodeProperty": "fundCode",
+          "stateTitleProperty": "fundDescription"
+        }
+      ],
+      "workflow": [
+        {
+          "entrypoint": "unassigned",
+          "states": [
+            {
+              "transitions": [
+                "fundingAssigned",
+                "fundingCompleted"
+              ],
+              "symbology": {
+                "bgColor": "yellow",
+                "fgColor": "black"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "fundingStatus",
+          "operator": "greaterEqual",
+          "value": 1,
+          "properties": [
+            "fundingStatus"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "type": "fundUpdate",
+          "arguments": [
+            "amount",
+            "pond"
+          ],
+          "source": "{@packageRoot(@samo/configuration)}/scripts/ap_/fundUpdate.js"
+        }
+      ]
+    },
+    {
+      "fileName": "ft_boExtParty.json",
+      "name": "boExtParty",
+      "extends": "abs_ft_5000002",
+      "triggers": [
+        {
+          "type": "default",
+          "eventType": "allocationCreated",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "allocationDeleted",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "allocationStateUpdated",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "allocationUpdated",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "assignEstimation",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "inspectionDeleted",
+          "include": [],
+          "actions": []
+        },
+        {
+          "type": "default",
+          "eventType": "inspectionStateUpdated",
+          "include": [],
+          "actions": []
+        }
+      ],
+      "actions": [
+        {
+          "title": "Schedule Workforce",
+          "access": [
+            "scheduler",
+            "manager"
+          ],
+          "steps": [
+            {
+              "type": "schedule",
+              "arguments": [
+                "time",
+                "pondLocation"
+              ],
+              "source": "{@packageRoot(@samo/configuration)}/scripts/ap_boExtParty/schedule.js"
+            }
+          ],
+          "confirm": true,
+          "confirmMessage": "Do you want to schedule workforce?",
+          "includeConditions": [],
+          "conditions": [],
+          "includeStates": []
+        }
+      ],
+      "stateAttributes": [
+        {
+          "stateAttribute": "scheduleStatus",
+          "stateCodeProperty": "schedCode",
+          "stateTitleProperty": "schedDescription"
+        }
+      ],
+      "workflow": [
+        {
+          "entrypoint": "notScheduled",
+          "states": [
+            {
+              "transitions": [
+                "scheduled",
+                "inProgress",
+                "completed"
+              ],
+              "symbology": {
+                "bgColor": "gray",
+                "fgColor": "white"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "scheduleStatus",
+          "operator": "notEqual",
+          "value": 0,
+          "properties": [
+            "scheduleStatus"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "type": "scheduleUpdate",
+          "arguments": [
+            "time",
+            "location"
+          ],
+          "source": "{@packageRoot(@samo/configuration)}/scripts/ap_/scheduleUpdate.js"
         }
       ]
     }

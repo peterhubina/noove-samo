@@ -3,10 +3,14 @@ const { encode } = require('fast-png');
 import * as pdfjs from 'pdfjs-dist';
 //pdfjs.GlobalWorkerOptions.workerSrc = require('pdfjs-dist/build/pdf.worker.js');
 
+import { main } from './analyzeDiagrams';
+
 const processFile = async (filePath) => {
     if (!fs.existsSync('images')) {
         fs.mkdirSync('images');
     }
+
+    console.log("Analyzing....");
 
     const data = new Uint8Array(fs.readFileSync(filePath));
     const { getDocument, OPS } = pdfjs;
@@ -37,7 +41,7 @@ const processFile = async (filePath) => {
                     width: image.width,
                     height: image.height,
                     data: image.data,
-                    channels: 3,
+                    channels: image.dataLen / (image.width * image.height),
                 });
 
                 fs.writeFileSync(`images/${imageName}.png`, png);
@@ -46,6 +50,9 @@ const processFile = async (filePath) => {
     }
 
     fs.writeFileSync(`text.txt`, pageTexts.join('\n\n\n'));
+
+    // analyzeDiagrams.ts
+    main();
 }
 
 module.exports = processFile;
