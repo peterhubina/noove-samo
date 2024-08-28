@@ -71,7 +71,7 @@ async function onSubmit() {
   }
 
   try {
-    const response = await axios.put('http://localhost:3000/auth/passwordReset', {
+    const response = await axios.put('http://localhost:3000/auth/passwordReset/confirm', {
       password: password.value,
       passwordRepeated: passwordRepeated.value
     });

@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col justify-center items-center gap-10 py-6">
     <div class="flex flex-col justify-center items-center gap-6">
-      <h3 class="text-[2.625rem] font-medium">Fill out the form</h3>
-      <p class="font-light text-lg text-neutral-500">Make sure you correctly walk through all form fields!</p>
+      <h3 class="text-[2.625rem] font-medium">Complete the Form</h3>
+      <p class="font-light text-lg text-neutral-500">Please ensure all fields are accurately filled out.</p>
     </div>
 
     <!-- Form -->

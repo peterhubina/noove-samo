@@ -2,7 +2,6 @@ import { RouteRecordRaw } from 'vue-router';
 import LoginPage from 'src/pages/LoginPage.vue';
 import SignupPage from 'src/pages/SignupPage.vue';
 import ForgotPasswordPage from 'src/pages/ForgotPasswordPage.vue';
-import ResetPasswordPage from 'pages/ResetPasswordPage.vue';
 import HomePage from 'src/pages/HomePage.vue';
 import DashboardLayout from 'layouts/DashboardLayout.vue';
 import CreatePage from 'pages/CreatePage.vue';
@@ -10,15 +9,23 @@ import ConfigurationsPage from 'pages/ConfigurationsPage.vue';
 import HowToUsePage from 'pages/HowToUsePage.vue';
 import ProfilePage from 'pages/ProfilePage.vue';
 import { useAuthStore } from 'stores/auth';
+import ResetPasswordConfirmPage from 'pages/ResetPasswordConfirmPage.vue';
 
 const routes: RouteRecordRaw[] = [
   { path: '/', component: HomePage },
   { path: '/home', redirect: '/' },
 
-  { path: '/login', component: LoginPage, },
-  { path: '/signup', component: SignupPage, },
-  { path: '/forgot-password', component: ForgotPasswordPage, },
-  { path: '/reset-password', component: ResetPasswordPage, },
+  { path: '/login', component: LoginPage },
+  { path: '/signup', component: SignupPage },
+  { path: '/forgot-password', component: ForgotPasswordPage },
+  {
+    path: '/password-reset',
+    redirect: '/password-reset/request',
+    children: [
+      { path: 'request', component: ForgotPasswordPage, props: { isResetPassword: true } },
+      { path: 'confirm', component: ResetPasswordConfirmPage },
+    ]
+  },
 
   {
     path: '/dashboard',

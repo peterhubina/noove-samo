@@ -58,7 +58,7 @@
             </template>
           </q-input>
           <div class="flex items-center justify-end mb-4">
-            <router-link to="/reset-password" class="text-primary">Reset Password</router-link>
+            <router-link to="/password-reset/request" class="text-primary">Reset Password?</router-link>
           </div>
           <q-btn v-if="changeInformation" unelevated no-caps outline color="primary"
                  @click="enableChange"

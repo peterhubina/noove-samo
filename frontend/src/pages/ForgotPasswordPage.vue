@@ -6,10 +6,13 @@
     <!--  Main Content  -->
     <div class="flex h-full justify-center items-center">
       <div class="flex flex-col p-8 sm:w-[560px] font-light">
-        <h1 class="text-2xl sm:text-4xl font-medium mb-4">Forgotten your password?</h1>
-        <p class="mb-6 sm:mb-10 sm:text-base">There is nothing to worry about, we'll send you a message to help you
-          reset your
-          password.</p>
+        <h1 class="text-2xl sm:text-4xl font-medium mb-4">
+          {{ isResetPassword ? 'Reset your password' : 'Forgotten your password?' }}
+        </h1>
+        <p class="mb-6 sm:mb-10 sm:text-base">
+          There is nothing to worry about, we'll send you a message to help you
+          {{ isResetPassword ? 'reset your password.' : 'retrieve your account.' }}
+        </p>
         <q-form @submit="onSubmit">
           <q-input outlined v-model="email" label="Email Address" type="email" name="email" class="mb-4"/>
           <q-btn unelevated no-caps color="primary" label="Send Reset Link" type="submit"
@@ -29,6 +32,12 @@ import HeaderComponent from 'components/HeaderComponent.vue';
 
 export default {
   components: {HeaderComponent, FooterComponent},
+  props: {
+    isResetPassword: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       email: ''
@@ -41,4 +50,3 @@ export default {
   }
 };
 </script>
-

@@ -8,3 +8,16 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* For WebKit browsers (e.g., Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $section-div;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $primary;
+}

@@ -12,7 +12,7 @@
             Start Configuring Your Business Software
           </h1>
           <p class="font-light text-balance sm:text-base xl:text-lg">
-            Welcome to the SAMO platform, where you can easily create a configuration tailored exactly to your company's
+            Welcome to the SAMO project wizard, where you can easily create a configuration tailored exactly to your company's
             needs. With just a few clicks, you'll get a fully customized solution that will support your business growth
             and enhance your daily processes. Our automated platform ensures that your solution will be ready to use
             within minutes.
