@@ -121,7 +121,7 @@ export async function main() {
     await generateMetadata(outputPath);
 
     await generateSchema();
-    await generateDynamicApp();
+    await generateDynamicApp('structure');
 
   } catch (error) {
     console.error('Error generating or saving output:', error);
