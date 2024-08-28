@@ -456,8 +456,9 @@ export async function generateJsonConfiguration(directory: string) {
                   "extends": "abs_ft_5000002",
                   "triggers": {
                     ...Object.fromEntries(actionEvents.map((event) => {
-                      const actionName = event.startsWith('entity') ? `${noprefix(entity.key)}${event}` : event;
-
+                      const actionName = event.startsWith('entity') ?
+                        `${noprefix(entity.key)}${event.slice('entity'.length)}`
+                        : event;
                       return [
                         actionName,
                         {
@@ -471,7 +472,9 @@ export async function generateJsonConfiguration(directory: string) {
                   },
                   "actions": {
                     ...Object.fromEntries(actionEvents.map((event) => {
-                      const actionName = event.startsWith('entity') ? `${noprefix(entity.key)}${event}` : event;
+                      const actionName = event.startsWith('entity') ?
+                        `${noprefix(entity.key)}${event.slice('entity'.length)}`
+                        : event;
 
                       return [
                         actionName,
@@ -501,7 +504,9 @@ export async function generateJsonConfiguration(directory: string) {
             part.id,
             {
               ...Object.fromEntries(part.entities.map((entity) => actionEvents.map((event) => {
-                const actionName = event.startsWith('entity') ? `${noprefix(entity.key)}${event.slice('entity'.length)}` : event;
+                const actionName = event.startsWith('entity') ?
+                  `${noprefix(entity.key)}${event.slice('entity'.length)}`
+                  : event;
 
                 return [
                   `${actionName}.js`,
