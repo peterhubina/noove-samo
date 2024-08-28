@@ -41,7 +41,7 @@ const processFile = async (filePath) => {
                     width: image.width,
                     height: image.height,
                     data: image.data,
-                    channels: 3,
+                    channels: image.dataLen / (image.width * image.height),
                 });
 
                 fs.writeFileSync(`images/${imageName}.png`, png);
