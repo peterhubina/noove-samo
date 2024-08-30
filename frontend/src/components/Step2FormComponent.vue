@@ -50,8 +50,10 @@
 <script setup>
 import { ref } from 'vue';
 import { defineEmits } from 'vue';
+import { useQuasar } from 'quasar';
 
 const emit = defineEmits(['next']);
+const $q = useQuasar();
 
 // Dynamic form sections and questions
 const formSections = ref([
@@ -109,8 +111,9 @@ const formSections = ref([
 ]);
 
 const submitForm = () => {
-  console.log('Form Data:', formSections.value);
+  $q.notify({type: 'positive', message: 'Configuration was created successfully', position: 'top'});
+  emit('next', 1);
+
   // TODO: Handle form submission logic
-  emit('next');
 };
 </script>

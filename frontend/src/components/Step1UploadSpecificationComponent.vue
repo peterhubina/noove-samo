@@ -5,10 +5,16 @@
       <p class="font-light text-lg text-neutral-500">Upload files in pdf. format</p>
     </div>
     <div class="flex flex-col justify-center items-center gap-8 w-2/4">
-      <q-uploader flat @added="onFileAdded" label="Upload files in pdf format" accept=".pdf"
+      <q-uploader auto-upload max-files="1" flat @added="onFileAdded" label="Upload files in pdf format"
+                  accept=".pdf"
                   class="h-56 w-full drop-shadow"/>
-      <q-btn @click="onAnalyze" unelevated no-caps color="primary" label="Analyze"
-             class="font-medium text-xl px-8 h-14"/>
+      <q-btn :loading="loading" @click="onAnalyze" unelevated no-caps color="primary"
+             class="font-medium text-xl px-8 h-14 w-56">Analyze
+        <template v-slot:loading>
+          <q-spinner-gears class="on-left"/>
+          Analysing...
+        </template>
+      </q-btn>
     </div>
   </div>
 </template>
@@ -16,9 +22,10 @@
 <script>
 export default {
   name: 'UploadSpecification',
+  emits: ['next'],
   data() {
     return {
-      step: '1' // default starting step
+      loading: false
     };
   },
   methods: {
@@ -32,17 +39,25 @@ export default {
         return;
       }
 
+      this.loading = true;
       console.log('Analyzing....')
 
       try {
-        const formData = new FormData();
-        formData.append('file', this.file);
+        // const formData = new FormData();
+        // formData.append('file', this.file);
+        //
+        // const response = await this.$axios.post('http://localhost:3000/upload/analyze', formData, {
+        //   headers: {
+        //     'Content-Type': 'multipart/form-data'
+        //   }
+        // });
 
-        const response = await this.$axios.post('http://localhost:3000/upload/analyze', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        });
+        setTimeout(() => {
+          console.log('analyzed')
+          this.loading = false;
+
+          this.$emit('next', 0)
+        }, 5000)
 
         console.log('Analysis complete:', response.data);
       } catch (error) {

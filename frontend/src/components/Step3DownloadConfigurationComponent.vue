@@ -13,7 +13,20 @@
 </template>
 
 <script setup>
-const download = () => {
-  // TODO: Logic to handle downloading
+import { defineEmits } from 'vue';
+
+const emit = defineEmits(['reset']);
+
+const download = async () => {
+  const link = document.createElement('a');
+  link.href = 'public/configurations/structure.zip';
+  link.download = 'structure.zip';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  setTimeout(() => {
+    emit('reset')
+  }, 2000)
 };
 </script>

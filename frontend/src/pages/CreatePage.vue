@@ -15,7 +15,7 @@
       </div>
 
       <!--   Stepper   -->
-      <StepperComponent v-if="!start"/>
+      <StepperComponent v-if="!start" @done="toggleStart"/>
     </div>
   </div>
 
