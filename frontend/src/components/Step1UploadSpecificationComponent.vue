@@ -43,21 +43,21 @@ export default {
       console.log('Analyzing....')
 
       try {
-        // const formData = new FormData();
-        // formData.append('file', this.file);
+        const formData = new FormData();
+        formData.append('file', this.file);
+
+        const response = await this.$axios.post('http://localhost:3000/upload/analyze', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+
+        // setTimeout(() => {
+        //   console.log('analyzed')
+        //   this.loading = false;
         //
-        // const response = await this.$axios.post('http://localhost:3000/upload/analyze', formData, {
-        //   headers: {
-        //     'Content-Type': 'multipart/form-data'
-        //   }
-        // });
-
-        setTimeout(() => {
-          console.log('analyzed')
-          this.loading = false;
-
-          this.$emit('next', 0)
-        }, 5000)
+        //   this.$emit('next', 0)
+        // }, 5000)
 
         console.log('Analysis complete:', response.data);
       } catch (error) {
