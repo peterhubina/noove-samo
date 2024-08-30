@@ -6,9 +6,8 @@ import * as pdfjs from 'pdfjs-dist';
 import { main } from './analyzeDiagrams';
 
 const processFile = async (filePath) => {
-    if (!fs.existsSync('images')) {
-        fs.mkdirSync('images');
-    }
+    fs.rmSync('images', { recursive: true, force: true });
+    fs.mkdirSync('images');
 
     console.log("Analyzing....");
 
