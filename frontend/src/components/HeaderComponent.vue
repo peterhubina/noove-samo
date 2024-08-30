@@ -1,8 +1,8 @@
 <template>
   <header class="flex no-wrap gap-6 sm:gap-10 lg:gap-12 justify-between items-center px-8 sm:px-14 lg:px-20 h-20">
     <router-link to="/">
-      <img src="../assets/logo/asseco_centraleurope_logo.svg" alt="Logo" class="max-sm:hidden sm:block">
-      <img src="../assets/logo/asseco_ce.svg" alt="Logo" class="max-sm:block sm:hidden">
+      <img src="../assets/logo/asseco_berit.svg" alt="Logo" class="max-sm:hidden sm:block">
+      <img src="../assets/logo/asseco_berit_small.svg" alt="Logo" class="max-sm:block sm:hidden">
     </router-link>
 
     <div v-if="auth" class="flex gap-4 sm:gap-6 no-wrap">
@@ -10,6 +10,7 @@
         :label="loggedIn ? 'Log Out' : 'Log In'"
         unelevated
         outline
+        no-caps
         color="primary"
         class="w-max sm:px-8 rounded"
         @click="handleAuthAction"

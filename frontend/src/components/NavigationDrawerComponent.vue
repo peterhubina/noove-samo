@@ -1,7 +1,7 @@
 <template>
   <aside class="w-64 flex flex-col gap-6 bg-white items-center pt-14">
     <router-link to="/">
-      <img src="../assets/logo/asseco_ce.svg" alt="Logo" class="h-4">
+      <img src="../assets/logo/asseco_berit.svg" alt="Logo" class="h-4">
     </router-link>
 
     <router-link to="/dashboard/profile">
