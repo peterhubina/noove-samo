@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { Schema } from './schema';
+import { Schema } from './schemaScript';
 import { generate, jsonFile, bufferFile, overwrite, stringFile } from './structure';
 
 const schema = JSON.parse(fs.readFileSync('schema.json', 'utf-8')) as Schema;

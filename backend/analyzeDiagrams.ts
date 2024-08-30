@@ -6,7 +6,7 @@ import { zodResponseFormat } from "openai/helpers/zod";
 
 import { rootSchema } from "./generate/globalSchema";
 import createProjectConfiguration from "./copyFolderStructure";
-import { generateSchema } from './schema';
+import { generateSchema } from './schemaScript';
 import { generateEntities } from './generateEntities';
 import generateMetadata from "./generateMainConfiguration";
 import { generateJsonConfiguration } from './generate';
@@ -116,16 +116,13 @@ export async function main() {
     fs.writeFileSync(outputPath, JSON.stringify(jsonOutput, null, 2));
     console.log(`model.json saved to ${outputPath}`);
 
-    // generate entity .json files
-    await generateEntities();
-
     await generateMetadata(outputPath);
 
     await generateSchema();
-    await generateJsonConfiguration('structure');
+    await generateJsonConfiguration('configuration');
 
 
-    await zip('structure', 'structure.zip');
+    await zip('configuration', 'configuration.zip');
 
 
 
