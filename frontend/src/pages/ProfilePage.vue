@@ -115,10 +115,10 @@ async function onSubmit() {
   const emailError = validateEmail(email.value);
   const passwordError = validatePassword(false, password.value);
 
-  if (emailError || passwordError) {
+  if (emailError || passwordError || companyName.value === '') {
     $q.notify({
       type: 'negative',
-      message: emailError || passwordError,
+      message: emailError || passwordError || 'Input company name',
       position: 'top'
     });
     return;
@@ -130,6 +130,9 @@ async function onSubmit() {
       email: email.value,
       password: password.value
     });
+
+    password.value = ''
+    changeInformation.value = true
 
     localStorage.setItem('user', JSON.stringify(response.data.user));
     authStore.checkAuth()
