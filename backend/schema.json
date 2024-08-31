@@ -1,84 +1,134 @@
 {
-  "appId": "how-i-met-the-fish-–-elearning-system",
+  "appId": "construction-project-management-system",
   "appName": {
     "translatable": true,
-    "key": "howIMetTheFish–ELearningSystem",
-    "value": "How I Met the Fish – eLearning System"
+    "key": "constructionProjectManagementSystem",
+    "value": "Construction Project Management System"
   },
   "parts": [
     {
-      "id": "ap_cockpitOverview",
+      "id": "ap_constructionSites",
       "title": {
         "translatable": true,
-        "key": "cockpitOverview",
-        "value": "Cockpit Overview"
+        "key": "constructionSites",
+        "value": "Construction Sites"
       },
+      "icon": "home",
       "pages": [
         {
-          "id": "pg_mainDashboard",
+          "id": "pg_siteOverview",
           "title": {
             "translatable": true,
-            "key": "mainDashboard",
-            "value": "Main Dashboard"
+            "key": "siteOverview",
+            "value": "Site Overview"
           },
           "description": {
             "translatable": true,
-            "key": "viewAndManageDifferentAgendasUsingTiles",
-            "value": "View and manage different agendas using tiles."
+            "key": "viewAndManageConstructionSitesAcrossSlovakia",
+            "value": "View and manage construction sites across Slovakia."
           },
-          "thumbnailImageSearchQuery": "dashboard overview tiles",
-          "icon": "home",
-          "closeMenu": false,
+          "thumbnailImageSearchQuery": "construction site overview",
+          "icon": "photo",
+          "closeMenu": true,
           "module": {
             "type": "samo-browse",
             "allowNearbyFilter": true,
             "allowAdvancedFilter": true,
             "listDisplayOptions": [
               "auto",
+              "list3",
+              "table",
               "tiles"
             ],
-            "defaultView": "table",
+            "defaultView": "map",
             "entities": [
-              "ft_boPond",
-              "ft_boFish",
-              "ft_boPerson",
-              "ft_boCompany"
+              "ft_boCompany",
+              "ft_boPond"
             ]
+          }
+        },
+        {
+          "id": "pg_siteTasks",
+          "title": {
+            "translatable": true,
+            "key": "siteTasks",
+            "value": "Site Tasks"
+          },
+          "description": {
+            "translatable": true,
+            "key": "manageTasksAssociatedWithSpecificConstructionSites",
+            "value": "Manage tasks associated with specific construction sites."
+          },
+          "thumbnailImageSearchQuery": "construction tasks management",
+          "icon": "edit",
+          "closeMenu": true,
+          "module": {
+            "type": "samo-planning-board",
+            "resourceEntity": "ft_boPond",
+            "taskEntity": "ft_boInspection",
+            "allocationEntity": "ft_boAllocation"
           }
         }
       ],
       "entities": [
         {
-          "key": "ft_boPond",
+          "key": "ft_boCompany",
           "detailDefault": {
             "title": {
               "translatable": true,
-              "key": "pondDetails",
-              "value": "Pond Details"
+              "key": "companyDetail",
+              "value": "Company Detail"
             },
             "sections": [
               {
                 "type": "samo-entity-properties-detail"
-              },
-              {
-                "title": {
-                  "translatable": true,
-                  "key": "relatedDetails",
-                  "value": "Related Details"
-                },
-                "type": "related-entity-list",
-                "entities": [
-                  "ft_boFish",
-                  "ft_boPerson"
-                ]
               }
             ]
           },
           "editDefault": {
             "title": {
               "translatable": true,
-              "key": "editPondDetails",
-              "value": "Edit Pond Details"
+              "key": "editCompany",
+              "value": "Edit Company"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          },
+          "editInsert": {
+            "title": {
+              "translatable": true,
+              "key": "addNewCompany",
+              "value": "Add New Company"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          }
+        },
+        {
+          "key": "ft_boPond",
+          "detailDefault": {
+            "title": {
+              "translatable": true,
+              "key": "pondDetail",
+              "value": "Pond Detail"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-detail"
+              }
+            ]
+          },
+          "editDefault": {
+            "title": {
+              "translatable": true,
+              "key": "editPond",
+              "value": "Edit Pond"
             },
             "sections": [
               {
@@ -102,51 +152,76 @@
       ]
     },
     {
-      "id": "ap_fishAgenda",
+      "id": "ap_taskAndResourceManagement",
       "title": {
         "translatable": true,
-        "key": "fishAgenda",
-        "value": "Fish Agenda"
+        "key": "taskAndResourceManagement",
+        "value": "Task and Resource Management"
       },
+      "icon": "settings",
       "pages": [
         {
-          "id": "pg_fishOverview",
+          "id": "pg_taskDashboard",
           "title": {
             "translatable": true,
-            "key": "fishOverview",
-            "value": "Fish Overview"
+            "key": "taskDashboard",
+            "value": "Task Dashboard"
           },
           "description": {
             "translatable": true,
-            "key": "browseAndManageFishData",
-            "value": "Browse and manage fish data."
+            "key": "overviewOfAllTasksWithinTheProjectManagementSystem",
+            "value": "Overview of all tasks within the project management system."
           },
-          "thumbnailImageSearchQuery": "fish swimming nature",
-          "icon": "search",
-          "closeMenu": false,
+          "thumbnailImageSearchQuery": "task dashboard",
+          "icon": "check-circle",
+          "closeMenu": true,
           "module": {
             "type": "samo-browse",
-            "allowNearbyFilter": true,
+            "allowNearbyFilter": false,
             "allowAdvancedFilter": true,
             "listDisplayOptions": [
               "auto",
+              "list3",
               "table"
             ],
             "defaultView": "table",
             "entities": [
-              "ft_boFish"
+              "ft_boInspection",
+              "ft_boInspectionType"
             ]
+          }
+        },
+        {
+          "id": "pg_resourceAllocation",
+          "title": {
+            "translatable": true,
+            "key": "resourceAllocation",
+            "value": "Resource Allocation"
+          },
+          "description": {
+            "translatable": true,
+            "key": "planAndAllocateResourcesToVariousTasks",
+            "value": "Plan and allocate resources to various tasks."
+          },
+          "thumbnailImageSearchQuery": "resource allocation planning",
+          "icon": "hourglass",
+          "closeMenu": true,
+          "module": {
+            "type": "samo-planning-board",
+            "resourceEntity": "ft_boCompany",
+            "taskEntity": "ft_boPond",
+            "allocationEntity": "ft_boAllocation"
           }
         }
       ],
       "entities": [
         {
-          "key": "ft_boFish",
+          "key": "ft_boInspection",
           "detailDefault": {
             "title": {
               "translatable": true,
-              "key": "fishDetails",
-              "value": "Fish Details"
+              "key": "inspectionDetail",
+              "value": "Inspection Detail"
             },
             "sections": [
               {
@@ -157,8 +232,8 @@
           "editDefault": {
             "title": {
               "translatable": true,
-              "key": "editFishDetails",
-              "value": "Edit Fish Details"
+              "key": "editInspection",
+              "value": "Edit Inspection"
             },
             "sections": [
               {
@@ -169,8 +244,8 @@
           "editInsert": {
             "title": {
               "translatable": true,
-              "key": "addNewFish",
-              "value": "Add New Fish"
+              "key": "addNewInspection",
+              "value": "Add New Inspection"
             },
             "sections": [
               {
@@ -178,48 +253,14 @@
               }
             ]
           }
-        }
-      ]
-    },
-    {
-      "id": "ap_pondsAgenda",
-      "title": {
-        "translatable": true,
-        "key": "pondsAgenda",
-        "value": "Ponds Agenda"
-      },
-      "pages": [
-        {
-          "id": "pg_pondsManagement",
-          "title": {
-            "translatable": true,
-            "key": "pondsManagement",
-            "value": "Ponds Management"
-          },
-          "description": {
-            "translatable": true,
-            "key": "manageDataRelatedToPonds",
-            "value": "Manage data related to ponds."
-          },
-          "thumbnailImageSearchQuery": "pond maintenance nature",
-          "icon": "settings",
-          "closeMenu": true,
-          "module": {
-            "type": "samo-planning-board",
-            "resourceEntity": "ft_boPerson",
-            "taskEntity": "ft_boInspection",
-            "allocationEntity": "ft_boAllocation"
-          }
-        }
-      ],
-      "entities": [
+        },
         {
           "key": "ft_boAllocation",
           "detailDefault": {
             "title": {
               "translatable": true,
-              "key": "allocationDetails",
-              "value": "Allocation Details"
+              "key": "allocationDetail",
+              "value": "Allocation Detail"
             },
             "sections": [
               {
@@ -242,8 +283,8 @@
           "editInsert": {
             "title": {
               "translatable": true,
-              "key": "createNewAllocation",
-              "value": "Create New Allocation"
+              "key": "addNewAllocation",
+              "value": "Add New Allocation"
             },
             "sections": [
               {

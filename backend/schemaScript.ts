@@ -1,112 +1,127 @@
-import { z } from 'zod';
-import Case from 'case';
+import { z } from "zod";
+import Case from "case";
 
-import OpenAI from 'openai';
-import { zodResponseFormat } from 'openai/helpers/zod';
-import fs from 'fs';
+import OpenAI from "openai";
+import { zodResponseFormat } from "openai/helpers/zod";
+import fs from "fs";
+import { RootSchema } from "./generate/globalSchema";
 
-export const translatable = () => z.string().transform((text) => ({
-  translatable: true,
-  key: Case.camel(text),
-  value: text,
-}));
+export const translatable = () =>
+  z.string().transform((text) => ({
+    translatable: true,
+    key: Case.camel(text),
+    value: text,
+  }));
 
-const icons = JSON.parse(fs.readFileSync('icons50.json', 'utf-8'));
+const icons = JSON.parse(fs.readFileSync("icons50.json", "utf-8"));
 
-export const pageModule = () => z.discriminatedUnion('type', [
+export const pageModule = () =>
+  z.discriminatedUnion("type", [
+    z.object({
+      type: z.literal("samo-browse"),
+      allowNearbyFilter: z.boolean().optional(),
+      allowAdvancedFilter: z.boolean().optional(),
+      listDisplayOptions: z.array(z.enum(["auto", "list3", "table", "tiles"])),
+      defaultView: z.enum(["table", "map"]),
+      entities: z.array(z.string()),
+    }),
+    z.object({
+      type: z.literal("samo-planning-board"),
+      resourceEntity: z.string(),
+      taskEntity: z.string(),
+      allocationEntity: z.string(),
+    }),
+  ]);
+
+export const page = () =>
+  z
+    .object({
+      title: translatable(),
+      description: translatable(),
+      thumbnailImageSearchQuery: z.string().optional(),
+      icon: z.enum(icons),
+      closeMenu: z.boolean().optional(),
+      module: pageModule(),
+    })
+    .transform((data) => ({
+      id: `pg_${Case.camel(data.title.value)}`,
+      ...data,
+    }));
+
+export const detailModule = () =>
+  z.discriminatedUnion("type", [
+    z.object({
+      type: z.literal("samo-entity-properties-detail"),
+    }),
+    z.object({
+      title: translatable(),
+      type: z.literal("related-entity-list"),
+      entities: z.array(z.string()),
+    }),
+  ]);
+
+export const editDetailModule = () =>
+  z.discriminatedUnion("type", [
+    z.object({
+      type: z.literal("samo-entity-properties-form"),
+    }),
+    z.object({
+      title: translatable(),
+      type: z.literal("samo-tai-form"),
+    }),
+  ]);
+
+export const detail = (section: () => z.ZodType) =>
   z.object({
-    type: z.literal('samo-browse'),
-    allowNearbyFilter: z.boolean().optional(),
-    allowAdvancedFilter: z.boolean().optional(),
-    listDisplayOptions: z.array(z.enum(['auto', 'list3', 'table', 'tiles'])),
-    defaultView: z.enum(['table', 'map']),
-    entities: z.array(z.string()),
-  }),
+    title: translatable(),
+    sections: z.array(section()),
+  });
+
+export const entity = () =>
   z.object({
-    type: z.literal('samo-planning-board'),
-    resourceEntity: z.string(),
-    taskEntity: z.string(),
-    allocationEntity: z.string(),
+    key: z.string(),
+    detailDefault: detail(detailModule),
+    editDefault: detail(editDetailModule),
+    editInsert: detail(editDetailModule),
+  });
+
+export const part = () =>
+  z
+    .object({
+      title: translatable(),
+      icon: z.enum(icons),
+      pages: z.array(page()),
+      entities: z.array(entity()),
+    })
+    .transform((data) => ({
+      id: `ap_${Case.camel(data.title.value)}`,
+      ...data,
+    }));
+
+export const schemaScript = z
+  .object({
+    appName: translatable(),
+    parts: z.array(part()),
   })
-]);
-
-export const page = () => z.object({
-  title: translatable(),
-  description: translatable(),
-  thumbnailImageSearchQuery: z.string().optional(),
-  icon: z.enum(icons),
-  closeMenu: z.boolean().optional(),
-  module: pageModule(),
-}).transform((data) => ({
-  id: `pg_${Case.camel(data.title.value)}`,
-  ...data,
-}));
-
-export const detailModule = () => z.discriminatedUnion('type', [
-  z.object({
-    type: z.literal('samo-entity-properties-detail'),
-  }),
-  z.object({
-    title: translatable(),
-    type: z.literal('related-entity-list'),
-    entities: z.array(z.string()),
-  }),
-]);
-
-export const editDetailModule = () => z.discriminatedUnion('type', [
-  z.object({
-    type: z.literal('samo-entity-properties-form'),
-  }),
-  z.object({
-    title: translatable(),
-    type: z.literal('samo-tai-form'),
-  }),
-]);
-
-export const detail = (section: () => z.ZodType) => z.object({
-  title: translatable(),
-  sections: z.array(section()),
-});
-
-
-
-export const entity = () => z.object({
-  key: z.string(),
-  detailDefault: detail(detailModule),
-  editDefault: detail(editDetailModule),
-  editInsert: detail(editDetailModule),
-});
-
-export const part = () => z.object({
-  title: translatable(),
-  pages: z.array(page()),
-  entities: z.array(entity()),
-}).transform((data) => ({
-  id: `ap_${Case.camel(data.title.value)}`,
-  ...data,
-}));
-
-export const schemaScript = z.object({
-  appName: translatable(),
-  parts: z.array(part()),
-}).transform((data) => ({
-  appId: Case.kebab(data.appName.value),
-  ...data,
-}));
+  .transform((data) => ({
+    appId: Case.kebab(data.appName.value),
+    ...data,
+  }));
 
 export type Schema = z.infer<typeof schemaScript>;
 
-
-export async function generateSchema() {
+export async function generateSchema(
+  entities?: RootSchema["featureTypeArray"]
+) {
   const client = new OpenAI();
 
-  const text = fs.readFileSync('text.txt', 'utf-8');
+  const text = fs.readFileSync("text.txt", "utf-8");
 
   const completion = await client.beta.chat.completions.parse({
-    model: 'gpt-4o-2024-08-06',
+    model: "gpt-4o-2024-08-06",
     messages: [
       {
-        role: 'user',
+        role: "user",
         content: `
         Read the Project Specification and the create a JSON schema for the project.
         The schema describes application parts their corresponding pages.
@@ -118,7 +133,9 @@ export async function generateSchema() {
         Page can have a thumbnail, a title and an icon.
         The thumbnail is obtained by searching the Pexels image database using a search query. 
         The query should contain keywords that describe a generic image applicable to the page.
-  
+        A cockpit page is a special page that contains links to other pages.
+        It is always generated automatically and therefore does not need to be defined in the schema.
+
         Description of modules:
         
         samo-browse:
@@ -129,33 +146,34 @@ export async function generateSchema() {
   
   
         Entities available:
-        ft_boCompany
+        ${
+          entities?.map((entity) => entity.id).join("\n") ??
+          `ft_boCompany
         ft_boPerson
         ft_boFish
         ft_boPond
         ft_boFishingGuard
         ft_boInspection
         ft_boInspectionType
-        ft_boAllocation
+        ft_boAllocation`
+        }
         
         Project Specification:
-        ${text}`
+        ${text}`,
       },
     ],
     max_tokens: 2000,
-    response_format: zodResponseFormat(schemaScript, 'schema')
+    response_format: zodResponseFormat(schemaScript, "schema"),
   });
 
   const message = completion.choices[0]?.message;
 
   if (message?.parsed) {
-    fs.writeFileSync('schema.json', JSON.stringify(message.parsed, null, 2));
-    console.log('done');
+    fs.writeFileSync("schema.json", JSON.stringify(message.parsed, null, 2));
+    console.log("done");
   } else {
-    console.log('refuse', message.refusal);
+    console.log("refuse", message.refusal);
   }
 }
 
-
-// generateSchema();
-
+await generateSchema();
