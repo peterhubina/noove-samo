@@ -175,5 +175,3 @@ export async function generateSchema(
     console.log("refuse", message.refusal);
   }
 }
-
-await generateSchema();

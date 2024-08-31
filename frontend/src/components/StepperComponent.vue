@@ -1,5 +1,5 @@
 <template>
-  <q-stepper v-model="currentStep" flat class="w-full h-full">
+  <q-stepper v-model="currentStep" header-nav flat class="w-full h-full">
     <q-step v-for="step in steps" :key="step.id" :name="step.id" :title="step.title" :done="step.done" class="h-full">
       <component :is="step.component" @next="nextStep" @reset="reset"/>
     </q-step>

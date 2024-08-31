@@ -52,6 +52,8 @@ export default {
           }
         });
 
+        this.$emit('next', 0);
+
         // setTimeout(() => {
         //   console.log('analyzed')
         //   this.loading = false;

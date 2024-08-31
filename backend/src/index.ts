@@ -1,4 +1,4 @@
-import express from "express";
+import express, {Request, Response} from "express";
 import { PrismaClient } from "@prisma/client";
 import dotenv from "dotenv";
 
@@ -6,6 +6,8 @@ import authRoutes from "./endpoints/auth/auth";
 import authMiddleware from "./middleware/auth";
 import analyzeRouter from "./endpoints/analyze.js";
 import { editAccount } from "./endpoints/user/editAccount";
+import path from "path";
+import {download} from "./endpoints/download";
 
 const morgan = require("morgan");
 const cors = require("cors");
@@ -33,6 +35,8 @@ app.get("/companies", authMiddleware, async (req, res) => {
     const users = await prisma.company.findMany();
     res.json(users);
 });
+
+app.get('/download-configuration', download);
 
 const PORT = process.env.SERVER_PORT || 3000;
 app.listen(PORT, () => {

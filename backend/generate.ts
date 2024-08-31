@@ -788,4 +788,3 @@ export async function generateJsonConfiguration(directory: string) {
   });
 }
 
-await generateJsonConfiguration("structure");

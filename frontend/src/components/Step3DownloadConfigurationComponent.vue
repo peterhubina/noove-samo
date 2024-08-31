@@ -13,20 +13,36 @@
 </template>
 
 <script setup>
-import { defineEmits } from 'vue';
+import {defineEmits, getCurrentInstance} from 'vue';
+
+const {proxy} = getCurrentInstance();
+const axios = proxy.$axios;
 
 const emit = defineEmits(['reset']);
 
 const download = async () => {
-  const link = document.createElement('a');
-  link.href = 'public/configurations/structure.zip';
-  link.download = 'structure.zip';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  try {
+    const response = await axios.get('http://localhost:3000/download-configuration', {
+      responseType: 'blob'
+    });
 
-  setTimeout(() => {
-    emit('reset')
-  }, 2000)
+    // Create a new Blob from the response
+    const blob = new Blob([response.data], { type: 'application/zip' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'configuration.zip';
+
+    // Append the link to the body
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link); // Remove the link after downloading
+
+    // Emit 'reset' event after a short delay
+    setTimeout(() => {
+      emit('reset')
+    }, 2000);
+  } catch (error) {
+    console.error('Error downloading the file:', error);
+  }
 };
 </script>

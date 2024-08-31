@@ -51,7 +51,7 @@ const processFile = async (filePath) => {
     fs.writeFileSync(`text.txt`, pageTexts.join('\n\n\n'));
 
     // analyzeDiagrams.ts
-    main();
+    await main();
 }
 
 module.exports = processFile;
