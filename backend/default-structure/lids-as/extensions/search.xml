@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ber:search xmlns:ber="http://www.berit.com/ber"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <ber:version>
+    <ber:metadata>1</ber:metadata>
+    <ber:minClient>5140</ber:minClient>
+    <ber:minAS>12601</ber:minAS>
+  </ber:version>
+  <ber:defaultBulkSize>3000</ber:defaultBulkSize>
+  <ber:esConnection>
+    <ber:esClusterName>${elasticClusterName}</ber:esClusterName>
+    <ber:esTransportAddressesArray>
+      <ber:esTransportAddress address="${elasticHost}" port="${elasticPort}"/>
+    </ber:esTransportAddressesArray>
+    <ber:indexPrefix>${elasticIndexPrefix}</ber:indexPrefix>
+  </ber:esConnection>
+  <ber:featureTypeIndexImageArray>
+    <ber:featureTypeIndexImage id="default" featureTypeId="*">
+      <ber:indexedAttributeArray>
+        <ber:indexedAttribute>
+          <ber:includeAttribute>*</ber:includeAttribute>
+        </ber:indexedAttribute>
+      </ber:indexedAttributeArray>
+      <ber:indexGeometry>true</ber:indexGeometry>
+      <ber:indexGeometryForSearch>true</ber:indexGeometryForSearch>
+      <ber:geometryPrecision>5m</ber:geometryPrecision>
+      <ber:languageSpecificKeyword>true</ber:languageSpecificKeyword>
+    </ber:featureTypeIndexImage>
+  </ber:featureTypeIndexImageArray>
+  <ber:codelistIndexImageArray>
+    <ber:codelistIndexImage id="default" codelistId="*">
+      <ber:indexedAttributeArray>
+        <ber:indexedAttribute>
+          <ber:includeAttribute>*</ber:includeAttribute>
+        </ber:indexedAttribute>
+      </ber:indexedAttributeArray>
+      <ber:languageSpecificKeyword>true</ber:languageSpecificKeyword>
+    </ber:codelistIndexImage>
+  </ber:codelistIndexImageArray>
+  <ber:indexedCodelistsArray>
+    <ber:indexedCodelist codelistId="cl*"/>
+    <ber:indexedCodelist codelistId="cf*"/>
+  </ber:indexedCodelistsArray>
+  <ber:indexedFeaturesArray>
+  <ber:indexedFeatureType featureTypeId="ft_boFish"/>
+  <ber:indexedFeatureType featureTypeId="ft_boPond"/>
+  <ber:indexedFeatureType featureTypeId="ft_boPondboPerson"/>
+  <ber:indexedFeatureType featureTypeId="ft_boSponsor"/>
+  <ber:indexedFeatureType featureTypeId="ft_boCompany"/>
+  <ber:indexedFeatureType featureTypeId="ft_boPerson"/>+
+  <ber:indexedFeatureType featureTypeId="ft_boAllocation"/>
+  <ber:indexedFeatureType featureTypeId="ft_boInspection"/>
+  <ber:indexedFeatureType featureTypeId="ft_taiAddrPoint"/>
+  <ber:indexedFeatureType featureTypeId="ft_boInspectionType"/>
+  <ber:indexedFeatureType featureTypeId="ft_boFishingGuard"/>
+  </ber:indexedFeaturesArray>
+</ber:search>

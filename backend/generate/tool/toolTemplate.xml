@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ber:tool xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ber="http://www.berit.com/ber">
+    <!-- Tools -->
+    <ber:toolArray>
+        {% for tool in toolArray %}
+        <ber:tool id="{{ tool.id }}" name="{{ tool.name }}">
+            <ber:description>{{ tool.description }}</ber:description>
+        </ber:tool>
+        {% endfor %}
+    </ber:toolArray>
+
+    <!-- Toolboxes -->
+    <ber:toolboxArray>
+        {% for toolbox in toolboxArray %}
+        <ber:toolbox id="{{ toolbox.id }}" name="{{ toolbox.name }}">
+            {% for toolRef in toolbox.tools %}
+            <ber:tool refId="{{ toolRef }}"/>
+            {% endfor %}
+        </ber:toolbox>
+        {% endfor %}
+    </ber:toolboxArray>
+
+    <!-- Ribbon Pages -->
+    <ber:ribbonPageArray>
+        {% for ribbonPage in ribbonPageArray %}
+        <ber:ribbonPage id="{{ ribbonPage.id }}" name="{{ ribbonPage.name }}">
+            {% for toolboxRef in ribbonPage.toolboxes %}
+            <ber:toolbox refId="{{ toolboxRef }}"/>
+            {% endfor %}
+        </ber:ribbonPage>
+        {% endfor %}
+    </ber:ribbonPageArray>
+</ber:tool>

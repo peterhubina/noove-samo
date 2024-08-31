@@ -1,0 +1,6 @@
+{
+    "type": "jdbc",
+    "url": "{$securityDataSource.url}",
+    "username": "{$securityDataSource.username}",
+    "password": "{$securityDataSource.password}"
+}

@@ -1,0 +1,51 @@
+{
+  "extends": "base",
+  "defaultDataSource": "jndi:jdbc/samo_train",
+  "defaultAuthorization": {
+    "type": "roles",
+    "requiredRole": "APPLICATION:SAMO-TRAIN.APPRUN"
+  },
+  "clients": [
+    "samo-training-dynamic-client"
+  ],
+  "proxies": [
+    "lids",
+    "lids-new",
+    "user-service",
+    "tai"
+  ],
+  "mode": {
+    "type": "session",
+    "sessionExpiration": 14400000
+  },
+  "authenticationMethods": [
+    {
+      "type": "kerberos",
+      "configurationProperty": "kerberos.sso"
+    },
+    {
+      "type": "basic"
+    }
+  ],
+  "userDetails": {
+    "type": "security"
+  },
+  "credentialsVerification": [
+    {
+      "type": "security"
+    },
+    {
+      "type": "ldap",
+      "configurationProperty": "ldap"
+    }
+  ],
+  "accountStatusCheck": [
+    {
+      "type": "security"
+    },
+    {
+      "type": "ldap",
+      "configurationProperty": "ldap"
+    }
+  ]
+}

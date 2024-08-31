@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ber:thematization xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ber="http://www.berit.com/ber">
+    <!-- Dynamic Symbology -->
+    <ber:dynamicSymbologyArray>
+        {% for dynamicSymbology in dynamicSymbologyArray %}
+        <ber:dynamicSymbology id="{{ dynamicSymbology.id }}" name="{{ dynamicSymbology.name }}">
+            <ber:ruleArray>
+                {% for rule in dynamicSymbology.ruleArray %}
+                <ber:rule>
+                    <ber:condition>{{ rule.condition }}</ber:condition>
+                    <ber:symbology refId="{{ rule.symbology }}"/>
+                </ber:rule>
+                {% endfor %}
+            </ber:ruleArray>
+        </ber:dynamicSymbology>
+        {% endfor %}
+    </ber:dynamicSymbologyArray>
+
+    <!-- Themes -->
+    <ber:themeArray>
+        {% for theme in themeArray %}
+        <ber:theme id="{{ theme.id }}" name="{{ theme.name }}">
+            <ber:dynamicSymbology refId="{{ theme.dynamicSymbology }}"/>
+        </ber:theme>
+        {% endfor %}
+    </ber:themeArray>
+</ber:thematization>

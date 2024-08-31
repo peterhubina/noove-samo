@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ber:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ber="http://www.berit.com/ber">
+    <!-- Line Styles -->
+    <ber:lineStyleArray>
+        {% for lineStyle in lineStyleArray %}
+        <ber:lineStyle id="{{ lineStyle.id }}" name="{{ lineStyle.name }}">
+            <ber:pattern>{{ lineStyle.pattern }}</ber:pattern>
+        </ber:lineStyle>
+        {% endfor %}
+    </ber:lineStyleArray>
+
+    <!-- Symbol Fonts -->
+    <ber:symbolFontArray>
+        {% for symbolFont in symbolFontArray %}
+        <ber:symbolFont id="{{ symbolFont.id }}" name="{{ symbolFont.name }}" file="{{ symbolFont.file }}"/>
+        {% endfor %}
+    </ber:symbolFontArray>
+
+    <!-- Icons -->
+    <ber:iconArray>
+        {% for icon in iconArray %}
+        <ber:icon id="{{ icon.id }}" name="{{ icon.name }}" file="{{ icon.file }}"/>
+        {% endfor %}
+    </ber:iconArray>
+
+    <!-- Translations -->
+    <ber:translationsArray>
+        {% for translation in translationsArray %}
+        <ber:translation id="{{ translation.id }}" name="{{ translation.name }}">
+            <ber:formatArray>
+                {% for format in translation.formatArray %}
+                <ber:format file="{{ format.file }}" name="{{ format.name }}" separator="{{ format.separator }}" quote="{{ format.quote }}" escapeChar="{{ format.escapeChar }}"/>
+                {% endfor %}
+            </ber:formatArray>
+        </ber:translation>
+        {% endfor %}
+    </ber:translationsArray>
+</ber:resource>

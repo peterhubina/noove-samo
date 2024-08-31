@@ -1,0 +1,8 @@
+{
+    "freemarkerSettings": {
+        "locale": "cs",
+        "numberFormat": "#,##0.###",
+        "booleanFormat": "ano,ne",
+        "datetimeFormat": "dd.MM.yyyy HH:mm"
+    }
+}

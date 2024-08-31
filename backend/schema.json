@@ -1,0 +1,459 @@
+{
+  "appId": "fish-and-ponds-e-learning-system",
+  "appName": {
+    "translatable": true,
+    "key": "fishAndPondsELearningSystem",
+    "value": "Fish and Ponds e-Learning System"
+  },
+  "parts": [
+    {
+      "id": "ap_agendaCompanyPeople",
+      "title": {
+        "translatable": true,
+        "key": "agendaCompanyPeople",
+        "value": "Agenda: Company & People"
+      },
+      "icon": "group",
+      "pages": [
+        {
+          "id": "pg_companies",
+          "title": {
+            "translatable": true,
+            "key": "companies",
+            "value": "Companies"
+          },
+          "description": {
+            "translatable": true,
+            "key": "manageAllRegisteredCompanyData",
+            "value": "Manage all registered company data."
+          },
+          "thumbnailImageSearchQuery": "business company office",
+          "icon": "person",
+          "closeMenu": true,
+          "module": {
+            "type": "samo-browse",
+            "allowNearbyFilter": true,
+            "allowAdvancedFilter": true,
+            "listDisplayOptions": [
+              "auto",
+              "list3",
+              "table",
+              "tiles"
+            ],
+            "defaultView": "table",
+            "entities": [
+              "ft_boCompany"
+            ]
+          }
+        },
+        {
+          "id": "pg_people",
+          "title": {
+            "translatable": true,
+            "key": "people",
+            "value": "People"
+          },
+          "description": {
+            "translatable": true,
+            "key": "directoryOfAllIndividualsInvolvedWithThePonds",
+            "value": "Directory of all individuals involved with the ponds."
+          },
+          "thumbnailImageSearchQuery": "person portrait individuals",
+          "icon": "group",
+          "closeMenu": true,
+          "module": {
+            "type": "samo-browse",
+            "allowNearbyFilter": true,
+            "allowAdvancedFilter": true,
+            "listDisplayOptions": [
+              "auto",
+              "list3",
+              "table",
+              "tiles"
+            ],
+            "defaultView": "table",
+            "entities": [
+              "ft_boPerson"
+            ]
+          }
+        }
+      ],
+      "entities": [
+        {
+          "key": "ft_boCompany",
+          "detailDefault": {
+            "title": {
+              "translatable": true,
+              "key": "companyDetails",
+              "value": "Company Details"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-detail"
+              }
+            ]
+          },
+          "editDefault": {
+            "title": {
+              "translatable": true,
+              "key": "editCompany",
+              "value": "Edit Company"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          },
+          "editInsert": {
+            "title": {
+              "translatable": true,
+              "key": "newCompany",
+              "value": "New Company"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          }
+        },
+        {
+          "key": "ft_boPerson",
+          "detailDefault": {
+            "title": {
+              "translatable": true,
+              "key": "personDetails",
+              "value": "Person Details"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-detail"
+              }
+            ]
+          },
+          "editDefault": {
+            "title": {
+              "translatable": true,
+              "key": "editPerson",
+              "value": "Edit Person"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          },
+          "editInsert": {
+            "title": {
+              "translatable": true,
+              "key": "newPerson",
+              "value": "New Person"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ap_agendaFishPonds",
+      "title": {
+        "translatable": true,
+        "key": "agendaFishPonds",
+        "value": "Agenda: Fish & Ponds"
+      },
+      "icon": "photo",
+      "pages": [
+        {
+          "id": "pg_fishDatabase",
+          "title": {
+            "translatable": true,
+            "key": "fishDatabase",
+            "value": "Fish Database"
+          },
+          "description": {
+            "translatable": true,
+            "key": "accessFishRecordsAndAssociatedData",
+            "value": "Access fish records and associated data."
+          },
+          "thumbnailImageSearchQuery": "fish water swimming",
+          "icon": "photo",
+          "closeMenu": true,
+          "module": {
+            "type": "samo-browse",
+            "allowNearbyFilter": false,
+            "allowAdvancedFilter": true,
+            "listDisplayOptions": [
+              "auto",
+              "list3",
+              "tiles"
+            ],
+            "defaultView": "table",
+            "entities": [
+              "ft_boFish",
+              "ft_boPond"
+            ]
+          }
+        },
+        {
+          "id": "pg_pondManagement",
+          "title": {
+            "translatable": true,
+            "key": "pondManagement",
+            "value": "Pond Management"
+          },
+          "description": {
+            "translatable": true,
+            "key": "managePondDetailsViewMapAndStatusUpdates",
+            "value": "Manage pond details, view map and status updates."
+          },
+          "thumbnailImageSearchQuery": "pond landscape nature",
+          "icon": "photo",
+          "closeMenu": false,
+          "module": {
+            "type": "samo-browse",
+            "allowNearbyFilter": true,
+            "allowAdvancedFilter": true,
+            "listDisplayOptions": [
+              "auto",
+              "list3",
+              "table",
+              "tiles"
+            ],
+            "defaultView": "map",
+            "entities": [
+              "ft_boPond"
+            ]
+          }
+        }
+      ],
+      "entities": [
+        {
+          "key": "ft_boFish",
+          "detailDefault": {
+            "title": {
+              "translatable": true,
+              "key": "fishDetails",
+              "value": "Fish Details"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-detail"
+              }
+            ]
+          },
+          "editDefault": {
+            "title": {
+              "translatable": true,
+              "key": "editFish",
+              "value": "Edit Fish"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          },
+          "editInsert": {
+            "title": {
+              "translatable": true,
+              "key": "newFishRecord",
+              "value": "New Fish Record"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          }
+        },
+        {
+          "key": "ft_boPond",
+          "detailDefault": {
+            "title": {
+              "translatable": true,
+              "key": "pondDetails",
+              "value": "Pond Details"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-detail"
+              }
+            ]
+          },
+          "editDefault": {
+            "title": {
+              "translatable": true,
+              "key": "editPond",
+              "value": "Edit Pond"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          },
+          "editInsert": {
+            "title": {
+              "translatable": true,
+              "key": "newPond",
+              "value": "New Pond"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ap_agendaInspectionsWorkforce",
+      "title": {
+        "translatable": true,
+        "key": "agendaInspectionsWorkforce",
+        "value": "Agenda: Inspections & Workforce"
+      },
+      "icon": "settings",
+      "pages": [
+        {
+          "id": "pg_workManagement",
+          "title": {
+            "translatable": true,
+            "key": "workManagement",
+            "value": "Work Management"
+          },
+          "description": {
+            "translatable": true,
+            "key": "overviewOfAllScheduledWorkAndInspectionStatuses",
+            "value": "Overview of all scheduled work and inspection statuses."
+          },
+          "thumbnailImageSearchQuery": "work schedule inspection",
+          "icon": "check",
+          "closeMenu": false,
+          "module": {
+            "type": "samo-planning-board",
+            "resourceEntity": "ft_boFish",
+            "taskEntity": "ft_boInspection",
+            "allocationEntity": "ft_boAllocation"
+          }
+        },
+        {
+          "id": "pg_inspectionTypes",
+          "title": {
+            "translatable": true,
+            "key": "inspectionTypes",
+            "value": "Inspection Types"
+          },
+          "description": {
+            "translatable": true,
+            "key": "detailsOfAvailableInspectionCategories",
+            "value": "Details of available inspection categories."
+          },
+          "thumbnailImageSearchQuery": "inspection checklist evaluation",
+          "icon": "error",
+          "closeMenu": true,
+          "module": {
+            "type": "samo-browse",
+            "allowNearbyFilter": false,
+            "allowAdvancedFilter": true,
+            "listDisplayOptions": [
+              "auto",
+              "list3",
+              "table"
+            ],
+            "defaultView": "table",
+            "entities": [
+              "ft_boInspectionType"
+            ]
+          }
+        }
+      ],
+      "entities": [
+        {
+          "key": "ft_boInspection",
+          "detailDefault": {
+            "title": {
+              "translatable": true,
+              "key": "inspectionDetails",
+              "value": "Inspection Details"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-detail"
+              }
+            ]
+          },
+          "editDefault": {
+            "title": {
+              "translatable": true,
+              "key": "editInspection",
+              "value": "Edit Inspection"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          },
+          "editInsert": {
+            "title": {
+              "translatable": true,
+              "key": "newInspection",
+              "value": "New Inspection"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          }
+        },
+        {
+          "key": "ft_boInspectionType",
+          "detailDefault": {
+            "title": {
+              "translatable": true,
+              "key": "inspectionTypeDetails",
+              "value": "Inspection Type Details"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-detail"
+              }
+            ]
+          },
+          "editDefault": {
+            "title": {
+              "translatable": true,
+              "key": "editInspectionType",
+              "value": "Edit Inspection Type"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          },
+          "editInsert": {
+            "title": {
+              "translatable": true,
+              "key": "newInspectionType",
+              "value": "New Inspection Type"
+            },
+            "sections": [
+              {
+                "type": "samo-entity-properties-form"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

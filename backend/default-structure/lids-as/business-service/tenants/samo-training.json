@@ -1,0 +1,19 @@
+{
+  "default": true,
+  "userServiceUrl": "{$userService.url}",
+  "userServiceJWTSecret": "{$userService.jwt.secret}",
+  "email": {
+    "type": "SMTP",
+    "smtpConfiguration": {
+      "server": "{$smtp.host}",
+      "port": 25
+    }
+  },
+  "tempFilesUpload": {
+    "authenticatedUsers": {
+      "enabled": true,
+      "fileExpiration": 3600000 /*1800000 60min*/
+    }
+  },
+  "messages": []
+}

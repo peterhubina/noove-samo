@@ -1,0 +1,9 @@
+{
+  //should be a parent of all entities
+  "securityMethodOwner": "application:SAMO-TRAIN",
+  "abstract": true,
+  "configurationPresets": [
+    "workflowSteps",
+    "workflowConditions"
+  ]
+}

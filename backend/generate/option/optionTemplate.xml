@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ber:option xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ber="http://www.berit.com/ber">
+    <!-- Copy Features -->
+    <ber:copyFeatureArray>
+        {% for copyFeature in copyFeatureArray %}
+        <ber:copyFeature id="{{ copyFeature.id }}" name="{{ copyFeature.name }}">
+            <ber:featureType refId="{{ copyFeature.featureType }}"/>
+        </ber:copyFeature>
+        {% endfor %}
+    </ber:copyFeatureArray>
+
+    <!-- Displayable Attributes -->
+    <ber:displayableAttributeArray>
+        {% for displayableAttribute in displayableAttributeArray %}
+        <ber:displayableAttribute id="{{ displayableAttribute.id }}" name="{{ displayableAttribute.name }}">
+            <ber:attribute refId="{{ displayableAttribute.attribute }}"/>
+        </ber:displayableAttribute>
+        {% endfor %}
+    </ber:displayableAttributeArray>
+
+    <!-- WMS Backdrops -->
+    <ber:wmsBackdropArray>
+        {% for wmsBackdrop in wmsBackdropArray %}
+        <ber:wmsBackdrop id="{{ wmsBackdrop.id }}" name="{{ wmsBackdrop.name }}">
+            <ber:url>{{ wmsBackdrop.url }}</ber:url>
+        </ber:wmsBackdrop>
+        {% endfor %}
+    </ber:wmsBackdropArray>
+</ber:option>

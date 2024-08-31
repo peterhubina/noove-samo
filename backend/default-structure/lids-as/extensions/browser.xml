@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ber:modelBrowser xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:ber="http://www.berit.com/ber">
+  <ber:version>
+    <ber:metadata>2</ber:metadata>
+    <ber:minClient>2754</ber:minClient>
+    <ber:minAS>11904</ber:minAS>
+  </ber:version>
+  <ber:mainMap>
+    <ber:initialSettings>
+      <ber:range>
+        <ber:x min="-930000" max="-400000"/>
+        <ber:y min="-1220000" max="-930000"/>
+      </ber:range>
+    </ber:initialSettings>
+    <ber:minScaleDenominator>10000</ber:minScaleDenominator>
+    <ber:maxScaleDenominator>10000000</ber:maxScaleDenominator>
+    <ber:scales>
+      <ber:scale>2000000</ber:scale>
+      <ber:scale>1500000</ber:scale>
+      <ber:scale>1000000</ber:scale>
+      <ber:scale>750000</ber:scale>
+      <ber:scale>500000</ber:scale>
+      <ber:scale>200000</ber:scale>
+      <ber:scale>50000</ber:scale>
+      <ber:scale>10000</ber:scale>
+    </ber:scales>
+    <ber:backgroundColor>#FFFFFF</ber:backgroundColor>
+    <ber:locationSymbology>
+      <ber:rgbColor>#FF00FF</ber:rgbColor>
+      <ber:strokeWidth>4</ber:strokeWidth>
+    </ber:locationSymbology>
+    <ber:stampText>© 2022 Asseco CE</ber:stampText>
+    <ber:usageLink>Terms of Usage</ber:usageLink>
+  </ber:mainMap>
+  <ber:locatorMap>
+    <ber:range>
+      <ber:x min="-930000" max="-400000"/>
+      <ber:y min="-1220000" max="-930000"/>
+    </ber:range>
+    <ber:layer refId="bd_osm"/>
+  </ber:locatorMap>
+  <ber:includedLayers>
+
+  </ber:includedLayers>
+  <ber:externalWMS>
+    <ber:externalServers>
+      <ber:externalServer xlink:href="http://geoportal.cuzk.cz/WMTS_ORTOFOTO/WMTService.aspx"/>
+    </ber:externalServers>
+    <ber:allowedHosts>
+      <ber:allowedHost>*</ber:allowedHost>
+    </ber:allowedHosts>
+  </ber:externalWMS>
+  <ber:plotLayouts>
+    <ber:defaultPlotLayout name="Plot layout - default"/>
+  </ber:plotLayouts>
+  <ber:defaultUserSettings>
+    <ber:highlightSelectedFeatures>true</ber:highlightSelectedFeatures>
+    <ber:animateZoom>false</ber:animateZoom>
+    <ber:clickSelector>false</ber:clickSelector>
+  </ber:defaultUserSettings>
+  <ber:disablePasswordChange>true</ber:disablePasswordChange>
+  <ber:guiConfiguration>
+    <ber:companyLogo xlink:href="https://asseco.com/ce/home/">resources/logo.png</ber:companyLogo>
+    <ber:modules>
+      <ber:mainMenu>
+        <ber:module id="layers"/>
+        <ber:module id="views"/>
+        <ber:module id="externalLayers"/>
+        <ber:module id="views"/>
+        <ber:module id="search"/>
+      </ber:mainMenu>
+      <ber:toolBar>
+        <ber:module id="draw"/>
+        <!-- <ber:module id="print"/><ber:module id="legends"/> --></ber:toolBar>
+    </ber:modules>
+    <ber:styles>
+      <ber:style id="barBgColor">#DDE8FE</ber:style>
+      <ber:style id="mainGradientFrom">#F2F7FF</ber:style>
+      <ber:style id="mainGradientTo">#DAE6FE</ber:style>
+      <ber:style id="selectGradientFrom">#FFFFFF</ber:style>
+      <ber:style id="selectGradientTo">#FFE5B2</ber:style>
+      <ber:style id="borderOfSelect">#B9B9B9</ber:style>
+      <ber:style id="footerBgColor">#E3ECFF</ber:style>
+      <ber:style id="barColor">#333333</ber:style>
+      <ber:style id="windowGradientFrom">#DDE8FE</ber:style>
+      <ber:style id="windowGradientTo">#FFFFFF</ber:style>
+      <ber:style id="toolBarGradientFrom">#FFFFFF</ber:style>
+      <ber:style id="toolBarGradientTo">#EAEAEA</ber:style>
+      <ber:style id="toolBarColor">#FFFFFF</ber:style>
+      <ber:style id="footerColor">#FFFFFF</ber:style>
+      <ber:style id="widnowButtonGradientFrom">#FFFFFF</ber:style>
+      <ber:style id="windowButttonGradientTo">#FFE5B2</ber:style>
+      <ber:style id="mainColor">#000000</ber:style>
+      <ber:style id="dataRowBgColor">#FFFFFF</ber:style>
+      <ber:style id="dataRowBgColorOdd">#DDE8FE</ber:style>
+      <ber:style id="toolBarColor">#505050</ber:style>
+    </ber:styles>
+  </ber:guiConfiguration>
+  <ber:timeout>30</ber:timeout>
+</ber:modelBrowser>
